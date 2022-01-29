@@ -61,7 +61,7 @@ public class PlayerManager : Singleton<PlayerManager>
   {
     Transform spawnPoint = _spawnPoints[_nextSpawnIndex];
     PlayerCharacterController player = Instantiate(_playerPrefab, transform);
-    player.RewiredPlayer = rewiredPlayer;
+    player.RewiredPlayerId = Rewired.ReInput.players.GetPlayers().IndexOf(rewiredPlayer);
     player.transform.position = spawnPoint.transform.position;
     player.transform.rotation = Quaternion.Euler(0, Random.value * 360, 0);
     _players.Add(player);

@@ -3,7 +3,7 @@ using Rewired;
 
 public class PlayerCharacterController : MonoBehaviour
 {
-  public Rewired.Player RewiredPlayer;
+  public int RewiredPlayerId = 0;
   public GameCharacterController Character = null;
   public SlapController SlapController = null;
   public CameraControllerStack CameraStack = null;
@@ -21,12 +21,13 @@ public class PlayerCharacterController : MonoBehaviour
       CameraStack.PushController(_playerCamera);
     }
 
-    if (RewiredPlayer != null)
+    var rewiredPlayer = ReInput.players.GetPlayer(RewiredPlayerId);
+    if (rewiredPlayer != null)
     {
-      Character.DesiredSpeed = RewiredPlayer.GetAxis(RewiredConsts.Action.Move);
-      Character.DesiredTurn = RewiredPlayer.GetAxis(RewiredConsts.Action.Turn);
+      Character.DesiredSpeed = rewiredPlayer.GetAxis(RewiredConsts.Action.Move);
+      Character.DesiredTurn = rewiredPlayer.GetAxis(RewiredConsts.Action.Turn);
 
-      if (RewiredPlayer.GetButtonDown(RewiredConsts.Action.Slap))
+      if (rewiredPlayer.GetButtonDown(RewiredConsts.Action.Slap))
       {
         SlapController.Slap();
       }
