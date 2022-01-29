@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraManager : Singleton<CameraManager>
 {
-    public enum ScreenLayout
+    public enum eScreenLayout
     {
         SingleCamera,
         MultiCamera
@@ -27,13 +27,19 @@ public class CameraManager : Singleton<CameraManager>
     private CameraControllerStack _menuCameraStack;
     public CameraControllerStack MenuCameraStack => _menuCameraStack;
 
+    private CameraControllerPlayer _leftPlayerCameraController;
+    public CameraControllerPlayer LeftPlayerCameraController => _leftPlayerCameraController;
+
+    private CameraControllerPlayer _rightPlayerCameraController;
+    public CameraControllerPlayer RightPlayerCameraController => _rightPlayerCameraController;
+
     private Camera _scenarioCamera;
     private Camera _leftPlayerCamera;
     private Camera _rightPlayerCamera;
     private Camera _menuCamera;
 
-    private ScreenLayout _cameraLayout = ScreenLayout.SingleCamera;
-    public ScreenLayout CameraLayout => _cameraLayout;
+    private eScreenLayout _cameraLayout = eScreenLayout.SingleCamera;
+    public eScreenLayout CameraLayout => _cameraLayout;
 
     private void Awake()
     {
@@ -52,6 +58,9 @@ public class CameraManager : Singleton<CameraManager>
         _leftPlayerCamera = leftPlayerCameraObject.GetComponent<Camera>();
         _rightPlayerCamera = rightPlayerCameraObject.GetComponent<Camera>();
         _menuCamera = menuPlayerCameraObject.GetComponent<Camera>();
+
+        _leftPlayerCameraController = leftPlayerCameraObject.GetComponent<CameraControllerPlayer>();
+        _rightPlayerCameraController = rightPlayerCameraObject.GetComponent<CameraControllerPlayer>();
     }
 
     // Update is called once per frame
@@ -60,17 +69,17 @@ public class CameraManager : Singleton<CameraManager>
         
     }
 
-    public void SetScreenLayout(ScreenLayout targetLayout)
+    public void SetScreenLayout(eScreenLayout targetLayout)
     {
         switch (targetLayout)
         {
-            case ScreenLayout.SingleCamera:
+            case eScreenLayout.SingleCamera:
                 _scenarioCamera.enabled= false;
                 _leftPlayerCamera.enabled= false;
                 _rightPlayerCamera.enabled= false;
                 _menuCamera.enabled= true;
                 break;
-            case ScreenLayout.MultiCamera:
+            case eScreenLayout.MultiCamera:
                 _scenarioCamera.enabled= true;
                 _leftPlayerCamera.enabled= true;
                 _rightPlayerCamera.enabled= true;

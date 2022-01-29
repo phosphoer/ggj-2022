@@ -15,11 +15,21 @@ public class GameStateManager : Singleton<GameStateManager>
         EndGame
     }
 
+    public enum ePlayer
+    {
+        LeftPlayer,
+        RightPlayer
+    }
+    private GameObject _leftPlayerObject = null;
+    private GameObject _rightPlayerObject = null;
+
+    public GameObject PlayerPrefab;
+
     public static event System.Action GameStateChangeEvent;
 
     private GameStage _gameStage = GameStage.Invalid;
     public GameStage CurrentStage => _gameStage;
-    public GameStage EditorDefaultStage = GameStage.ScenarioGameplay;
+    public GameStage EditorDefaultStage = GameStage.ScenarioIntro;
 
     public SoundBank MusicMenuLoop;
     public CameraControllerBase MenuCamera;
@@ -54,6 +64,8 @@ public class GameStateManager : Singleton<GameStateManager>
             case GameStage.Settings:
                 break;
             case GameStage.ScenarioIntro:
+                //TODO: Wait for the intro timer to
+                nextGameStage = GameStage.ScenarioGameplay;
                 break;
             case GameStage.ScenarioGameplay:
                 break;
@@ -124,6 +136,7 @@ public class GameStateManager : Singleton<GameStateManager>
                 break;
             case GameStage.ScenarioEnd:
                 {
+                    DespawnPlayers();
                     CameraManager.Instance.ScenarioCameraStack.PopCurrentController();
                 }
                 break;
@@ -145,7 +158,7 @@ public class GameStateManager : Singleton<GameStateManager>
         {
             case GameStage.MainMenu:
                 {
-                    CameraManager.Instance.SetScreenLayout(CameraManager.ScreenLayout.SingleCamera);
+                    CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.SingleCamera);
 
                     //GameUI.Instance.MainMenuUI.Show();
 
@@ -159,7 +172,7 @@ public class GameStateManager : Singleton<GameStateManager>
                 break;
             case GameStage.Settings:
                 {
-                    CameraManager.Instance.SetScreenLayout(CameraManager.ScreenLayout.SingleCamera);
+                    CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.SingleCamera);
 
                     //GameUI.Instance.SettingsUI.Show();
                     //CameraControllerStack.Instance.PushController(MenuCamera);
@@ -167,25 +180,26 @@ public class GameStateManager : Singleton<GameStateManager>
                 break;
             case GameStage.ScenarioIntro:
                 {
-                    CameraManager.Instance.SetScreenLayout(CameraManager.ScreenLayout.MultiCamera);
+                    SpawnPlayers();
+                    CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MultiCamera);
                     //GameUI.Instance.GameplayUI.Show();
                 }
                 break;
             case GameStage.ScenarioGameplay:
                 {
-                    CameraManager.Instance.SetScreenLayout(CameraManager.ScreenLayout.MultiCamera);
+                    CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MultiCamera);
                     //GameUI.Instance.GameplayUI.Show();
                 }
                 break;
             case GameStage.ScenarioEnd:
                 {
-                    CameraManager.Instance.SetScreenLayout(CameraManager.ScreenLayout.MultiCamera);
+                    CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MultiCamera);
                     //GameUI.Instance.GameplayUI.Show();
                 }
                 break;
             case GameStage.EndGame:
                 {
-                    CameraManager.Instance.SetScreenLayout(CameraManager.ScreenLayout.SingleCamera);
+                    CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.SingleCamera);
                     //GameUI.Instance.WinGameUI.Show();
                     //CameraControllerStack.Instance.PushController(MenuCamera);
 
@@ -200,5 +214,50 @@ public class GameStateManager : Singleton<GameStateManager>
 
     void ResetGameStats()
     {
+    }
+
+    public GameObject GetPlayerGameObject(ePlayer player)
+    {
+        switch (player)
+        {
+            case ePlayer.LeftPlayer:
+                return _leftPlayerObject;
+            case ePlayer.RightPlayer:
+                return _rightPlayerObject;
+        }
+
+        return null;
+    }
+
+    private void SpawnPlayers()
+    {
+        // TODO: Get spawn point for the left player
+        Vector2 leftSpawnLoc = Random.insideUnitCircle;
+
+        // Spawn the left player object
+        _leftPlayerObject= Instantiate(PlayerPrefab, new Vector3(leftSpawnLoc.x, 0, leftSpawnLoc.y), Quaternion.identity);
+
+        // Push the left player camera controller on the camera control stack
+        CameraManager.Instance.LeftPlayerCameraStack.PushController(CameraManager.Instance.LeftPlayerCameraController);
+
+        //TODO: Get spawn point for the right player
+        Vector2 rightSpawnLoc = Random.insideUnitCircle;
+
+        // Spawn the right player
+        _rightPlayerObject = Instantiate(PlayerPrefab, new Vector3(rightSpawnLoc.x, 0, rightSpawnLoc.y), Quaternion.identity);
+
+        // Push the right player camera controller on the camera control stack
+        CameraManager.Instance.RightPlayerCameraStack.PushController(CameraManager.Instance.RightPlayerCameraController);
+    }
+
+    private void DespawnPlayers()
+    {
+        CameraManager.Instance.LeftPlayerCameraStack.PopCurrentController();
+        Destroy(_leftPlayerObject);
+        _leftPlayerObject = null;
+
+        CameraManager.Instance.RightPlayerCameraStack.PopCurrentController();
+        Destroy(_rightPlayerObject);
+        _rightPlayerObject = null;
     }
 }
