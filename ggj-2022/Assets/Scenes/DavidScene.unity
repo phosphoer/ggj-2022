@@ -446,7 +446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1690166876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -487,10 +487,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2547609995052319922, guid: ad99b4f26ab8c6a40af9fd8a2f4c2e7c, type: 3}
-      propertyPath: RewiredPlayerId
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 239699316868720447, guid: ad99b4f26ab8c6a40af9fd8a2f4c2e7c, type: 3}
+      propertyPath: _camera
+      value: 
+      objectReference: {fileID: 1433203346}
     - target: {fileID: 2887378302779404046, guid: ad99b4f26ab8c6a40af9fd8a2f4c2e7c, type: 3}
       propertyPath: m_RootOrder
       value: 1
