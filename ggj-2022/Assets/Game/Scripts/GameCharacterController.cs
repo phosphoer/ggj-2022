@@ -12,6 +12,9 @@ public class GameCharacterController : MonoBehaviour, ISlappable
   private RobotAnimation _robotAnim = null;
 
   [SerializeField]
+  private SlapController _slapper = null;
+
+  [SerializeField]
   private LayerMask _groundLayer = default(LayerMask);
 
   [SerializeField]
@@ -49,12 +52,22 @@ public class GameCharacterController : MonoBehaviour, ISlappable
 
   void ISlappable.ReceiveSlap(Vector3 slapOrigin, Vector3 slapDirection)
   {
+    Debug.Log($"{name} got slapped!");
     transform.position += slapDirection;
+  }
+
+  public void Slap()
+  {
+    if (_robotAnim != null)
+      _robotAnim.Slap();
   }
 
   private void Start()
   {
     _lastGroundPos = transform.position + Vector3.down * 100;
+
+    if (_robotAnim != null)
+      _robotAnim.SlapAnimEvent += OnAnimEventSlap;
   }
 
   private void Update()
@@ -109,6 +122,11 @@ public class GameCharacterController : MonoBehaviour, ISlappable
     // Apply movement
     transform.position = newPosition;
     transform.Rotate(Vector3.up, DesiredTurn * _turnSpeed * Time.deltaTime, Space.Self);
+  }
+
+  private void OnAnimEventSlap()
+  {
+    _slapper.Slap();
   }
 
   private void OnDrawGizmosSelected()

@@ -5,7 +5,6 @@ public class PlayerCharacterController : MonoBehaviour
 {
   public int RewiredPlayerId = 0;
   public GameCharacterController Character = null;
-  public SlapController SlapController = null;
   public CameraControllerStack CameraStack = null;
   public CameraControllerPlayer PlayerCameraPrefab = null;
 
@@ -29,7 +28,7 @@ public class PlayerCharacterController : MonoBehaviour
 
       if (rewiredPlayer.GetButtonDown(RewiredConsts.Action.Slap))
       {
-        SlapController.Slap();
+        Character.Slap();
       }
     }
   }
