@@ -61,6 +61,11 @@ public class AnimatorCallbacks : MonoBehaviour
   }
 
   // Called by sibling Animator
+  private void AnimEvent(string eventName)
+  {
+    OnAnimEvent(eventName);
+  }
+
   private void OnAnimEvent(string eventName)
   {
     System.Action eventCallback;
