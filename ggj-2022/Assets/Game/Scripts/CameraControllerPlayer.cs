@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraControllerPlayer : CameraControllerBase
 {
-    public GameStateManager.ePlayer AssignedPlayer = GameStateManager.ePlayer.LeftPlayer;
+    public ePlayer AssignedPlayer = ePlayer.LeftPlayer;
 
     public Vector3 CameraWorldOffset = new Vector3(5, 10, -5);
     public Vector3 CameraLookOffset = Vector3.zero;

@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ePlayer
+{
+    Invalid,
+    LeftPlayer,
+    RightPlayer
+}
+
 public class GameStateManager : Singleton<GameStateManager>
 {
     public enum GameStage
@@ -11,15 +18,10 @@ public class GameStateManager : Singleton<GameStateManager>
         Settings,
         ScenarioIntro,
         ScenarioGameplay,
-        ScenarioEnd,
+        ScenarioOutro,
         EndGame
     }
 
-    public enum ePlayer
-    {
-        LeftPlayer,
-        RightPlayer
-    }
     private GameObject _leftPlayerObject = null;
     private GameObject _rightPlayerObject = null;
 
@@ -69,7 +71,7 @@ public class GameStateManager : Singleton<GameStateManager>
                 break;
             case GameStage.ScenarioGameplay:
                 break;
-            case GameStage.ScenarioEnd:
+            case GameStage.ScenarioOutro:
                 nextGameStage = GameStage.ScenarioIntro;
                 break;
             case GameStage.EndGame:
@@ -134,7 +136,7 @@ public class GameStateManager : Singleton<GameStateManager>
                     CameraManager.Instance.ScenarioCameraStack.PopCurrentController();
                 }
                 break;
-            case GameStage.ScenarioEnd:
+            case GameStage.ScenarioOutro:
                 {
                     DespawnPlayers();
                     CameraManager.Instance.ScenarioCameraStack.PopCurrentController();
@@ -191,7 +193,7 @@ public class GameStateManager : Singleton<GameStateManager>
                     //GameUI.Instance.GameplayUI.Show();
                 }
                 break;
-            case GameStage.ScenarioEnd:
+            case GameStage.ScenarioOutro:
                 {
                     CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MultiCamera);
                     //GameUI.Instance.GameplayUI.Show();
