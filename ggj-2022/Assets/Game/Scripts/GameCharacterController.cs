@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameCharacterController : MonoBehaviour
+public class GameCharacterController : MonoBehaviour, ISlappable
 {
   [Range(0, 1)]
   public float DesiredSpeed = 0.0f;
@@ -43,6 +43,11 @@ public class GameCharacterController : MonoBehaviour
   private Vector3 _lastGroundPos;
 
   private Vector3 _raycastStartPos => transform.position + transform.up * _raycastUpStartOffset;
+
+  void ISlappable.ReceiveSlap(Vector3 slapOrigin, Vector3 slapDirection)
+  {
+    transform.position += slapDirection;
+  }
 
   private void Start()
   {

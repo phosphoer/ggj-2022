@@ -32,6 +32,7 @@ Shader "Custom/CellShaded"
       };
 
       sampler2D _MainTex;
+      float4 _MainTex_ST;
       float4 _Color;
       
       v2f vert (appdata v)
@@ -39,7 +40,7 @@ Shader "Custom/CellShaded"
         v2f o;
         o.pos = UnityObjectToClipPos(v.vertex);
         o.worldPos = mul(unity_ObjectToWorld, v.vertex);
-        o.uv = v.uv;
+        o.uv = TRANSFORM_TEX(v.uv, _MainTex);
         o.worldNormal = mul(unity_ObjectToWorld, fixed4(v.normal.xyz, 0));
         o.color = v.color;
 

@@ -128,12 +128,6 @@ public class CameraControllerStack : MonoBehaviour
     }
   }
 
-  private void Awake()
-  {
-    if (_proxyTransform == null)
-      CreateProxyTransform();
-  }
-
   private void LateUpdate()
   {
     if (_cameraControllers.Count > 0)

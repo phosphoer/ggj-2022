@@ -487,6 +487,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2538273296814695703, guid: ddc663f3bbe89d44b91a8ee66fb1c996, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.1111846
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538273296814695703, guid: ddc663f3bbe89d44b91a8ee66fb1c996, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.432197
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538273296814695703, guid: ddc663f3bbe89d44b91a8ee66fb1c996, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.14495373
+      objectReference: {fileID: 0}
+    - target: {fileID: 3730890681971022160, guid: ddc663f3bbe89d44b91a8ee66fb1c996, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.3498063
+      objectReference: {fileID: 0}
+    - target: {fileID: 3730890681971022160, guid: ddc663f3bbe89d44b91a8ee66fb1c996, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.0054436
+      objectReference: {fileID: 0}
+    - target: {fileID: 3730890681971022160, guid: ddc663f3bbe89d44b91a8ee66fb1c996, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.6346476
+      objectReference: {fileID: 0}
     - target: {fileID: 7314368647105193424, guid: ddc663f3bbe89d44b91a8ee66fb1c996, type: 3}
       propertyPath: m_Name
       value: gameState
@@ -550,6 +574,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7263832735134715421, guid: 0574b16979f9cf9419343af03abedc6c, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719026353096312957, guid: 0574b16979f9cf9419343af03abedc6c, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719026353591163480, guid: 0574b16979f9cf9419343af03abedc6c, type: 3}
+      propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8719026353806552600, guid: 0574b16979f9cf9419343af03abedc6c, type: 3}
