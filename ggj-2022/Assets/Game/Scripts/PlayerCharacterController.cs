@@ -11,16 +11,16 @@ public class PlayerCharacterController : MonoBehaviour
 
   private CameraControllerPlayer _playerCamera;
 
-  private void Start()
-  {
-    _playerCamera = Instantiate(PlayerCameraPrefab);
-    _playerCamera.TargetPlayer = this;
-
-    CameraStack.PushController(_playerCamera);
-  }
-
   private void Update()
   {
+    if (CameraStack.Camera != null && _playerCamera == null)
+    {
+      _playerCamera = Instantiate(PlayerCameraPrefab);
+      _playerCamera.TargetPlayer = this;
+
+      CameraStack.PushController(_playerCamera);
+    }
+
     if (RewiredPlayer != null)
     {
       Character.DesiredSpeed = RewiredPlayer.GetAxis(RewiredConsts.Action.Move);
