@@ -3,32 +3,32 @@ using Rewired;
 
 public class PlayerCharacterController : MonoBehaviour
 {
-  public Rewired.Player RewiredPlayer;
+  public int RewiredPlayerId = 0;
   public GameCharacterController Character = null;
-  public SlapController SlapController = null;
   public CameraControllerStack CameraStack = null;
   public CameraControllerPlayer PlayerCameraPrefab = null;
 
   private CameraControllerPlayer _playerCamera;
 
-  private void Start()
-  {
-    _playerCamera = Instantiate(PlayerCameraPrefab);
-    _playerCamera.TargetPlayer = this;
-
-    CameraStack.PushController(_playerCamera);
-  }
-
   private void Update()
   {
-    if (RewiredPlayer != null)
+    if (CameraStack.Camera != null && _playerCamera == null)
     {
-      Character.DesiredSpeed = RewiredPlayer.GetAxis(RewiredConsts.Action.Move);
-      Character.DesiredTurn = RewiredPlayer.GetAxis(RewiredConsts.Action.Turn);
+      _playerCamera = Instantiate(PlayerCameraPrefab);
+      _playerCamera.TargetPlayer = this;
 
-      if (RewiredPlayer.GetButtonDown(RewiredConsts.Action.Slap))
+      CameraStack.PushController(_playerCamera);
+    }
+
+    var rewiredPlayer = ReInput.players.GetPlayer(RewiredPlayerId);
+    if (rewiredPlayer != null)
+    {
+      Character.DesiredSpeed = rewiredPlayer.GetAxis(RewiredConsts.Action.Move);
+      Character.DesiredTurn = rewiredPlayer.GetAxis(RewiredConsts.Action.Turn);
+
+      if (rewiredPlayer.GetButtonDown(RewiredConsts.Action.Slap))
       {
-        SlapController.Slap();
+        Character.Slap();
       }
     }
   }

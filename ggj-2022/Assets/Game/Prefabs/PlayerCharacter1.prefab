@@ -210,7 +210,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2557799315130286804
 Transform:
   m_ObjectHideFlags: 0
@@ -363,6 +363,7 @@ Transform:
   m_Children:
   - {fileID: 2557799315130286804}
   - {fileID: 2639536068165993005}
+  - {fileID: 5774927279978792272}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -380,6 +381,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DesiredSpeed: 0
   DesiredTurn: 0
+  _robotAnim: {fileID: 6929340630466829460}
+  _slapper: {fileID: 4811816419713175890}
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -423,8 +426,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d58735a75998e4fabf9b2d5a1c9eef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RewiredPlayerId: 0
   Character: {fileID: 4357498304621669932}
-  SlapController: {fileID: 4811816419713175890}
   CameraStack: {fileID: 239699316868720447}
   PlayerCameraPrefab: {fileID: 13219621567905398, guid: 5844e8f780a7c2a4e9c1edec96a398fe, type: 3}
 --- !u!54 &2737401204593590887
@@ -584,3 +587,76 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &816953626024378376
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2887378302779404046}
+    m_Modifications:
+    - target: {fileID: 5780686307178029026, guid: 40f6f537210382b4bae81e43b15d0336, type: 3}
+      propertyPath: m_Name
+      value: PlayerRobit
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589557066568811864, guid: 40f6f537210382b4bae81e43b15d0336, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589557066568811864, guid: 40f6f537210382b4bae81e43b15d0336, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589557066568811864, guid: 40f6f537210382b4bae81e43b15d0336, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589557066568811864, guid: 40f6f537210382b4bae81e43b15d0336, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589557066568811864, guid: 40f6f537210382b4bae81e43b15d0336, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589557066568811864, guid: 40f6f537210382b4bae81e43b15d0336, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589557066568811864, guid: 40f6f537210382b4bae81e43b15d0336, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589557066568811864, guid: 40f6f537210382b4bae81e43b15d0336, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589557066568811864, guid: 40f6f537210382b4bae81e43b15d0336, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589557066568811864, guid: 40f6f537210382b4bae81e43b15d0336, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589557066568811864, guid: 40f6f537210382b4bae81e43b15d0336, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 40f6f537210382b4bae81e43b15d0336, type: 3}
+--- !u!4 &5774927279978792272 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6589557066568811864, guid: 40f6f537210382b4bae81e43b15d0336, type: 3}
+  m_PrefabInstance: {fileID: 816953626024378376}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6929340630466829460 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7746068666953669788, guid: 40f6f537210382b4bae81e43b15d0336, type: 3}
+  m_PrefabInstance: {fileID: 816953626024378376}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 085b1085e71138f418b468e2476c820e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
