@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7314368647105193426}
   - component: {fileID: 7314368647105193425}
+  - component: {fileID: 4387863904277864524}
   m_Layer: 0
   m_Name: gameState
   m_TagString: Untagged
@@ -48,3 +49,29 @@ MonoBehaviour:
   EditorDefaultStage: 3
   MusicMenuLoop: {fileID: 0}
   MenuCamera: {fileID: 0}
+--- !u!114 &4387863904277864524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7314368647105193424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac8badf44b3e4e547aae0712e2e07432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Scenarios:
+  - RequirementsPlayer1: 0100000002000000
+    BonusPlayer1: 1
+    RequirementsPlayer2: 0300000004000000
+    BonusPlayer2: 6
+    IntroText: Do the thing
+    IntroDuration: 3
+    Player1WinOutroText: Player 1 did the thing
+    Player2WinOutroText: Player 2 did the thing
+    OutroDuration: 3
+  IntroAudio: {fileID: 0}
+  LoopAudio: {fileID: 0}
+  LeftPlayerWinAudio: {fileID: 0}
+  RightPlayerWinAudio: {fileID: 0}
