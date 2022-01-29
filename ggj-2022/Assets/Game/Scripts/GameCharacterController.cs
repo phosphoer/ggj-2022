@@ -5,6 +5,9 @@ public class GameCharacterController : MonoBehaviour
   [Range(0, 1)]
   public float DesiredSpeed = 0.0f;
 
+  [Range(-1, 1)]
+  public float DesiredTurn = 0.0f;
+
   [SerializeField]
   private LayerMask _groundLayer = default(LayerMask);
 
@@ -21,6 +24,9 @@ public class GameCharacterController : MonoBehaviour
   private float _maxSpeed = 1.0f;
 
   [SerializeField]
+  private float _turnSpeed = 1.0f;
+
+  [SerializeField]
   private float _gravity = 5;
 
   private RaycastHit _groundRaycast;
@@ -30,6 +36,7 @@ public class GameCharacterController : MonoBehaviour
   {
     // Apply movement 
     transform.position += transform.forward * DesiredSpeed * _maxSpeed * Time.deltaTime;
+    transform.Rotate(Vector3.up, DesiredTurn * _turnSpeed * Time.deltaTime, Space.Self);
 
     // Snap and align to ground
     Vector3 raycastStartPos = transform.position + transform.up * _raycastUpStartOffset;
