@@ -341,6 +341,7 @@ GameObject:
   - component: {fileID: 4811816419713175890}
   - component: {fileID: 2547609995052319922}
   - component: {fileID: 2737401204593590887}
+  - component: {fileID: 239699316868720447}
   m_Layer: 0
   m_Name: TestCharacter
   m_TagString: Untagged
@@ -425,6 +426,8 @@ MonoBehaviour:
   RewiredPlayerId: 0
   Character: {fileID: 4357498304621669932}
   SlapController: {fileID: 4811816419713175890}
+  CameraStack: {fileID: 239699316868720447}
+  PlayerCameraPrefab: {fileID: 13219621567905398, guid: 5844e8f780a7c2a4e9c1edec96a398fe, type: 3}
 --- !u!54 &2737401204593590887
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -441,6 +444,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &239699316868720447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7466342926911874890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a600de86fbb8f74f90c0b2714551301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 0}
 --- !u!1 &8771421980944771826
 GameObject:
   m_ObjectHideFlags: 0
