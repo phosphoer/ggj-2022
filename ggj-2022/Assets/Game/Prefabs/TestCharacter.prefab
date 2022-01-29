@@ -338,6 +338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2887378302779404046}
   - component: {fileID: 4357498304621669932}
+  - component: {fileID: 2547609995052319922}
   m_Layer: 0
   m_Name: TestCharacter
   m_TagString: Untagged
@@ -384,6 +385,20 @@ MonoBehaviour:
   _maxSpeed: 3
   _turnSpeed: 90
   _gravity: 5
+--- !u!114 &2547609995052319922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7466342926911874890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24d58735a75998e4fabf9b2d5a1c9eef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RewiredPlayerId: 0
+  Character: {fileID: 4357498304621669932}
 --- !u!1 &9150136666450057654
 GameObject:
   m_ObjectHideFlags: 0
