@@ -282,7 +282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FieldOfView: 65
   _mountPoint: {fileID: 8719026353096312957}
-  AssignedPlayer: 1
+  AssignedPlayer: 2
   CameraWorldOffset: {x: 0, y: 2.75, z: -5}
   CameraLookOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &8719026353591163483
@@ -389,7 +389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FieldOfView: 65
   _mountPoint: {fileID: 8719026353591163480}
-  AssignedPlayer: 0
+  AssignedPlayer: 1
   CameraWorldOffset: {x: 0, y: 2.75, z: -5}
   CameraLookOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &8719026353806552602
