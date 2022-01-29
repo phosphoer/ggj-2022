@@ -9,6 +9,9 @@ public class GameCharacterController : MonoBehaviour, ISlappable
   public float DesiredTurn = 0.0f;
 
   [SerializeField]
+  private RobotAnimation _robotAnim = null;
+
+  [SerializeField]
   private LayerMask _groundLayer = default(LayerMask);
 
   [SerializeField]
@@ -96,6 +99,11 @@ public class GameCharacterController : MonoBehaviour, ISlappable
       float planeDist = closestPointToPos.magnitude;
       float adjustedDist = Mathf.Max(planeDist, _minDistToObstacle);
       newPosition = closestPoint + closestPointToPos.normalized * adjustedDist;
+    }
+
+    if (_robotAnim != null)
+    {
+      _robotAnim.IsTrundling = Mathf.Abs(DesiredSpeed) > 0.05f;
     }
 
     // Apply movement
