@@ -374,6 +374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DesiredSpeed: 0
+  DesiredTurn: 0
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -381,6 +382,7 @@ MonoBehaviour:
   _raycastUpStartOffset: 1
   _terrainAlignmentSpeed: 3
   _maxSpeed: 3
+  _turnSpeed: 90
   _gravity: 5
 --- !u!1 &9150136666450057654
 GameObject:
