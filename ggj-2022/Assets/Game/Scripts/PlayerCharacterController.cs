@@ -26,9 +26,13 @@ public class PlayerCharacterController : MonoBehaviour
       Character.DesiredSpeed = rewiredPlayer.GetAxis(RewiredConsts.Action.Move);
       Character.DesiredTurn = rewiredPlayer.GetAxis(RewiredConsts.Action.Turn);
 
-      if (rewiredPlayer.GetButtonDown(RewiredConsts.Action.Slap))
+      if (rewiredPlayer.GetButtonDoublePressDown(RewiredConsts.Action.Slap))
       {
-        Character.Slap();
+        Character.DoubleSlap();
+      }
+      else if (rewiredPlayer.GetButtonSinglePressDown(RewiredConsts.Action.Slap))
+      {
+        Character.FastSlap();
       }
     }
   }
