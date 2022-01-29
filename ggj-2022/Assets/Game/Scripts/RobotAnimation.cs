@@ -4,15 +4,28 @@ public class RobotAnimation : MonoBehaviour
 {
   public event System.Action SlapAnimEvent;
 
-  public bool IsTrundling
+  public float TrundleAmount
   {
-    get => _isTrundling;
+    get => _trundleAmount;
     set
     {
-      if (value != _isTrundling)
+      if (value != _trundleAmount)
       {
-        _isTrundling = value;
-        _animator.SetBool(kAnimIsTrundling, value);
+        _trundleAmount = value;
+        _animator.SetFloat(kAnimTrundleAmount, value);
+      }
+    }
+  }
+
+  public bool IsStunned
+  {
+    get => _isStunned;
+    set
+    {
+      if (value != _isStunned)
+      {
+        _isStunned = value;
+        _animator.SetBool(kAnimIsStunned, value);
       }
     }
   }
@@ -23,14 +36,22 @@ public class RobotAnimation : MonoBehaviour
   [SerializeField]
   private AnimatorCallbacks _animatorCallbacks = null;
 
-  private bool _isTrundling;
+  private float _trundleAmount;
+  private bool _isStunned;
 
-  private static readonly int kAnimIsTrundling = Animator.StringToHash("IsTrundling");
-  private static readonly int kAnimSlap = Animator.StringToHash("Slap");
+  private static readonly int kAnimIsStunned = Animator.StringToHash("IsStunned");
+  private static readonly int kAnimTrundleAmount = Animator.StringToHash("TrundleAmount");
+  private static readonly int kAnimFastSlap = Animator.StringToHash("FastSlap");
+  private static readonly int kAnimDoubleSlap = Animator.StringToHash("DoubleSlap");
 
-  public void Slap()
+  public void FastSlap()
   {
-    _animator.SetTrigger(kAnimSlap);
+    _animator.SetTrigger(kAnimFastSlap);
+  }
+
+  public void DoubleSlap()
+  {
+    _animator.SetTrigger(kAnimDoubleSlap);
   }
 
   private void Awake()
