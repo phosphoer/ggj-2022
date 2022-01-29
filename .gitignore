@@ -1,4 +1,5 @@
 ggj-2022/[Ll]ibrary/
+ggj-2022/[Ll]ogs/
 ggj-2022/[Tt]emp/
 ggj-2022/[Oo]bj/
 ggj-2022/[Bb]uild/
@@ -26,9 +27,16 @@ unity_incremental_compiler_server.log
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
 
+# Unity3D Generated log giles
+*.log
+
+# Unity3D Generated user settings
+*.dwlt
+
 # Sublime workspace
 *.sublime-workspace
 
 # Visual Studio created files
+*.vsconfig
 .vscode/
 ggj-2022/.vs/
