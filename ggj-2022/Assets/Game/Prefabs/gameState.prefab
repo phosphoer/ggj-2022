@@ -126,23 +126,70 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Scenarios:
-  - goalsPlayer1:
-      Requirements: 000000000000000000000000
-      Bonus: 0
-      outroText: 
-      bonusOutroText: 
-    goalsPlayer2:
-      Requirements: 000000000000000000000000
-      Bonus: 0
-      outroText: 
-      bonusOutroText: 
-    IntroText: Do the thing
+  - angelGoals:
+      Requirements: 020000000300000005000000
+      Bonus: 1
+      outroText: He eats his healthy meal vigorously
+      bonusOutroText: Alert and caffinated, ready to take on the day!
+    devilGoals:
+      Requirements: 040000000600000007000000
+      Bonus: 1
+      outroText: He vomits and kicks the table over
+      bonusOutroText: Troubled by malnutrition and fake news
+    Title: Complete Breakfast
+    IntroText: Aloicious sits down in his breakfast nook to have a sensible meal
+      of wholegrain toast and coffee
+    IntroDuration: 3
+    OutroDuration: 3
+  - angelGoals:
+      Requirements: 010000000200000005000000
+      Bonus: 7
+      outroText: He gathers the requisite items in his shopping cart
+      bonusOutroText: Moving fast-- shopping completed in record time!
+    devilGoals:
+      Requirements: 030000000400000006000000
+      Bonus: 7
+      outroText: He voraciously eats a food item and humps another
+      bonusOutroText: He is cartoonishly dragged through the store by the shopping
+        cart
+    Title: Supermarket Sweep
+    IntroText: Aloicious needs to pick up a few things at the supermarket.
+    IntroDuration: 3
+    OutroDuration: 3
+  - angelGoals:
+      Requirements: 010000000200000003000000
+      Bonus: 5
+      outroText: He is chatty and likable, charming his companion
+      bonusOutroText: He raises a glass of wine and gingerly clinks it against hers
+    devilGoals:
+      Requirements: 040000000600000007000000
+      Bonus: 5
+      outroText: He dances awkwardly, thrusting and drooling
+      bonusOutroText: He rubs gobs of food on his face as he dances
+    Title: Hot Date
+    IntroText: Aloicious meets an attractive old lady for a candlelit dinner at a
+      fancy restaurant.
+    IntroDuration: 3
+    OutroDuration: 3
+  - angelGoals:
+      Requirements: 010000000200000006000000
+      Bonus: 3
+      outroText: He sleeps deeply and peacefully through the night, dreaming of love
+      bonusOutroText: Talking in his sleep
+    devilGoals:
+      Requirements: 040000000500000007000000
+      Bonus: 3
+      outroText: He is restless and disturbed throughout the night, tormented by
+        restless legs and dead arm
+      bonusOutroText: Screaming in his sleep
+    Title: Sleeping Beauty
+    IntroText: Aloicious is tired after a long day and tries to get some shuteye
     IntroDuration: 3
     OutroDuration: 3
   IntroAudio: {fileID: 0}
   LoopAudio: {fileID: 0}
-  LeftPlayerWinAudio: {fileID: 0}
-  RightPlayerWinAudio: {fileID: 0}
+  AngelWinAudio: {fileID: 0}
+  DevilWinAudio: {fileID: 0}
 --- !u!114 &3618081609427984507
 MonoBehaviour:
   m_ObjectHideFlags: 0

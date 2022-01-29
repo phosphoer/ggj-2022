@@ -3,8 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class EndGameUIHandler : MonoBehaviour
+public class EndGameUIHandler : UIPageBase
 {
+    protected override void Awake()
+    {
+        base.Awake();
+        Shown += OnShown;
+    }
+
+    private void OnShown()
+    {
+    }
+
     public void OnPlayAgainClicked()
     {
         SceneManager.LoadScene("MainScene");
