@@ -14805,6 +14805,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovingFX:
   - {fileID: 6699234464012560696}
+  MinMoveForFX: 0.1
   treds: {fileID: 5803112988509313825}
   TredsPanSpeedMod: 0.75
   StunnedFX:
