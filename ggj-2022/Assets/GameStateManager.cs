@@ -22,8 +22,12 @@ public class GameStateManager : Singleton<GameStateManager>
     public GameStage EditorDefaultStage = GameStage.ScenarioGameplay;
 
     public SoundBank MusicMenuLoop;
-    //public CameraControllerBase MenuCamera;
+    public CameraControllerBase MenuCamera;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     // Start is called before the first frame update
     private void Start()
@@ -54,7 +58,7 @@ public class GameStateManager : Singleton<GameStateManager>
             case GameStage.ScenarioGameplay:
                 break;
             case GameStage.ScenarioEnd:
-                //nextGameStage = GameStage.Daytime;
+                nextGameStage = GameStage.ScenarioIntro;
                 break;
             case GameStage.EndGame:
                 break;
@@ -94,38 +98,38 @@ public class GameStateManager : Singleton<GameStateManager>
                         AudioManager.Instance.FadeOutSound(gameObject, MusicMenuLoop, 3f);
                     }
 
-                    //CameraControllerStack.Instance.PopController(MenuCamera);
+                    CameraManager.Instance.MenuCameraStack.PopCurrentController();
 
                     //GameUI.Instance.MainMenuUI.Hide();
                 }
                 break;
             case GameStage.Settings:
                 {
-                    //CameraControllerStack.Instance.PopController(MenuCamera);
+                    CameraManager.Instance.MenuCameraStack.PopCurrentController();
 
                     //GameUI.Instance.SettingsUI.Hide();
                 }
                 break;
             case GameStage.ScenarioIntro:
                 {
-                    //CameraControllerStack.Instance.PopController(MenuCamera);
+                    CameraManager.Instance.ScenarioCameraStack.PopCurrentController();
 
                     //GameUI.Instance.DayIntroUI.Hide();
                 }
                 break;
             case GameStage.ScenarioGameplay:
                 {
-
+                    CameraManager.Instance.ScenarioCameraStack.PopCurrentController();
                 }
                 break;
             case GameStage.ScenarioEnd:
                 {
-
+                    CameraManager.Instance.ScenarioCameraStack.PopCurrentController();
                 }
                 break;
             case GameStage.EndGame:
                 {
-                    //CameraControllerStack.Instance.PopController(MenuCamera);
+                    CameraManager.Instance.ScenarioCameraStack.PopCurrentController();
 
                     //GameUI.Instance.WinGameUI.Hide();
                 }
@@ -141,6 +145,8 @@ public class GameStateManager : Singleton<GameStateManager>
         {
             case GameStage.MainMenu:
                 {
+                    CameraManager.Instance.SetScreenLayout(CameraManager.ScreenLayout.SingleCamera);
+
                     //GameUI.Instance.MainMenuUI.Show();
 
                     if (MusicMenuLoop != null)
@@ -153,27 +159,33 @@ public class GameStateManager : Singleton<GameStateManager>
                 break;
             case GameStage.Settings:
                 {
+                    CameraManager.Instance.SetScreenLayout(CameraManager.ScreenLayout.SingleCamera);
+
                     //GameUI.Instance.SettingsUI.Show();
                     //CameraControllerStack.Instance.PushController(MenuCamera);
                 }
                 break;
             case GameStage.ScenarioIntro:
                 {
+                    CameraManager.Instance.SetScreenLayout(CameraManager.ScreenLayout.MultiCamera);
                     //GameUI.Instance.GameplayUI.Show();
                 }
                 break;
             case GameStage.ScenarioGameplay:
                 {
+                    CameraManager.Instance.SetScreenLayout(CameraManager.ScreenLayout.MultiCamera);
                     //GameUI.Instance.GameplayUI.Show();
                 }
                 break;
             case GameStage.ScenarioEnd:
                 {
+                    CameraManager.Instance.SetScreenLayout(CameraManager.ScreenLayout.MultiCamera);
                     //GameUI.Instance.GameplayUI.Show();
                 }
                 break;
             case GameStage.EndGame:
                 {
+                    CameraManager.Instance.SetScreenLayout(CameraManager.ScreenLayout.SingleCamera);
                     //GameUI.Instance.WinGameUI.Show();
                     //CameraControllerStack.Instance.PushController(MenuCamera);
 
