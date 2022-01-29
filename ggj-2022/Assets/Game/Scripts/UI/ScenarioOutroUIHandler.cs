@@ -28,13 +28,13 @@ public class ScenarioOutroUIHandler : UIPageBase
             ScenarioManager scenarioMgr= ScenarioManager.Instance;
             Scenario scenario = scenarioMgr.GetCurrentScenario();
 
-            if (scenarioMgr.ScorePlayer1 > scenarioMgr.ScorePlayer2)
+            if (scenarioMgr.AngleScore > scenarioMgr.DevilScore)
             {
-                _titleTextField.text = scenario.goalsPlayer1.outroText;
+                _titleTextField.text = scenario.angelGoals.outroText;
             }
-            else if (scenarioMgr.ScorePlayer2 > scenarioMgr.ScorePlayer1)
+            else if (scenarioMgr.DevilScore > scenarioMgr.AngleScore)
             {
-                _titleTextField.text = scenario.goalsPlayer2.outroText;
+                _titleTextField.text = scenario.devilGoals.outroText;
             }
             else
             {

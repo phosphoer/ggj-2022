@@ -27,9 +27,10 @@ public class PlayerGoals
 [System.Serializable]
 public class Scenario
 {
-    public PlayerGoals goalsPlayer1= new PlayerGoals();
-    public PlayerGoals goalsPlayer2= new PlayerGoals();
+    public PlayerGoals angelGoals= new PlayerGoals();
+    public PlayerGoals devilGoals= new PlayerGoals();
 
+    public string Title = "";
     public string IntroText = "";
     public float IntroDuration = 3.0f;
     public float OutroDuration= 3.0f;
@@ -39,9 +40,9 @@ public class Scenario
         switch(player)
         {
             case ePlayer.LeftPlayer:
-                return goalsPlayer1;
+                return devilGoals;
             case ePlayer.RightPlayer:
-                return goalsPlayer2;
+                return angelGoals;
         }
 
         return null;
@@ -79,16 +80,16 @@ public class ScenarioManager : Singleton<ScenarioManager>
 
     public SoundBank IntroAudio;
     public SoundBank LoopAudio;
-    public SoundBank LeftPlayerWinAudio;
-    public SoundBank RightPlayerWinAudio;
+    public SoundBank AngelWinAudio;
+    public SoundBank DevilWinAudio;
 
     private int _currentScenarioIndex = 0;
     public bool HasCompletedAllScenarios => _currentScenarioIndex >= Scenarios.Count;
 
-    private int _scorePlayer1;
-    public int ScorePlayer1 => _scorePlayer1;
-    private int _scorePlayer2;
-    public int ScorePlayer2 => _scorePlayer2;
+    private int _angleScore;
+    public int AngleScore => _angleScore;
+    private int _devilScore;
+    public int DevilScore => _devilScore;
 
     public Scenario GetCurrentScenario()
     {
@@ -97,8 +98,8 @@ public class ScenarioManager : Singleton<ScenarioManager>
 
     public void SetupScenario()
     {
-        _scorePlayer1 = 0;
-        _scorePlayer2 = 0;
+        _angleScore = 0;
+        _devilScore = 0;
     }
 
     public void AdvanceScenario()
