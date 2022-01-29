@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8719026353806552600}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1400871186223263614
 Camera:
@@ -210,7 +210,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8719026353806552600}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &8719026353096312928
 Camera:
@@ -317,7 +317,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8719026353806552600}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &8719026353591163487
 Camera:
@@ -423,9 +423,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8719026352244392990}
+  - {fileID: 7050442406371784805}
   - {fileID: 8719026353591163480}
   - {fileID: 8719026353096312957}
-  - {fileID: 7050442406371784805}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -441,10 +441,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eec19d45b167b084b9560b0e6c041cb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scenarioCameraObject: {fileID: 8719026352244392987}
-  leftPlayerCameraObject: {fileID: 8719026353591163483}
-  rightPlayerCameraObject: {fileID: 8719026353096312956}
-  menuPlayerCameraObject: {fileID: 7263832735134715421}
+  _scenarioCameraStack: {fileID: 4226026183746694653}
+  _menuCameraStack: {fileID: 6380313289791629393}
+  _scenarioCamera: {fileID: 8719026352244392985}
+  _menuCamera: {fileID: 1400871186223263614}
+  _leftPlayerCamera: {fileID: 8719026353591163487}
+  _rightPlayerCamera: {fileID: 8719026353096312928}
 --- !u!81 &2801143488545905691
 AudioListener:
   m_ObjectHideFlags: 0
