@@ -44,5 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9339622fb3deee2429dc933dedab61c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EditorDefaultStage: 4
+  PlayerPrefab: {fileID: 7466342926911874890, guid: a964a2c6349ce844a8012c774e9b79d1, type: 3}
+  EditorDefaultStage: 3
   MusicMenuLoop: {fileID: 0}
+  MenuCamera: {fileID: 0}
