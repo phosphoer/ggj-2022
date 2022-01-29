@@ -1894,6 +1894,7 @@ GameObject:
   - component: {fileID: 919132148118088886}
   - component: {fileID: 5637399451164186026}
   - component: {fileID: 7746068666953669788}
+  - component: {fileID: 2399594549549376435}
   m_Layer: 0
   m_Name: PlayerRobit
   m_TagString: Untagged
@@ -1974,6 +1975,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 5637399451164186026}
+  _animatorCallbacks: {fileID: 2399594549549376435}
+--- !u!114 &2399594549549376435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5780686307178029026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a4723da69bdf844da93fed731ac0ace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5924857362984666327
 GameObject:
   m_ObjectHideFlags: 0

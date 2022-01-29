@@ -381,6 +381,7 @@ MonoBehaviour:
   DesiredSpeed: 0
   DesiredTurn: 0
   _robotAnim: {fileID: 0}
+  _slapper: {fileID: 4811816419713175890}
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -426,7 +427,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RewiredPlayerId: 0
   Character: {fileID: 4357498304621669932}
-  SlapController: {fileID: 4811816419713175890}
   CameraStack: {fileID: 6252848001413386228}
   PlayerCameraPrefab: {fileID: 13219621567905398, guid: 5844e8f780a7c2a4e9c1edec96a398fe, type: 3}
 --- !u!54 &2737401204593590887
