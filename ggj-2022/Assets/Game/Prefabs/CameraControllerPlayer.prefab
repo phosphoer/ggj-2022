@@ -52,3 +52,8 @@ MonoBehaviour:
   MoveLookAheadScale: 3
   PositionInterpolationSpeed: 1
   RotationInterpolationSpeed: 1
+  ObstacleRaycastRadius: 0.5
+  ObstacleMinDist: 1
+  ObstacleLayer:
+    serializedVersion: 2
+    m_Bits: 192
