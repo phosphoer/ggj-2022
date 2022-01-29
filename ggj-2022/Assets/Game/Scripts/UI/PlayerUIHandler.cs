@@ -16,7 +16,7 @@ public class PlayerUIHandler : UIPageBase
     private ePlayer _assignedPlayer = ePlayer.Invalid;
 
     public List<PlayerGoalUI> RequiredGoalsUI;
-    PlayerGoalUI BonusGoalUI;
+    public PlayerGoalUI BonusGoalUI;
 
     public Sprite BrainIcon;
     public Sprite OpticalIcon;

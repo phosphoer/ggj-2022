@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5125269727398105537}
   - component: {fileID: 4954159131986401508}
+  - component: {fileID: 5920824292709331335}
   m_Layer: 0
   m_Name: WorldAttachedUI
   m_TagString: Untagged
@@ -54,3 +55,20 @@ MonoBehaviour:
   _targetTransform: {fileID: 5125269727398105537}
   _useNormalizedScale: 1
   _enableRandomDelay: 1
+--- !u!114 &5920824292709331335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5125269727398105536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19f87c7faf053c94b858a8fbc72954e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowOnStart: 0
+  IsModal: 0
+  _hydrateOnShow: []
+  _itemPrefab: {fileID: 0}
+  _rootCanvas: {fileID: 0}

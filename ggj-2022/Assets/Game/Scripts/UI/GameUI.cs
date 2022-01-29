@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class GameUI : Singleton<GameUI>
 {
-    public WorldAttachedUI WorldAttachedUIPlayer1;
-    public WorldAttachedUI WorldAttachedUIPlayer2;
+    public WorldAttachedUI AngelWorldAttachedUI;
+    public WorldAttachedUI DevilWorldAttachedUI;
+    public PlayerUIHandler AngelUI;
+    public PlayerUIHandler DevilUI;
     public MainMenuUIHandler MainMenuUI;
     public SettingsUIHandler SettingsUI;
     public ScenarioIntroUIHandler ScenarioIntroUI;
