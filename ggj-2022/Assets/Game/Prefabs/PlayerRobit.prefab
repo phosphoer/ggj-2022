@@ -532,6 +532,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7589457530888504047}
+  - component: {fileID: 4637876742613602930}
   m_Layer: 0
   m_Name: Manip_Main
   m_TagString: Untagged
@@ -567,6 +568,21 @@ Transform:
   m_Father: {fileID: 6589557066568811864}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4637876742613602930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064190226861941030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21fc3c38790d3f4bbb7e63e2d62b021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkeletonRoot: {fileID: 4505155724295788123}
+  LagTime: 0.05
+  MaxLagDist: 0.6
 --- !u!1 &2454614089846381514
 GameObject:
   m_ObjectHideFlags: 0
@@ -872,7 +888,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6271897200390792742, guid: 5ff5f1093ca2fa04d8a0275ea5ae3801, type: 3}
+  - {fileID: 2100000, guid: 8f6627512d5e53e45b563cd5a44af366, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1875,6 +1891,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6589557066568811864}
+  - component: {fileID: 919132148118088886}
   m_Layer: 0
   m_Name: PlayerRobit
   m_TagString: Untagged
@@ -1903,6 +1920,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &919132148118088886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5780686307178029026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63d6346bc63058b4d8d65c8ffa968384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovingFX:
+  - {fileID: 6699234464012560696}
+  treds: {fileID: 5205324365878053531}
+  TredsPanSpeed: 0.1
+  StunnedFX:
+  - {fileID: 6699234464670891359}
+  - {fileID: 6699234464198382934}
 --- !u!1 &5924857362984666327
 GameObject:
   m_ObjectHideFlags: 0
