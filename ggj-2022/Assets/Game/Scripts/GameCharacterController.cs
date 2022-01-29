@@ -20,6 +20,9 @@ public class GameCharacterController : MonoBehaviour
   [SerializeField]
   private float _maxSpeed = 1.0f;
 
+  [SerializeField]
+  private float _gravity = 5;
+
   private RaycastHit _groundRaycast;
 
   private void Update()
@@ -31,12 +34,11 @@ public class GameCharacterController : MonoBehaviour
     Vector3 raycastStartPos = transform.position + transform.up * _raycastUpStartOffset;
     if (Physics.SphereCast(raycastStartPos, _raycastRadius, -transform.up, out _groundRaycast, 10.0f, _groundLayer))
     {
-      transform.position = new Vector3(transform.position.x, _groundRaycast.point.y, transform.position.z);
+      float distToGround = _groundRaycast.distance + _raycastRadius - _raycastUpStartOffset;
+      transform.position -= transform.up * distToGround * Time.deltaTime * _gravity;
 
       Quaternion desiredRot = Quaternion.FromToRotation(transform.up, _groundRaycast.normal) * transform.rotation;
       transform.rotation = Mathfx.Damp(transform.rotation, desiredRot, 0.25f, Time.deltaTime * _terrainAlignmentSpeed);
-
-      // Debug.DrawLine(raycastStartPos, _groundRaycast.point, Color.white);
     }
   }
 
