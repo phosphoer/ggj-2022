@@ -2,6 +2,7 @@ ggj-2022/[Ll]ibrary/
 ggj-2022/[Tt]emp/
 ggj-2022/[Oo]bj/
 ggj-2022/[Bb]uild/
+ggj-2022/[Ll]ogs/
 
 /build/
 
@@ -20,6 +21,7 @@ unity_incremental_compiler_server.log
 
 # Unity3D generated meta files
 *.pidb.meta
+*.log
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
