@@ -15,7 +15,7 @@ public class SlapController : MonoBehaviour
   private Collider[] _slapColliders = new Collider[10];
   private List<ISlappable> _slappedThisFrame = new List<ISlappable>();
 
-  public void Slap()
+  public void Slap(float slapStrength = 1f)
   {
     int numColliders = Physics.OverlapSphereNonAlloc(_slapOrigin.position, _slapRadius, _slapColliders, _slapMask);
     Debug.Log($"Slap hit {numColliders} colliders");
@@ -28,7 +28,7 @@ public class SlapController : MonoBehaviour
       {
         Debug.Log($"Slapping {_slapColliders[i].name}");
         _slappedThisFrame.Add(slappable);
-        slappable.ReceiveSlap(_slapOrigin.position, _slapOrigin.forward);
+        slappable.ReceiveSlap(_slapOrigin.position, _slapOrigin.forward, slapStrength);
         Debug.DrawLine(_slapOrigin.position, _slapColliders[i].transform.position, Color.red, 1.0f);
       }
     }
