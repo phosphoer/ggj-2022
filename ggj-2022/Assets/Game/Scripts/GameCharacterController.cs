@@ -30,7 +30,14 @@ public class GameCharacterController : MonoBehaviour
   private float _gravity = 5;
 
   private RaycastHit _groundRaycast;
-  private Vector3 _lastGroundDir = Vector3.down;
+  private Vector3 _lastGroundPos;
+
+  private Vector3 _raycastStartPos => transform.position + transform.up * _raycastUpStartOffset;
+
+  private void Start()
+  {
+    _lastGroundPos = transform.position + Vector3.down * 100;
+  }
 
   private void Update()
   {
@@ -39,13 +46,12 @@ public class GameCharacterController : MonoBehaviour
     transform.Rotate(Vector3.up, DesiredTurn * _turnSpeed * Time.deltaTime, Space.Self);
 
     // Snap and align to ground
-    Vector3 raycastStartPos = transform.position + transform.up * _raycastUpStartOffset;
-    if (Physics.SphereCast(raycastStartPos, _raycastRadius, -transform.up, out _groundRaycast, 10.0f, _groundLayer))
+    if (Physics.SphereCast(_raycastStartPos, _raycastRadius, -transform.up, out _groundRaycast, 3.0f, _groundLayer))
     {
-      _lastGroundDir = _groundRaycast.point - raycastStartPos;
+      _lastGroundPos = _groundRaycast.point;
 
-      float distToGround = _groundRaycast.distance + _raycastRadius - _raycastUpStartOffset;
-      transform.position -= transform.up * distToGround * Time.deltaTime * _gravity;
+      Vector3 toGroundPoint = _groundRaycast.point - transform.position;
+      transform.position += Vector3.ClampMagnitude(toGroundPoint, 1f) * Time.deltaTime * _gravity;
 
       Quaternion desiredRot = Quaternion.FromToRotation(transform.up, _groundRaycast.normal) * transform.rotation;
       transform.rotation = Mathfx.Damp(transform.rotation, desiredRot, 0.25f, Time.deltaTime * _terrainAlignmentSpeed);
@@ -53,8 +59,10 @@ public class GameCharacterController : MonoBehaviour
     // If no ground, go towards where it was last
     else
     {
-      transform.position -= _lastGroundDir * Time.deltaTime * _gravity;
-      Quaternion desiredRot = Quaternion.FromToRotation(transform.up, -_lastGroundDir) * transform.rotation;
+      Vector3 fallDir = (_lastGroundPos - transform.position).normalized;
+      Quaternion desiredRot = Quaternion.FromToRotation(transform.up, -fallDir) * transform.rotation;
+
+      transform.position += fallDir * Time.deltaTime * _gravity;
       transform.rotation = Mathfx.Damp(transform.rotation, desiredRot, 0.25f, Time.deltaTime * _terrainAlignmentSpeed);
     }
   }
@@ -62,8 +70,16 @@ public class GameCharacterController : MonoBehaviour
   private void OnDrawGizmosSelected()
   {
     Gizmos.color = Color.white;
-    Gizmos.DrawWireSphere(transform.position + transform.up * _raycastUpStartOffset, _raycastRadius);
-    Gizmos.DrawWireSphere(_groundRaycast.point, _raycastRadius);
-    Gizmos.DrawLine(transform.position + transform.up * _raycastUpStartOffset, _groundRaycast.point);
+    Gizmos.DrawWireSphere(_raycastStartPos, _raycastRadius);
+
+    if (_groundRaycast.collider != null)
+    {
+      Gizmos.DrawWireSphere(_groundRaycast.point, _raycastRadius);
+      Gizmos.DrawLine(_raycastStartPos, _groundRaycast.point);
+    }
+    else
+    {
+      Gizmos.DrawLine(_raycastStartPos, _lastGroundPos);
+    }
   }
 }
