@@ -16,8 +16,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4ed0033a185234a39a12ace2d3ada626, type: 3}
   SequencedClips: []
   IsSpatial: 1
-  MaxDistance: 20
-  MinDistance: 10
+  MaxDistance: 9
+  MinDistance: 2
   VolumeScale: 1
   DopplerLevel: 0
   PitchOffset: 0
