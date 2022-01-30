@@ -174,8 +174,8 @@ public class ScenarioManager : Singleton<ScenarioManager>
 
   public static event System.Action<eBodyPart, float> PartSlapped;
 
-  public SoundBank IntroAudio;
-  public SoundBank LoopAudio;
+  public SoundBank BodyPartClaimedAudio;
+  public SoundBank SuddenDeathEnter;
   public SoundBank AngelWinAudio;
   public SoundBank DevilWinAudio;
 
@@ -248,7 +248,16 @@ public class ScenarioManager : Singleton<ScenarioManager>
 
     if (!isContested && playerStats.IsAssignedBodyPart(bodyPart))
     {
-      playerStats.AdjustProgress(bodyPart, progressDelta);
+      float oldProgress= playerStats.GetProgress(bodyPart);
+      float newProgress= playerStats.AdjustProgress(bodyPart, progressDelta);
+
+      if (oldProgress < 1.0 && newProgress >= 1.0)
+      {
+        if (BodyPartClaimedAudio != null)
+        {
+          AudioManager.Instance.PlaySound(BodyPartClaimedAudio);
+        }
+      }
     }
 
     PartSlapped?.Invoke(bodyPart, slapStrength);
@@ -306,7 +315,19 @@ public class ScenarioManager : Singleton<ScenarioManager>
 
   public void UpdateScenario()
   {
+    float oldScenarioTimeRemaining = _scenarioTimeRemaining;
     _scenarioTimeRemaining = Mathf.Max(_scenarioTimeRemaining - Time.deltaTime, 0.0f);
+
+    // See if we entered sudden death
+    if (oldScenarioTimeRemaining > 0.0f && _scenarioTimeRemaining <= 0.0f)
+    {
+      if (SuddenDeathEnter != null)
+      {
+        AudioManager.Instance.PlaySound(SuddenDeathEnter);
+      }
+    }
+
+    ePlayer oldScenarioWinner= _scenarioWinner;
 
     if (IsInSuddenDeath)
     {
@@ -340,6 +361,26 @@ public class ScenarioManager : Singleton<ScenarioManager>
       else if (_devilStats.HasCompletedAllRequirements())
       {
         _scenarioWinner = ePlayer.DevilPlayer;
+      }
+    }
+
+    // See if a player just won this scenario
+    if (oldScenarioWinner == ePlayer.Invalid && _scenarioWinner != ePlayer.Invalid)
+    {
+      switch(_scenarioWinner)
+      {
+        case ePlayer.AngelPlayer:
+          if (AngelWinAudio != null)
+          {
+            AudioManager.Instance.PlaySound(AngelWinAudio);
+          }
+          break;
+        case ePlayer.DevilPlayer:
+          if (DevilWinAudio != null)
+          {
+            AudioManager.Instance.PlaySound(DevilWinAudio);
+          }
+          break;
       }
     }
   }
