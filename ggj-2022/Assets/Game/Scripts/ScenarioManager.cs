@@ -51,19 +51,29 @@ public class PlayerStats
         bonusProgress = 0.0f;
     }
 
-    // Delta allowed to be negative for removing progress from an enemy player
-    public void adjustProgress(eBodyPart bodyPart, float delta)
+    public bool IsAssignedBodyPart(eBodyPart bodyPart)
     {
-        float currentProgress = 0.0f;
-        if (requirementProgress.TryGetValue(bodyPart, out currentProgress))
+        return bonusBodyPart == bodyPart || requirementProgress.ContainsKey(bodyPart);
+    }
+
+    // Delta allowed to be negative for removing progress from an enemy player
+    public float adjustProgress(eBodyPart bodyPart, float delta)
+    {
+        float resultProgress = 0.0f;
+
+        if (requirementProgress.TryGetValue(bodyPart, out resultProgress))
         {
-            requirementProgress[bodyPart] = Mathf.Clamp01(currentProgress + delta);
+            resultProgress = Mathf.Clamp01(resultProgress + delta);
+            requirementProgress[bodyPart] = resultProgress;
         }
 
         if (bodyPart == bonusBodyPart)
         {
-            bonusProgress = Mathf.Clamp01(bonusProgress + delta);
+            resultProgress= Mathf.Clamp01(bonusProgress + delta);
+            bonusProgress = resultProgress;
         }
+
+        return resultProgress;
     }
 
     public bool hasCompletedRequirements()
@@ -100,9 +110,9 @@ public class Scenario
     {
         switch(player)
         {
-            case ePlayer.LeftPlayer:
+            case ePlayer.DevilPlayer:
                 return devilGoals;
-            case ePlayer.RightPlayer:
+            case ePlayer.AngelPlayer:
                 return angelGoals;
         }
 
@@ -144,11 +154,13 @@ public class ScenarioManager : Singleton<ScenarioManager>
     public SoundBank AngelWinAudio;
     public SoundBank DevilWinAudio;
 
+    public float TotalBodyPartHealth = 20;
+
     private int _currentScenarioIndex = 0;
     public bool HasCompletedAllScenarios => _currentScenarioIndex >= Scenarios.Count;
 
     private PlayerStats _angleStats = new PlayerStats();
-    public PlayerStats AngleStats => _angleStats;
+    public PlayerStats AngelStats => _angleStats;
 
     private PlayerStats _devilStats = new PlayerStats();
     public PlayerStats DevilStats => _devilStats;
@@ -158,6 +170,51 @@ public class ScenarioManager : Singleton<ScenarioManager>
     public Scenario GetCurrentScenario()
     {
         return (_currentScenarioIndex < Scenarios.Count) ? Scenarios[_currentScenarioIndex] : null;
+    }
+
+    public PlayerStats GetPlayerStats(ePlayer player)
+    {
+        switch(player)
+        {
+            case ePlayer.DevilPlayer:
+                return _devilStats;
+            case ePlayer.AngelPlayer:
+                return _angleStats;
+        }
+
+        return null;
+    }
+
+    public static ePlayer GetOtherPlayer(ePlayer player)
+    {
+        switch (player)
+        {
+            case ePlayer.DevilPlayer:
+                return ePlayer.AngelPlayer;
+            case ePlayer.AngelPlayer:
+                return ePlayer.DevilPlayer;
+        }
+
+        return ePlayer.Invalid;
+    }
+
+    public void ApplySlapDamage(ePlayer attackingPlayer, eBodyPart bodyPart, float slapStrength)
+    {
+        float progressDelta = slapStrength / TotalBodyPartHealth;
+
+        PlayerStats playerStats= GetPlayerStats(attackingPlayer);
+        PlayerStats otherPlayerStats = GetPlayerStats(GetOtherPlayer(attackingPlayer));
+
+        bool isContested = false;
+        if (otherPlayerStats.IsAssignedBodyPart(bodyPart))
+        {
+            isContested= otherPlayerStats.adjustProgress(bodyPart, -progressDelta) > 0;
+        }
+
+        if (!isContested && playerStats.IsAssignedBodyPart(bodyPart))
+        {
+            playerStats.adjustProgress(bodyPart, progressDelta);
+        }        
     }
 
     public void SetupScenario()

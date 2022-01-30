@@ -5,8 +5,8 @@ using UnityEngine;
 public enum ePlayer
 {
   Invalid,
-  LeftPlayer,
-  RightPlayer
+  DevilPlayer,
+  AngelPlayer
 }
 
 public class GameStateManager : Singleton<GameStateManager>
@@ -197,20 +197,83 @@ public class GameStateManager : Singleton<GameStateManager>
 
           SpawnPlayers();
 
-          CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.ScenarioCamera);
-          GameUI.Instance.ScenarioIntroUI.Show();
-        }
-        break;
+          switch (newGameStage)
+          {
+            case GameStage.MainMenu:
+              {
+                CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MenuCamera);
+
+                GameUI.Instance.MainMenuUI.Show();
+
+                if (MusicMenuLoop != null)
+                {
+                  AudioManager.Instance.FadeInSound(gameObject, MusicMenuLoop, 3.0f);
+                }
+
+                ResetGameStats();
+              }
+              break;
+            case GameStage.Settings:
+              {
+                CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MenuCamera);
+
+                GameUI.Instance.SettingsUI.Show();
+                //CameraControllerStack.Instance.PushController(MenuCamera);
+              }
+              break;
+            case GameStage.ScenarioIntro:
+              {
+                ScenarioManager.Instance.SetupScenario();
+
+                SpawnPlayers();
+
+                CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.ScenarioCamera);
+                GameUI.Instance.ScenarioIntroUI.Show();
+              }
+              break;
+            case GameStage.ScenarioGameplay:
+              {
+                CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MultiCamera);
+
+                GameUI.Instance.ScenarioUI.Show();
+
+                GameUI.Instance.AngelUI.AssignPlayer(ePlayer.AngelPlayer);
+                GameUI.Instance.AngelUI.Show();
+
+                GameUI.Instance.DevilUI.AssignPlayer(ePlayer.DevilPlayer);
+                GameUI.Instance.DevilUI.Show();
+              }
+              break;
+            case GameStage.ScenarioOutro:
+              {
+                CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.ScenarioCamera);
+                GameUI.Instance.ScenarioOutroUI.Show();
+              }
+              break;
+            case GameStage.EndGame:
+              {
+                CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MenuCamera);
+                GameUI.Instance.EndGameUI.Show();
+                //CameraControllerStack.Instance.PushController(MenuCamera);
+
+                //if (WinAlert != null)
+                //{
+                //    AudioManager.Instance.PlaySound(WinAlert);
+                //}
+              }
+              break;
+          }
+          break;
       case GameStage.ScenarioGameplay:
         {
           CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MultiCamera);
 
           GameUI.Instance.ScenarioUI.Show();
 
-          GameUI.Instance.AngelUI.AssignPlayer(ePlayer.RightPlayer);
+          GameUI.Instance.AngelUI.AssignPlayer(ePlayer.AngelPlayer);
           GameUI.Instance.AngelUI.Show();
 
-          GameUI.Instance.DevilUI.AssignPlayer(ePlayer.LeftPlayer);
+          GameUI.Instance.DevilUI.AssignPlayer(ePlayer.DevilPlayer);
           GameUI.Instance.DevilUI.Show();
         }
         break;
@@ -249,12 +312,12 @@ public class GameStateManager : Singleton<GameStateManager>
     if (PlayerManager.Instance.Players.Count == 1)
     {
       player.CameraStack.Camera = CameraManager.Instance.LeftPlayerCamera;
-      player.Team = ePlayer.LeftPlayer;
+      player.Team = ePlayer.DevilPlayer;
     }
     else if (PlayerManager.Instance.Players.Count == 2)
     {
       player.CameraStack.Camera = CameraManager.Instance.RightPlayerCamera;
-      player.Team = ePlayer.RightPlayer;
+      player.Team = ePlayer.AngelPlayer;
     }
   }
 

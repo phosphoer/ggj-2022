@@ -9,10 +9,13 @@ public class SlappableStation : MonoBehaviour, ISlappable
   [SerializeField]
   private eBodyPart _bodyPart = default(eBodyPart);
 
+  private SoundBank _meatSlapSounds = null;
+
   void ISlappable.ReceiveSlap(Vector3 slapOrigin, Vector3 slapDirection, float slapStrength)
   {
     StartCoroutine(SlapAnimAsync(slapDirection, slapStrength));
 
+    AudioManager.Instance?.PlaySound(_meatSlapSounds);
   }
 
   private IEnumerator SlapAnimAsync(Vector3 slapDirection, float slapStrength)

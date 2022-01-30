@@ -168,3 +168,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _meatSlapSounds: {fileID: 11400000, guid: 44f279657a98d48d783401ac113593e4, type: 2}
