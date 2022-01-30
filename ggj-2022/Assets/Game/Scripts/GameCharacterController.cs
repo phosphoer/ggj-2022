@@ -53,11 +53,19 @@ public class GameCharacterController : MonoBehaviour, ISlappable
   [SerializeField]
   private SoundBank _doubleSlapSound = null;
 
+  [SerializeField]
+  private SoundBank _trundleSound = null;
+
+  [SerializeField]
+  private SoundBank _idleSound = null;
+
   private RaycastHit _groundRaycast;
   private RaycastHit _obstacleRaycast;
   private Vector3 _lastGroundPos;
   private float _stunTimer;
   private float _nextSlapStrength;
+  private AudioManager.AudioInstance _trundleAudio;
+  private AudioManager.AudioInstance _idleAudio;
 
   private Vector3 _raycastStartPos => transform.position + transform.up * _raycastUpStartOffset;
 
@@ -107,6 +115,24 @@ public class GameCharacterController : MonoBehaviour, ISlappable
     {
       _stunTimer -= Time.deltaTime;
       return;
+    }
+
+    if (_trundleAudio == null)
+    {
+      _trundleAudio = AudioManager.Instance.PlaySound(gameObject, _trundleSound, 0);
+    }
+    else
+    {
+      _trundleAudio.AudioSource.volume = Mathf.Abs(DesiredSpeed);
+    }
+
+    if (_idleAudio == null)
+    {
+      _idleAudio = AudioManager.Instance.PlaySound(gameObject, _idleSound, 0);
+    }
+    else
+    {
+      _idleAudio.AudioSource.volume = 1 - _trundleAudio.AudioSource.volume;
     }
 
     // Calculate next position based on movement
