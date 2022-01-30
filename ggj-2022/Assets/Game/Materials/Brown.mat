@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Int2
+  m_Name: Brown
   m_Shader: {fileID: 4800000, guid: 9cf2bce33ea8d6147b82009faaf5babe, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -78,6 +78,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 0.80784315, b: 0.96261716, a: 1}
+    - _Color: {r: 0.3207547, g: 0.25604698, b: 0.19517621, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

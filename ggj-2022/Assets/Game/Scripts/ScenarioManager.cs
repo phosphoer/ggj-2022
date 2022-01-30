@@ -172,7 +172,7 @@ public class ScenarioManager : Singleton<ScenarioManager>
 {
   public List<Scenario> Scenarios;
 
-  public static event System.Action<eBodyPart> PartSlapped;
+  public static event System.Action<eBodyPart, float> PartSlapped;
 
   public SoundBank BodyPartClaimedAudio;
   public SoundBank AngelWinAudio;
@@ -256,7 +256,7 @@ public class ScenarioManager : Singleton<ScenarioManager>
       }
     }
 
-    PartSlapped?.Invoke(bodyPart);
+    PartSlapped?.Invoke(bodyPart, slapStrength);
   }
 
   public void SetupScenario()
@@ -315,7 +315,7 @@ public class ScenarioManager : Singleton<ScenarioManager>
 
     if (IsInSuddenDeath)
     {
-      int angelScore= _angleStats.GetCompletedRequirementCount();
+      int angelScore = _angleStats.GetCompletedRequirementCount();
       if (_angleStats.HasCompletedBonus())
       {
         angelScore += 1;
