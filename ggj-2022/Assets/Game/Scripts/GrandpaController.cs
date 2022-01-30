@@ -13,7 +13,7 @@ public class GrandpaController : MonoBehaviour
   private class BonePair
   {
     public eBodyPart BodyPart = default(eBodyPart);
-    public Transform Bone = null;
+    public Transform[] Bones = null;
   }
 
   private void Start()
@@ -57,7 +57,11 @@ public class GrandpaController : MonoBehaviour
     Vector3 direction = Random.onUnitSphere;
     yield return Tween.CustomTween(1.0f, t =>
     {
-      bone.Bone.localScale = Vector3.one + (direction * slapStrength) * _partSlapScaleCurve.Evaluate(t);
+      foreach (var boneTransform in bone.Bones)
+        boneTransform.localScale = Vector3.one + (direction * slapStrength) * _partSlapScaleCurve.Evaluate(t);
     });
+
+    foreach (var boneTransform in bone.Bones)
+      boneTransform.localScale = Vector3.one;
   }
 }
