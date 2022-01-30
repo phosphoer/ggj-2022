@@ -119,7 +119,7 @@ public class PlayerStats
 [System.Serializable]
 public class Scenario
 {
-  public GameObject scenarioPrefab;
+  public ScenarioScene scenarioPrefab;
 
   public PlayerGoals angelGoals = new PlayerGoals();
   public PlayerGoals devilGoals = new PlayerGoals();
@@ -183,6 +183,8 @@ public class ScenarioManager : Singleton<ScenarioManager>
   public float TotalBodyPartHealth = 20;
   public float TotalScenarioTime = 300; // seconds
 
+  public Transform ScenarioRoot = null;
+
 
   private float _scenarioTimeRemaining = 0;
   public float ScenarioTimeRemaining => _scenarioTimeRemaining;
@@ -201,7 +203,7 @@ public class ScenarioManager : Singleton<ScenarioManager>
   private PlayerStats _devilStats = new PlayerStats();
   public PlayerStats DevilStats => _devilStats;
 
-  private GameObject _scenarioInstance = null;
+  private ScenarioScene _scenarioInstance = null;
 
   public Scenario GetCurrentScenario()
   {
@@ -249,14 +251,14 @@ public class ScenarioManager : Singleton<ScenarioManager>
 
     if (!isContested && playerStats.IsAssignedBodyPart(bodyPart))
     {
-      float oldProgress= playerStats.GetProgress(bodyPart);
-      float newProgress= playerStats.AdjustProgress(bodyPart, progressDelta);
+      float oldProgress = playerStats.GetProgress(bodyPart);
+      float newProgress = playerStats.AdjustProgress(bodyPart, progressDelta);
 
       if (oldProgress < 1.0 && newProgress >= 1.0)
       {
-        if(GetOtherPlayer(attackingPlayer) == ePlayer.AngelPlayer)
+        if (GetOtherPlayer(attackingPlayer) == ePlayer.AngelPlayer)
           AudioManager.Instance.PlaySound(DevilClaimedAudio);
-        else if(GetOtherPlayer(attackingPlayer) == ePlayer.DevilPlayer)
+        else if (GetOtherPlayer(attackingPlayer) == ePlayer.DevilPlayer)
           AudioManager.Instance.PlaySound(AngelClaimedAudio);
       }
     }
@@ -289,7 +291,8 @@ public class ScenarioManager : Singleton<ScenarioManager>
   {
     if (_scenarioInstance != null)
     {
-      Destroy(_scenarioInstance);
+      CameraManager.Instance.ScenarioCameraStack.PopCurrentController();
+      Destroy(_scenarioInstance.gameObject);
       _scenarioInstance = null;
     }
   }
@@ -298,22 +301,16 @@ public class ScenarioManager : Singleton<ScenarioManager>
   {
     if (scenario.scenarioPrefab != null)
     {
-      // Get the location of the scenario camera up in the sky
-      Camera scenarioCamera= CameraManager.Instance.ScenarioCamera;
-      Vector3 scenarioCamPos = scenarioCamera.transform.position;
+      _scenarioInstance = Instantiate(scenario.scenarioPrefab, ScenarioRoot);
+      _scenarioInstance.transform.SetIdentityTransformLocal();
+      _scenarioInstance.CurrentState = ScenarioScene.ScenarioState.InGame;
 
-      // Create the scenario prefab
-      _scenarioInstance = Instantiate(scenario.scenarioPrefab);
+      CameraManager.Instance.ScenarioCameraStack.SwitchController(_scenarioInstance.CurrentCamera);
+      CameraManager.Instance.ScenarioCameraStack.SnapTransformToTarget();
 
       // Get the offset of the dummy camera in the scenario
       Camera dummyCamera = _scenarioInstance.GetComponentInChildren<Camera>();
-      Vector3 offsetPos = dummyCamera.transform.localPosition;
-      Quaternion dummyCameraRot = dummyCamera.transform.rotation;
-
-      Destroy(dummyCamera.gameObject);
-
-      _scenarioInstance.transform.position = scenarioCamPos - offsetPos;
-      scenarioCamera.transform.rotation = dummyCameraRot;
+      dummyCamera.enabled = false;
     }
   }
 
@@ -361,7 +358,7 @@ public class ScenarioManager : Singleton<ScenarioManager>
     // See if a player just won this scenario
     if (oldScenarioWinner == ePlayer.Invalid && _scenarioWinner != ePlayer.Invalid)
     {
-       switch(_scenarioWinner)
+      switch (_scenarioWinner)
       {
         case ePlayer.AngelPlayer:
           if (AngelWinAudio != null)
