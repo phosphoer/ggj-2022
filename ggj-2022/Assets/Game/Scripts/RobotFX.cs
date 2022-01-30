@@ -25,6 +25,7 @@ public class RobotFX : MonoBehaviour
         lastPos = transform.position;
         ClearAll();
         
+        
     }
 
     // Update is called once per frame
