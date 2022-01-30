@@ -58,29 +58,31 @@ public class CameraManager : Singleton<CameraManager>
     Instance = this;
   }
 
-  private void SetCameraHeight(Camera camera, float newHeight)
+  private void SetCameraSize(Camera camera, float newWidth, float newHeight)
   {
+    float newX = 1.0f - newWidth;
     float newY = 1.0f - newHeight;
 
-    camera.rect = new Rect(camera.rect.x, newY, camera.rect.width, newHeight);
+    camera.rect = new Rect(newX, newY, newWidth, newHeight);
   }
 
-  IEnumerator SqueezeCameraScreenRoutine(Camera camera, float fromSize, float toSize, float duration)
+  IEnumerator SqueezeCameraScreenRoutine(Camera camera, float fromWidth, float toWidth, float fromHeight, float toHeight, float duration)
   {
     for (float time = 0; time < duration; time += Time.unscaledDeltaTime)
     {
       yield return null;
 
       float t = time / duration;
-      float size = Mathf.Lerp(fromSize, toSize, t);
+      float width = Mathf.Lerp(fromWidth, toWidth, t);
+      float height = Mathf.Lerp(fromWidth, toHeight, t);
 
-      SetCameraHeight(camera, size);
+      SetCameraSize(camera, width, height);
     }
   }
 
-  public Coroutine SqueezeCameraScreen(Camera camera, float fromSize, float toSize, float duration)
+  public Coroutine SqueezeCameraScreen(Camera camera, float fromWidth, float toWidth, float fromHeight, float toHeight, float duration)
   {
-    return StartCoroutine(SqueezeCameraScreenRoutine(camera, fromSize, toSize, duration));
+    return StartCoroutine(SqueezeCameraScreenRoutine(camera, fromWidth, toWidth, fromHeight, toHeight, duration));
   }
 
   public void SetScreenLayout(eScreenLayout targetLayout)
@@ -97,7 +99,7 @@ public class CameraManager : Singleton<CameraManager>
           break;
         case eScreenLayout.ScenarioCamera:
           _scenarioCamera.enabled = true;
-          SetCameraHeight(_scenarioCamera, 1.0f);
+          SetCameraSize(_scenarioCamera, 1.0f, 1.0f);
           _leftPlayerCamera.enabled = false;
           _rightPlayerCamera.enabled = false;
           _menuCamera.enabled = false;
@@ -106,11 +108,11 @@ public class CameraManager : Singleton<CameraManager>
           _scenarioCamera.enabled = true;
           if (_cameraLayout == eScreenLayout.ScenarioCamera)
           {
-            SqueezeCameraScreen(_scenarioCamera, 1.0f, 0.5f, 0.5f);
+            SqueezeCameraScreen(_scenarioCamera, 1.0f, 0.85f, 1.0f, 0.5f, 0.5f);
           }
           else
           {
-            SetCameraHeight(_scenarioCamera, 0.5f);
+            SetCameraSize(_scenarioCamera, 0.85f, 0.5f);
           }
           _leftPlayerCamera.enabled = true;
           _rightPlayerCamera.enabled = true;

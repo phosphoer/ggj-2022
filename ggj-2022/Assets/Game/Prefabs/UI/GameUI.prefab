@@ -63,6 +63,7 @@ MonoBehaviour:
   DevilUI: {fileID: 8947226399259048097}
   MainMenuUI: {fileID: 4858694681993753059}
   SettingsUI: {fileID: 8061093199292119640}
+  SidebarUI: {fileID: 7731398629292138578}
   ScenarioIntroUI: {fileID: 784859548086362240}
   ScenarioUI: {fileID: 2209656054900436310}
   ScenarioOutroUI: {fileID: 8089615013983706169}
@@ -1704,6 +1705,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4337562279935311098, guid: 1aa1827599df7bd459a7aecd429ffe8b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337562279935311098, guid: 1aa1827599df7bd459a7aecd429ffe8b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337562279935311098, guid: 1aa1827599df7bd459a7aecd429ffe8b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337562279935311098, guid: 1aa1827599df7bd459a7aecd429ffe8b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1753,6 +1766,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1aa1827599df7bd459a7aecd429ffe8b, type: 3}
+--- !u!114 &7731398629292138578 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3358998248476590970, guid: 1aa1827599df7bd459a7aecd429ffe8b, type: 3}
+  m_PrefabInstance: {fileID: 5032487857495548712}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9d987b33d1311346b0b65e009da0a52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8783392436909006802 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4337562279935311098, guid: 1aa1827599df7bd459a7aecd429ffe8b, type: 3}

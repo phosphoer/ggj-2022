@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9d987b33d1311346b0b65e009da0a52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowOnStart: 1
+  ShowOnStart: 0
   IsModal: 0
   _hydrateOnShow: []
   MiniMapBG: {fileID: 6507552191991396290}

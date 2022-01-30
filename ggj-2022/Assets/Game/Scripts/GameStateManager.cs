@@ -170,6 +170,7 @@ public class GameStateManager : Singleton<GameStateManager>
           GameUI.Instance.ScenarioUI.Hide();
           GameUI.Instance.AngelUI.Hide();
           GameUI.Instance.DevilUI.Hide();
+          GameUI.Instance.SidebarUI.Hide();
         }
         break;
       case GameStage.ScenarioOutro:
@@ -239,6 +240,8 @@ public class GameStateManager : Singleton<GameStateManager>
 
           GameUI.Instance.DevilUI.AssignPlayer(ePlayer.DevilPlayer);
           GameUI.Instance.DevilUI.Show();
+
+          GameUI.Instance.SidebarUI.Show();
         }
         break;
       case GameStage.ScenarioOutro:
