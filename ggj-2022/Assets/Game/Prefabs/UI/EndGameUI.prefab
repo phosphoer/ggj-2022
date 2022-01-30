@@ -485,8 +485,8 @@ MonoBehaviour:
   Buttons:
   - {fileID: 1634972495034785903}
   - {fileID: 2494797173214218683}
-  DevilUIColor: {r: 0.6320754, g: 0.03875936, b: 0.03875936, a: 0}
-  AngelUIColor: {r: 0.19215684, g: 0.8920464, b: 0.90588236, a: 0}
+  DevilUIColor: {r: 0.6320754, g: 0.03875936, b: 0.03875936, a: 1}
+  AngelUIColor: {r: 0.19215684, g: 0.8920464, b: 0.90588236, a: 1}
   UIReveal: {fileID: 11400000, guid: 92600c3444ce044a69024127f45d0b3e, type: 2}
   AngelWinAudio: {fileID: 11400000, guid: 80971b4c0099c45959d04cd5518d37ad, type: 2}
   DevilWinAudio: {fileID: 11400000, guid: ae4a0127902ba4fd38114c21d5976ca9, type: 2}
