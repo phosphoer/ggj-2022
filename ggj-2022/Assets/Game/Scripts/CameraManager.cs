@@ -12,6 +12,8 @@ public class CameraManager : Singleton<CameraManager>
 
     public CameraControllerStack ScenarioCameraStack => _scenarioCameraStack;
     public CameraControllerStack MenuCameraStack => _menuCameraStack;
+
+    public Camera ScenarioCamera => _scenarioCamera;
     public Camera LeftPlayerCamera => _leftPlayerCamera;
     public Camera RightPlayerCamera => _rightPlayerCamera;
 
