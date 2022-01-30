@@ -172,8 +172,8 @@ MonoBehaviour:
       outroText: He vomits and kicks the table over
       bonusOutroText: Troubled by malnutrition and fake news
     Title: Complete Breakfast
-    IntroText: Aloicious sits down in his breakfast nook to have a sensible meal
-      of wholegrain toast and coffee
+    IntroText: Burt sits down in his breakfast nook to have a sensible meal of wholegrain
+      toast and coffee
     IntroDuration: 5
     OutroDuration: 10
   - scenarioPrefab: {fileID: 7904897964600253219, guid: 295e1392285103d41b274d458e7bac6a, type: 3}
@@ -189,7 +189,7 @@ MonoBehaviour:
       bonusOutroText: He is cartoonishly dragged through the store by the shopping
         cart
     Title: Supermarket Sweep
-    IntroText: Aloicious needs to pick up a few things at the supermarket.
+    IntroText: Burt needs to pick up a few things at the supermarket.
     IntroDuration: 5
     OutroDuration: 10
   - scenarioPrefab: {fileID: 8956187813020250872, guid: a2bedd7c450c028499f5fd9be908ccdf, type: 3}
@@ -204,8 +204,8 @@ MonoBehaviour:
       outroText: He dances awkwardly, thrusting and drooling
       bonusOutroText: He rubs gobs of food on his face as he dances
     Title: Hot Date
-    IntroText: Aloicious meets an attractive old lady for a candlelit dinner at a
-      fancy restaurant.
+    IntroText: Burt meets an attractive old lady for a candlelit dinner at a fancy
+      restaurant.
     IntroDuration: 5
     OutroDuration: 10
   - scenarioPrefab: {fileID: 8956187813020250872, guid: a2bedd7c450c028499f5fd9be908ccdf, type: 3}
@@ -221,7 +221,7 @@ MonoBehaviour:
         restless legs and dead arm
       bonusOutroText: Screaming in his sleep
     Title: Sleeping Beauty
-    IntroText: Aloicious is tired after a long day and tries to get some shuteye
+    IntroText: Burt is tired after a long day and tries to get some shuteye
     IntroDuration: 5
     OutroDuration: 10
   AngelClaimedAudio: {fileID: 11400000, guid: 80971b4c0099c45959d04cd5518d37ad, type: 2}
