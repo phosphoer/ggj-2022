@@ -31,6 +31,9 @@ public class GameStateManager : Singleton<GameStateManager>
   public SoundBank MusicMenuLoop;
   public CameraControllerBase MenuCamera;
 
+  private PlayerCharacterController _devilPlayer;
+  private PlayerCharacterController _angelPlayer;
+
   private void Awake()
   {
     Instance = this;
@@ -271,11 +274,15 @@ public class GameStateManager : Singleton<GameStateManager>
     {
       player.CameraStack.Camera = CameraManager.Instance.LeftPlayerCamera;
       player.Team = ePlayer.DevilPlayer;
+
+      _devilPlayer = player;
     }
     else if (PlayerManager.Instance.Players.Count == 2)
     {
       player.CameraStack.Camera = CameraManager.Instance.RightPlayerCamera;
       player.Team = ePlayer.AngelPlayer;
+
+      _angelPlayer = player;
     }
   }
 
@@ -288,5 +295,21 @@ public class GameStateManager : Singleton<GameStateManager>
   {
     PlayerManager.Instance.enabled = false;
     PlayerManager.Instance.DespawnPlayers();
+
+    _devilPlayer = null;
+    _angelPlayer = null;
+  }
+
+  public PlayerCharacterController GetPlayer(ePlayer player)
+  {
+    switch(player)
+    {
+      case ePlayer.DevilPlayer:
+        return _devilPlayer;
+      case ePlayer.AngelPlayer:
+        return _angelPlayer;
+    }
+
+    return null;
   }
 }

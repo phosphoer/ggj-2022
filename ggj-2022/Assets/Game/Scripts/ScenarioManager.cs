@@ -367,7 +367,7 @@ public class ScenarioManager : Singleton<ScenarioManager>
     // See if a player just won this scenario
     if (oldScenarioWinner == ePlayer.Invalid && _scenarioWinner != ePlayer.Invalid)
     {
-      switch(_scenarioWinner)
+       switch(_scenarioWinner)
       {
         case ePlayer.AngelPlayer:
           if (AngelWinAudio != null)
