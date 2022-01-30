@@ -7,6 +7,7 @@ public class RobotFX : MonoBehaviour
     public enum RobotFXStates{None,Moving,Stunned}
 
     public ParticleSystem[] MovingFX = new ParticleSystem[0];
+    public float MinMoveForFX = .5f;
     public MeshRenderer treds; 
     public float TredsPanSpeedMod = .5f;
 
@@ -24,6 +25,7 @@ public class RobotFX : MonoBehaviour
         lastPos = transform.position;
         ClearAll();
         
+        
     }
 
     // Update is called once per frame
@@ -32,7 +34,10 @@ public class RobotFX : MonoBehaviour
 
         if(currentState==RobotFXStates.Moving)
         {
-            tredsMat.SetTextureOffset("_MainTex", new Vector2(0f,tredsMat.GetTextureOffset("_MainTex").y + (Vector3.Distance(lastPos,transform.position)*TredsPanSpeedMod)));
+            float moveDist = Vector3.Distance(lastPos,transform.position);
+            if(moveDist <= MinMoveForFX) SetFX(currentState, false);
+            else SetFX(currentState, true);
+            tredsMat.SetTextureOffset("_MainTex", new Vector2(0f,tredsMat.GetTextureOffset("_MainTex").y + (moveDist*TredsPanSpeedMod)));
         }
         lastPos = transform.position;
     }
