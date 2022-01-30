@@ -174,8 +174,9 @@ public class ScenarioManager : Singleton<ScenarioManager>
 
   public static event System.Action<eBodyPart, float> PartSlapped;
 
-  public SoundBank BodyPartClaimedAudio;
-  public SoundBank SuddenDeathEnter;
+  public SoundBank AngelClaimedAudio;
+  public SoundBank DevilClaimedAudio;
+
   public SoundBank AngelWinAudio;
   public SoundBank DevilWinAudio;
 
@@ -253,10 +254,10 @@ public class ScenarioManager : Singleton<ScenarioManager>
 
       if (oldProgress < 1.0 && newProgress >= 1.0)
       {
-        if (BodyPartClaimedAudio != null)
-        {
-          AudioManager.Instance.PlaySound(BodyPartClaimedAudio);
-        }
+        if(GetOtherPlayer(attackingPlayer) == ePlayer.AngelPlayer)
+          AudioManager.Instance.PlaySound(DevilClaimedAudio);
+        else if(GetOtherPlayer(attackingPlayer) == ePlayer.DevilPlayer)
+          AudioManager.Instance.PlaySound(AngelClaimedAudio);
       }
     }
 
@@ -315,19 +316,7 @@ public class ScenarioManager : Singleton<ScenarioManager>
 
   public void UpdateScenario()
   {
-    float oldScenarioTimeRemaining = _scenarioTimeRemaining;
     _scenarioTimeRemaining = Mathf.Max(_scenarioTimeRemaining - Time.deltaTime, 0.0f);
-
-    // See if we entered sudden death
-    if (oldScenarioTimeRemaining > 0.0f && _scenarioTimeRemaining <= 0.0f)
-    {
-      if (SuddenDeathEnter != null)
-      {
-        AudioManager.Instance.PlaySound(SuddenDeathEnter);
-      }
-    }
-
-    ePlayer oldScenarioWinner= _scenarioWinner;
 
     if (IsInSuddenDeath)
     {
