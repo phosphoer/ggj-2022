@@ -215,6 +215,20 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 1
+        functionName: AnimEvent
+        data: InteractComplete
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.4356435
+        functionName: AnimEvent
+        data: Interact
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -247,6 +261,13 @@ ModelImporter:
       - time: 0.52439016
         functionName: AnimEvent
         data: Interact
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 1
+        functionName: AnimEvent
+        data: InteractComplete
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
