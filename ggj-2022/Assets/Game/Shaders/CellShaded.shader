@@ -4,6 +4,7 @@ Shader "Custom/CellShaded"
   {
     _Color ("Color", Color) = (1,1,1,1)
     _MainTex ("Texture", 2D) = "white" {}
+    _MainTexAlpha ("Texture Alpha", float) = 1
     _LightRamp ("Light Ramp", 2D) = "white" {}
   }
   SubShader
@@ -32,6 +33,7 @@ Shader "Custom/CellShaded"
       };
 
       sampler2D _MainTex;
+      float _MainTexAlpha;
       float4 _MainTex_ST;
       float4 _Color;
       
@@ -54,7 +56,7 @@ Shader "Custom/CellShaded"
       {
         // Get base diffuse color
         fixed3 texColor = tex2D(_MainTex, i.uv).rgb;
-        fixed3 diffuse = _Color.rgb * texColor;
+        fixed3 diffuse = _Color.rgb * lerp(fixed3(1,1,1), texColor, _MainTexAlpha);
 
         fixed lightAtten = 1;
         #ifdef POINT

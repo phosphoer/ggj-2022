@@ -174,8 +174,9 @@ public class ScenarioManager : Singleton<ScenarioManager>
 
   public static event System.Action<eBodyPart, float> PartSlapped;
 
-  public SoundBank IntroAudio;
-  public SoundBank LoopAudio;
+  public SoundBank AngelClaimedAudio;
+  public SoundBank DevilClaimedAudio;
+
   public SoundBank AngelWinAudio;
   public SoundBank DevilWinAudio;
 
@@ -248,7 +249,16 @@ public class ScenarioManager : Singleton<ScenarioManager>
 
     if (!isContested && playerStats.IsAssignedBodyPart(bodyPart))
     {
-      playerStats.AdjustProgress(bodyPart, progressDelta);
+      float oldProgress= playerStats.GetProgress(bodyPart);
+      float newProgress= playerStats.AdjustProgress(bodyPart, progressDelta);
+
+      if (oldProgress < 1.0 && newProgress >= 1.0)
+      {
+        if(GetOtherPlayer(attackingPlayer) == ePlayer.AngelPlayer)
+          AudioManager.Instance.PlaySound(DevilClaimedAudio);
+        else if(GetOtherPlayer(attackingPlayer) == ePlayer.DevilPlayer)
+          AudioManager.Instance.PlaySound(AngelClaimedAudio);
+      }
     }
 
     PartSlapped?.Invoke(bodyPart, slapStrength);
@@ -289,7 +299,8 @@ public class ScenarioManager : Singleton<ScenarioManager>
     if (scenario.scenarioPrefab != null)
     {
       // Get the location of the scenario camera up in the sky
-      Vector3 scenarioCamPos = CameraManager.Instance.ScenarioCamera.transform.position;
+      Camera scenarioCamera= CameraManager.Instance.ScenarioCamera;
+      Vector3 scenarioCamPos = scenarioCamera.transform.position;
 
       // Create the scenario prefab
       _scenarioInstance = Instantiate(scenario.scenarioPrefab);
@@ -297,16 +308,20 @@ public class ScenarioManager : Singleton<ScenarioManager>
       // Get the offset of the dummy camera in the scenario
       Camera dummyCamera = _scenarioInstance.GetComponentInChildren<Camera>();
       Vector3 offsetPos = dummyCamera.transform.localPosition;
+      Quaternion dummyCameraRot = dummyCamera.transform.rotation;
 
       Destroy(dummyCamera.gameObject);
 
       _scenarioInstance.transform.position = scenarioCamPos - offsetPos;
+      scenarioCamera.transform.rotation = dummyCameraRot;
     }
   }
 
   public void UpdateScenario()
   {
     _scenarioTimeRemaining = Mathf.Max(_scenarioTimeRemaining - Time.deltaTime, 0.0f);
+
+    ePlayer oldScenarioWinner = _scenarioWinner;
 
     if (IsInSuddenDeath)
     {
@@ -340,6 +355,26 @@ public class ScenarioManager : Singleton<ScenarioManager>
       else if (_devilStats.HasCompletedAllRequirements())
       {
         _scenarioWinner = ePlayer.DevilPlayer;
+      }
+    }
+
+    // See if a player just won this scenario
+    if (oldScenarioWinner == ePlayer.Invalid && _scenarioWinner != ePlayer.Invalid)
+    {
+       switch(_scenarioWinner)
+      {
+        case ePlayer.AngelPlayer:
+          if (AngelWinAudio != null)
+          {
+            AudioManager.Instance.PlaySound(AngelWinAudio);
+          }
+          break;
+        case ePlayer.DevilPlayer:
+          if (DevilWinAudio != null)
+          {
+            AudioManager.Instance.PlaySound(DevilWinAudio);
+          }
+          break;
       }
     }
   }

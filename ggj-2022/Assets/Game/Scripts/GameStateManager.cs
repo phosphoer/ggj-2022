@@ -31,6 +31,12 @@ public class GameStateManager : Singleton<GameStateManager>
   public SoundBank MusicMenuLoop;
   public CameraControllerBase MenuCamera;
 
+  public GameObject DevilProps;
+  public GameObject AngelProps;
+
+  private PlayerCharacterController _devilPlayer;
+  private PlayerCharacterController _angelPlayer;
+
   private void Awake()
   {
     Instance = this;
@@ -164,6 +170,7 @@ public class GameStateManager : Singleton<GameStateManager>
           GameUI.Instance.ScenarioUI.Hide();
           GameUI.Instance.AngelUI.Hide();
           GameUI.Instance.DevilUI.Hide();
+          GameUI.Instance.SidebarUI.Hide();
         }
         break;
       case GameStage.ScenarioOutro:
@@ -233,6 +240,8 @@ public class GameStateManager : Singleton<GameStateManager>
 
           GameUI.Instance.DevilUI.AssignPlayer(ePlayer.DevilPlayer);
           GameUI.Instance.DevilUI.Show();
+
+          GameUI.Instance.SidebarUI.Show();
         }
         break;
       case GameStage.ScenarioOutro:
@@ -271,11 +280,25 @@ public class GameStateManager : Singleton<GameStateManager>
     {
       player.CameraStack.Camera = CameraManager.Instance.LeftPlayerCamera;
       player.Team = ePlayer.DevilPlayer;
+
+      if (DevilProps != null)
+      {
+        Instantiate(DevilProps, player.gameObject.transform, false);
+      }
+
+      _devilPlayer = player;
     }
     else if (PlayerManager.Instance.Players.Count == 2)
     {
       player.CameraStack.Camera = CameraManager.Instance.RightPlayerCamera;
       player.Team = ePlayer.AngelPlayer;
+
+      if (AngelProps != null)
+      {
+        Instantiate(AngelProps, player.gameObject.transform, false);
+      }
+
+      _angelPlayer = player;
     }
   }
 
@@ -288,5 +311,21 @@ public class GameStateManager : Singleton<GameStateManager>
   {
     PlayerManager.Instance.enabled = false;
     PlayerManager.Instance.DespawnPlayers();
+
+    _devilPlayer = null;
+    _angelPlayer = null;
+  }
+
+  public PlayerCharacterController GetPlayer(ePlayer player)
+  {
+    switch(player)
+    {
+      case ePlayer.DevilPlayer:
+        return _devilPlayer;
+      case ePlayer.AngelPlayer:
+        return _angelPlayer;
+    }
+
+    return null;
   }
 }

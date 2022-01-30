@@ -9,11 +9,14 @@ public class GrandpaController : MonoBehaviour
   [SerializeField]
   private AnimationCurve _partSlapScaleCurve = null;
 
+  [SerializeField]
+  private float _boneAnimationScalar = 1.0f;
+
   [System.Serializable]
   private class BonePair
   {
     public eBodyPart BodyPart = default(eBodyPart);
-    public Transform Bone = null;
+    public Transform[] Bones = null;
   }
 
   private void Start()
@@ -57,7 +60,15 @@ public class GrandpaController : MonoBehaviour
     Vector3 direction = Random.onUnitSphere;
     yield return Tween.CustomTween(1.0f, t =>
     {
-      bone.Bone.localScale = Vector3.one + (direction * slapStrength) * _partSlapScaleCurve.Evaluate(t);
+      foreach (var boneTransform in bone.Bones)
+      {
+        float scaleFactor = slapStrength * _boneAnimationScalar;
+        Vector3 extraScale = (direction * scaleFactor) * _partSlapScaleCurve.Evaluate(t);
+        boneTransform.localScale = Vector3.one + extraScale;
+      }
     });
+
+    foreach (var boneTransform in bone.Bones)
+      boneTransform.localScale = Vector3.one;
   }
 }

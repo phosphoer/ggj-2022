@@ -15,9 +15,9 @@ MonoBehaviour:
   AudioClips:
   - {fileID: 8300000, guid: 33bad65dfc62b4f4588ed32633b285dc, type: 3}
   SequencedClips: []
-  IsSpatial: 0
-  MaxDistance: 100
-  MinDistance: 10
+  IsSpatial: 1
+  MaxDistance: 10
+  MinDistance: 1
   VolumeScale: 1
   DopplerLevel: 0
   PitchOffset: 0
