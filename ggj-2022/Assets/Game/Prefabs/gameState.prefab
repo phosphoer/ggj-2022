@@ -190,10 +190,12 @@ MonoBehaviour:
     IntroText: Aloicious is tired after a long day and tries to get some shuteye
     IntroDuration: 3
     OutroDuration: 3
-  IntroAudio: {fileID: 0}
-  LoopAudio: {fileID: 0}
+  AngelClaimedAudio: {fileID: 11400000, guid: 80971b4c0099c45959d04cd5518d37ad, type: 2}
+  DevilClaimedAudio: {fileID: 11400000, guid: ae4a0127902ba4fd38114c21d5976ca9, type: 2}
   AngelWinAudio: {fileID: 0}
   DevilWinAudio: {fileID: 0}
+  TotalBodyPartHealth: 20
+  TotalScenarioTime: 300
 --- !u!114 &3618081609427984507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +208,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a403eaab8e660ea418ab448378cdc354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerPrefab: {fileID: 2547609995052319922, guid: ad99b4f26ab8c6a40af9fd8a2f4c2e7c, type: 3}
+  _playerPrefabs:
+  - {fileID: 2547609995052319922, guid: ad99b4f26ab8c6a40af9fd8a2f4c2e7c, type: 3}
+  - {fileID: 2547609995052319922, guid: 71174e2fb0e5f8c4aa57bb2137498b53, type: 3}
   _spawnPoints:
   - {fileID: 2538273296814695703}
   - {fileID: 3730890681971022160}

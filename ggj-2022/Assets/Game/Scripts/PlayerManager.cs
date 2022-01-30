@@ -8,7 +8,7 @@ public class PlayerManager : Singleton<PlayerManager>
   public IReadOnlyList<PlayerCharacterController> Players => _players;
 
   [SerializeField]
-  private PlayerCharacterController _playerPrefab = null;
+  private PlayerCharacterController[] _playerPrefabs = null;
 
   [SerializeField]
   private Transform[] _spawnPoints = null;
@@ -16,6 +16,7 @@ public class PlayerManager : Singleton<PlayerManager>
   private List<PlayerCharacterController> _players = new List<PlayerCharacterController>();
   private List<bool> _playerJoinedStates = new List<bool>();
   private int _nextSpawnIndex = 0;
+  private int _nextPlayerPrefabIndex = 0;
 
   public bool IsPlayerJoined(int playerId)
   {
@@ -60,13 +61,15 @@ public class PlayerManager : Singleton<PlayerManager>
   private PlayerCharacterController AddPlayer(Rewired.Player rewiredPlayer)
   {
     Transform spawnPoint = _spawnPoints[_nextSpawnIndex];
-    PlayerCharacterController player = Instantiate(_playerPrefab, transform);
+    PlayerCharacterController playerPrefab = _playerPrefabs[_nextPlayerPrefabIndex];
+    PlayerCharacterController player = Instantiate(playerPrefab, transform);
     player.RewiredPlayerId = Rewired.ReInput.players.GetPlayers().IndexOf(rewiredPlayer);
     player.transform.position = spawnPoint.transform.position;
     player.transform.rotation = Quaternion.Euler(0, Random.value * 360, 0);
     _players.Add(player);
 
     _nextSpawnIndex = (_nextSpawnIndex + 1) % _spawnPoints.Length;
+    _nextPlayerPrefabIndex = (_nextPlayerPrefabIndex + 1) % _playerPrefabs.Length;
 
     // Set joined state
     if (rewiredPlayer != null)

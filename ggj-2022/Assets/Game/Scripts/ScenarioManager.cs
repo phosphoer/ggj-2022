@@ -174,7 +174,9 @@ public class ScenarioManager : Singleton<ScenarioManager>
 
   public static event System.Action<eBodyPart, float> PartSlapped;
 
-  public SoundBank BodyPartClaimedAudio;
+  public SoundBank AngelClaimedAudio;
+  public SoundBank DevilClaimedAudio;
+
   public SoundBank AngelWinAudio;
   public SoundBank DevilWinAudio;
 
@@ -252,7 +254,10 @@ public class ScenarioManager : Singleton<ScenarioManager>
 
       if (oldProgress < 1.0 && newProgress >= 1.0)
       {
-        AudioManager.Instance.PlaySound(BodyPartClaimedAudio); 
+        if(GetOtherPlayer(attackingPlayer) == ePlayer.AngelPlayer)
+          AudioManager.Instance.PlaySound(DevilClaimedAudio);
+        else if(GetOtherPlayer(attackingPlayer) == ePlayer.DevilPlayer)
+          AudioManager.Instance.PlaySound(AngelClaimedAudio);
       }
     }
 
