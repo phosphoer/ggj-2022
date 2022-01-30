@@ -9,6 +9,7 @@ public class SlappableStation : MonoBehaviour, ISlappable
   [SerializeField]
   private eBodyPart _bodyPart = default(eBodyPart);
 
+  [SerializeField]
   private SoundBank _meatSlapSounds = null;
 
   void ISlappable.ReceiveSlap(Vector3 slapOrigin, Vector3 slapDirection, float slapStrength)
