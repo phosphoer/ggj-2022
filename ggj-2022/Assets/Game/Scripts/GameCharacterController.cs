@@ -54,13 +54,10 @@ public class GameCharacterController : MonoBehaviour, ISlappable
   private SoundBank _doubleSlapSound = null;
 
   [SerializeField]
-  private SoundBank _slapReceived = null;
+  private SoundBank _slapReceivedSound = null;
 
   [SerializeField]
   private SoundBank _trundleSound = null;
-
-  [SerializeField]
-  private SoundBank _idleSound = null;
 
   private RaycastHit _groundRaycast;
   private RaycastHit _obstacleRaycast;
@@ -77,7 +74,7 @@ public class GameCharacterController : MonoBehaviour, ISlappable
     Debug.Log($"{name} got slapped with strength {slapStrength}!");
     _stunTimer = slapStrength;
 
-    AudioManager.Instance?.PlaySound(_slapReceived);
+    AudioManager.Instance?.PlaySound(_slapReceivedSound);
   }
 
   public void FastSlap()
@@ -129,15 +126,6 @@ public class GameCharacterController : MonoBehaviour, ISlappable
     else
     {
       _trundleAudio.AudioSource.volume = Mathf.Abs(DesiredSpeed);
-    }
-
-    if (_idleAudio == null)
-    {
-      _idleAudio = AudioManager.Instance?.PlaySound(gameObject, _idleSound, 0);
-    }
-    else
-    {
-      _idleAudio.AudioSource.volume = 1 - _trundleAudio.AudioSource.volume;
     }
 
     // Calculate next position based on movement

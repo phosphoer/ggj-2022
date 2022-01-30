@@ -36,6 +36,9 @@ public class RobotAnimation : MonoBehaviour
   [SerializeField]
   private AnimatorCallbacks _animatorCallbacks = null;
 
+  [SerializeField]
+  private SoundBank _idleClinkSound = null;
+
   private float _trundleAmount;
   private bool _isStunned;
 
@@ -59,6 +62,11 @@ public class RobotAnimation : MonoBehaviour
     _animatorCallbacks.AddCallback("Interact", () =>
     {
       SlapAnimEvent?.Invoke();
+    });
+
+    _animatorCallbacks.AddCallback("Clink", () =>
+    {
+      AudioManager.Instance?.PlaySound(_idleClinkSound);
     });
   }
 }
