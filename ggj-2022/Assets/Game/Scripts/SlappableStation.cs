@@ -6,9 +6,13 @@ public class SlappableStation : MonoBehaviour, ISlappable
   [SerializeField]
   private AnimationCurve _slapScaleCurve = null;
 
+  [SerializeField]
+  private eBodyPart _bodyPart = default(eBodyPart);
+
   void ISlappable.ReceiveSlap(Vector3 slapOrigin, Vector3 slapDirection, float slapStrength)
   {
     StartCoroutine(SlapAnimAsync(slapDirection, slapStrength));
+
   }
 
   private IEnumerator SlapAnimAsync(Vector3 slapDirection, float slapStrength)
