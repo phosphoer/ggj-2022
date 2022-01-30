@@ -23,9 +23,9 @@ public class CameraManager : Singleton<CameraManager>
     {
         switch(player)
         {
-        case ePlayer.LeftPlayer:
+        case ePlayer.DevilPlayer:
             return _leftPlayerCamera;
-        case ePlayer.RightPlayer:
+        case ePlayer.AngelPlayer:
             return _rightPlayerCamera;
         }
 

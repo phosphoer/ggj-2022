@@ -5,8 +5,8 @@ using UnityEngine;
 public enum ePlayer
 {
     Invalid,
-    LeftPlayer,
-    RightPlayer
+    DevilPlayer,
+    AngelPlayer
 }
 
 public class GameStateManager : Singleton<GameStateManager>
@@ -207,10 +207,10 @@ public class GameStateManager : Singleton<GameStateManager>
                     
                     GameUI.Instance.ScenarioUI.Show();
 
-                    GameUI.Instance.AngelUI.AssignPlayer(ePlayer.RightPlayer);
+                    GameUI.Instance.AngelUI.AssignPlayer(ePlayer.AngelPlayer);
                     GameUI.Instance.AngelUI.Show();
 
-                    GameUI.Instance.DevilUI.AssignPlayer(ePlayer.LeftPlayer);
+                    GameUI.Instance.DevilUI.AssignPlayer(ePlayer.DevilPlayer);
                     GameUI.Instance.DevilUI.Show();
                 }
                 break;

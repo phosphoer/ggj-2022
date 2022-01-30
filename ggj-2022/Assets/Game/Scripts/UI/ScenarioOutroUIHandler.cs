@@ -42,19 +42,19 @@ public class ScenarioOutroUIHandler : UIPageBase
             _bonusText = "";
             _mainResultTimer = scenario.OutroDuration;
 
-            if (scenarioMgr.AngleStats.hasCompletedRequirements() &&
+            if (scenarioMgr.AngelStats.hasCompletedRequirements() &&
                 !scenarioMgr.DevilStats.hasCompletedRequirements())
             {
                 _titleTextField.text = "Angel Wins Scenario!";
                 _resultTextField.text = scenario.angelGoals.outroText;
 
-                if (scenarioMgr.AngleStats.hasCompletedBonus())
+                if (scenarioMgr.AngelStats.hasCompletedBonus())
                 {
                     _bonusTimer = scenario.OutroDuration;
                     _bonusText = scenario.angelGoals.bonusOutroText;
                 }
             }
-            else if (!scenarioMgr.AngleStats.hasCompletedRequirements() &&
+            else if (!scenarioMgr.AngelStats.hasCompletedRequirements() &&
                      scenarioMgr.DevilStats.hasCompletedRequirements())
             {
                 _titleTextField.text = "Angel Wins Scenario!";
