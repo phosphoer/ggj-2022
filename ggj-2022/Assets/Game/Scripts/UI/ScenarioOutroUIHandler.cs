@@ -42,7 +42,7 @@ public class ScenarioOutroUIHandler : UIPageBase
             _bonusText = "";
             _mainResultTimer = scenario.OutroDuration;
 
-            if (scenarioMgr.ScenarioWinner == ePlayer.AngelPlayer)
+            if (scenarioMgr.LastScenarioWinner == ePlayer.AngelPlayer)
             {
                 _titleTextField.text = "Angel Wins Scenario!";
                 _resultTextField.text = scenario.angelGoals.outroText;
