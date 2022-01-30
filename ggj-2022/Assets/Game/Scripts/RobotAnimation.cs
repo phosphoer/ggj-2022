@@ -78,15 +78,15 @@ public class RobotAnimation : MonoBehaviour
 
     _animatorCallbacks.AddCallback("Clink1", () =>
     {
-      AudioManager.Instance?.PlaySound(_idleClinkSound1);
+      AudioManager.Instance?.PlaySound(gameObject, _idleClinkSound1);
     });
     _animatorCallbacks.AddCallback("Clink2", () =>
     {
-      AudioManager.Instance?.PlaySound(_idleClinkSound2);
+      AudioManager.Instance?.PlaySound(gameObject, _idleClinkSound2);
     });
     _animatorCallbacks.AddCallback("Clink3", () =>
     {
-      AudioManager.Instance?.PlaySound(_idleClinkSound3);
+      AudioManager.Instance?.PlaySound(gameObject, _idleClinkSound3);
     });
   }
 }
