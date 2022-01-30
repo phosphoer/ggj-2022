@@ -19,17 +19,6 @@ public static class Tween
     }
   }
 
-  public static IEnumerator CustomTweenRealtime(float duration, System.Action<float> tweenFunc)
-  {
-    for (float timer = 0; timer < duration; timer += Time.unscaledDeltaTime)
-    {
-      tweenFunc?.Invoke(timer / duration);
-      yield return null;
-    }
-
-    tweenFunc?.Invoke(1);
-  }
-
   public static IEnumerator WaitForEvent(System.Action<System.Action> subscribeDelegate, System.Action<System.Action> unsubscribeDelegate)
   {
     bool invoked = false;

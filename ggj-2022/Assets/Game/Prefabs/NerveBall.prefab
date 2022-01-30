@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6133333017415270936}
   - component: {fileID: 1628585581}
   - component: {fileID: 5099274325871411221}
+  - component: {fileID: 3217698863545723696}
   m_Layer: 7
   m_Name: NerveBall
   m_TagString: Untagged
@@ -113,3 +114,58 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.75
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3217698863545723696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5628661234017100749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5bca5b1ee7fd9c46a36d93dc6ff437b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slapScaleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2.2917733
+      outSlope: 2.2917733
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.017010335
+    - serializedVersion: 3
+      time: 0.6194709
+      value: -0.034974664
+      inSlope: 0.19894814
+      outSlope: 0.19894814
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.23933904
+    - serializedVersion: 3
+      time: 0.88947093
+      value: 0.000069350004
+      inSlope: -0.23626322
+      outSlope: -0.23626322
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.35854107
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.0000019847275
+      outSlope: -0.0000019847275
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.060063303
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _meatSlapSounds: {fileID: 11400000, guid: 44f279657a98d48d783401ac113593e4, type: 2}
