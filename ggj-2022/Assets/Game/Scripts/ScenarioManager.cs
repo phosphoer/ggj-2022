@@ -191,7 +191,7 @@ public class ScenarioManager : Singleton<ScenarioManager>
   public bool IsInSuddenDeath => _scenarioTimeRemaining <= 0.0f;
 
   private ePlayer _scenarioWinner = ePlayer.Invalid;
-  public ePlayer ScenarioWinner => _scenarioWinner;
+  public ePlayer LastScenarioWinner => _scenarioWinner;
   public bool IsScenarioCompleted => _scenarioWinner != ePlayer.Invalid;
 
   private int _currentScenarioIndex = 0;
@@ -204,6 +204,14 @@ public class ScenarioManager : Singleton<ScenarioManager>
   public PlayerStats DevilStats => _devilStats;
 
   private ScenarioScene _scenarioInstance = null;
+
+  private List<ePlayer> _scenarioWinners = new List<ePlayer>();
+  public List<ePlayer> ScenarioWinners => _scenarioWinners;
+
+  public void ResetGameStats()
+  {
+    _scenarioWinners = new List<ePlayer>();
+  }
 
   public Scenario GetCurrentScenario()
   {
@@ -316,9 +324,10 @@ public class ScenarioManager : Singleton<ScenarioManager>
 
   public void UpdateScenario()
   {
-    _scenarioTimeRemaining = Mathf.Max(_scenarioTimeRemaining - Time.deltaTime, 0.0f);
+    if (_scenarioWinner != ePlayer.Invalid)
+      return;
 
-    ePlayer oldScenarioWinner = _scenarioWinner;
+    _scenarioTimeRemaining = Mathf.Max(_scenarioTimeRemaining - Time.deltaTime, 0.0f);
 
     if (IsInSuddenDeath)
     {
@@ -356,7 +365,7 @@ public class ScenarioManager : Singleton<ScenarioManager>
     }
 
     // See if a player just won this scenario
-    if (oldScenarioWinner == ePlayer.Invalid && _scenarioWinner != ePlayer.Invalid)
+    if (_scenarioWinner != ePlayer.Invalid)
     {
       switch (_scenarioWinner)
       {
@@ -373,6 +382,8 @@ public class ScenarioManager : Singleton<ScenarioManager>
           }
           break;
       }
+
+      _scenarioWinners.Add(_scenarioWinner);
     }
   }
 

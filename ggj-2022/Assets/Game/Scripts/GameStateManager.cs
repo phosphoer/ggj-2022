@@ -255,11 +255,6 @@ public class GameStateManager : Singleton<GameStateManager>
           CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MenuCamera);
           GameUI.Instance.EndGameUI.Show();
           //CameraControllerStack.Instance.PushController(MenuCamera);
-
-          //if (WinAlert != null)
-          //{
-          //    AudioManager.Instance.PlaySound(WinAlert);
-          //}
         }
         break;
     }
@@ -267,6 +262,7 @@ public class GameStateManager : Singleton<GameStateManager>
 
   void ResetGameStats()
   {
+    ScenarioManager.Instance.ResetGameStats();
   }
 
   public PlayerCharacterController GetPlayerGameObject(ePlayer player)
