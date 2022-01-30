@@ -53,18 +53,15 @@ public class SidebarUIHandler : UIPageBase
     if (playerController != null)
     {
       Vector3 playerPosition = playerController.gameObject.transform.position;
-      float unitXLocation = (playerPosition.x - BodyExtents.center.x) / BodyExtents.size.x;
-      float unitYLocation = (playerPosition.y - BodyExtents.center.y) / BodyExtents.size.y;
+      float unitXLocation = (playerPosition.x - BodyExtents.center.x) / BodyExtents.extents.x;
+      float unitYLocation = (playerPosition.y - BodyExtents.center.y) / BodyExtents.extents.y;
 
-      float rectFractionX = (unitXLocation + 1) / 2.0f;
-      float rectFractionY = (unitYLocation + 1) / 2.0f;
-
-      Rect minimapRect = MiniMapBG.sprite.rect;
-      float pixelX = rectFractionX * (minimapRect.width);
-      float pixelY = rectFractionY * (minimapRect.height);
+      RectTransform minimapRectXform = MiniMapBG.gameObject.GetComponent<RectTransform>();
+      float pixelX = unitXLocation * (minimapRectXform.rect.width / 2.0f);
+      float pixelY = unitYLocation * (minimapRectXform.rect.height / 2.0f);
 
       RectTransform rectTransform = icon.GetComponent<RectTransform>();
-      rectTransform.localPosition= new Vector3(pixelX, pixelY);
+      rectTransform.anchoredPosition = new Vector2(pixelX, pixelY);
 
       icon.enabled = true;
     }
