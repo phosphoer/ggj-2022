@@ -47,19 +47,29 @@ public class GameCharacterController : MonoBehaviour, ISlappable
   private RaycastHit _groundRaycast;
   private RaycastHit _obstacleRaycast;
   private Vector3 _lastGroundPos;
+  private float _stunTimer;
+  private float _nextSlapStrength;
 
   private Vector3 _raycastStartPos => transform.position + transform.up * _raycastUpStartOffset;
 
-  void ISlappable.ReceiveSlap(Vector3 slapOrigin, Vector3 slapDirection)
+  void ISlappable.ReceiveSlap(Vector3 slapOrigin, Vector3 slapDirection, float slapStrength)
   {
-    Debug.Log($"{name} got slapped!");
-    transform.position += slapDirection;
+    Debug.Log($"{name} got slapped with strength {slapStrength}!");
+    _stunTimer = slapStrength;
   }
 
-  public void Slap()
+  public void FastSlap()
   {
+    _nextSlapStrength = 1.0f;
     if (_robotAnim != null)
-      _robotAnim.Slap();
+      _robotAnim.FastSlap();
+  }
+
+  public void DoubleSlap()
+  {
+    _nextSlapStrength = 3.0f;
+    if (_robotAnim != null)
+      _robotAnim.DoubleSlap();
   }
 
   private void Start()
@@ -72,6 +82,20 @@ public class GameCharacterController : MonoBehaviour, ISlappable
 
   private void Update()
   {
+    // Update animation
+    if (_robotAnim != null)
+    {
+      _robotAnim.TrundleAmount = Mathf.Abs(DesiredSpeed);
+      _robotAnim.IsStunned = _stunTimer > 0;
+    }
+
+    // Stunned logic
+    if (_stunTimer > 0)
+    {
+      _stunTimer -= Time.deltaTime;
+      return;
+    }
+
     // Calculate next position based on movement
     Vector3 newPosition = transform.position + transform.forward * DesiredSpeed * _maxSpeed * Time.deltaTime;
 
@@ -114,11 +138,6 @@ public class GameCharacterController : MonoBehaviour, ISlappable
       newPosition = closestPoint + closestPointToPos.normalized * adjustedDist;
     }
 
-    if (_robotAnim != null)
-    {
-      _robotAnim.IsTrundling = Mathf.Abs(DesiredSpeed) > 0.05f;
-    }
-
     // Apply movement
     transform.position = newPosition;
     transform.Rotate(Vector3.up, DesiredTurn * _turnSpeed * Time.deltaTime, Space.Self);
@@ -126,7 +145,7 @@ public class GameCharacterController : MonoBehaviour, ISlappable
 
   private void OnAnimEventSlap()
   {
-    _slapper.Slap();
+    _slapper.Slap(_nextSlapStrength);
   }
 
   private void OnDrawGizmosSelected()

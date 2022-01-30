@@ -70,7 +70,7 @@ public class SkeletonLag : MonoBehaviour
                 if(i<skel.Count-1)
                 {
                     Vector3 newUpDir = Vector3.Normalize(skel[i+1].position-skel[i].position);
-                    skel[i].up = newUpDir*-1f;
+                    skel[i].right = newUpDir*-1f;
                 }
 
                 i++;
