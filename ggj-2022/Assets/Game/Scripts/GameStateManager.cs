@@ -73,11 +73,32 @@ public class GameStateManager : Singleton<GameStateManager>
         }
         break;
       case GameStage.ScenarioGameplay:
+        {
+          ScenarioManager scenarioMgr = ScenarioManager.Instance;
+
+          scenarioMgr.UpdateScenario();
+
+          if (ScenarioManager.Instance.IsScenarioCompleted)
+          {
+            nextGameStage = GameStage.ScenarioOutro;
+          }
+        }
         break;
       case GameStage.ScenarioOutro:
         if (GameUI.Instance.ScenarioOutroUI.IsComplete())
         {
-          nextGameStage = GameStage.ScenarioIntro;
+          ScenarioManager scenarioMgr = ScenarioManager.Instance;
+
+          scenarioMgr.AdvanceScenario();
+
+          if (scenarioMgr.HasCompletedAllScenarios)
+          {
+            nextGameStage = GameStage.EndGame;
+          }
+          else
+          {
+            nextGameStage = GameStage.ScenarioIntro;
+          }
         }
         break;
       case GameStage.EndGame:

@@ -42,33 +42,27 @@ public class ScenarioOutroUIHandler : UIPageBase
             _bonusText = "";
             _mainResultTimer = scenario.OutroDuration;
 
-            if (scenarioMgr.AngelStats.hasCompletedRequirements() &&
-                !scenarioMgr.DevilStats.hasCompletedRequirements())
+            if (scenarioMgr.ScenarioWinner == ePlayer.AngelPlayer)
             {
                 _titleTextField.text = "Angel Wins Scenario!";
                 _resultTextField.text = scenario.angelGoals.outroText;
 
-                if (scenarioMgr.AngelStats.hasCompletedBonus())
+                if (scenarioMgr.AngelStats.HasCompletedBonus())
                 {
                     _bonusTimer = scenario.OutroDuration;
                     _bonusText = scenario.angelGoals.bonusOutroText;
                 }
             }
-            else if (!scenarioMgr.AngelStats.hasCompletedRequirements() &&
-                     scenarioMgr.DevilStats.hasCompletedRequirements())
+            else 
             {
-                _titleTextField.text = "Angel Wins Scenario!";
+                _titleTextField.text = "Devil Wins Scenario!";
                 _resultTextField.text = scenario.devilGoals.outroText;
 
-                if (scenarioMgr.DevilStats.hasCompletedBonus())
+                if (scenarioMgr.DevilStats.HasCompletedBonus())
                 {
                     _bonusTimer = scenario.OutroDuration;
                     _bonusText = scenario.devilGoals.bonusOutroText;
                 }
-            }
-            else
-            {
-                _titleTextField.text = "Stalemate! Restarting the day...";
             }
         }
     }
