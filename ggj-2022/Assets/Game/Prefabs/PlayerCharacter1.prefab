@@ -432,7 +432,7 @@ MonoBehaviour:
   _gravity: 5
   _fastSlapSound: {fileID: 11400000, guid: b64d76a1e6c25461b82e0e5959edf547, type: 2}
   _doubleSlapSound: {fileID: 11400000, guid: dda2196888a974fcbb405131d486f329, type: 2}
-  _slapReceivedSound: {fileID: 0}
+  _slapReceivedSound: {fileID: 11400000, guid: 92600c3444ce044a69024127f45d0b3e, type: 2}
   _trundleSound: {fileID: 11400000, guid: be43e5b19316444bc9c8726111ee4f22, type: 2}
 --- !u!114 &4811816419713175890
 MonoBehaviour:

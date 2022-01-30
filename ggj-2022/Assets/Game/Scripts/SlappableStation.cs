@@ -18,9 +18,9 @@ public class SlappableStation : MonoBehaviour, ISlappable
 
   private IEnumerator SlapAnimAsync(Vector3 slapDirection, float slapStrength)
   {
-    yield return Tween.CustomTween(2.0f, t =>
+    yield return Tween.CustomTween(1.0f, t =>
     {
-      transform.localScale = (Vector3.one * 0.5f + slapDirection * slapStrength * 0.5f) * _slapScaleCurve.Evaluate(t);
+      transform.localScale = Vector3.one + (slapDirection * slapStrength) * _slapScaleCurve.Evaluate(t);
     });
   }
 }
