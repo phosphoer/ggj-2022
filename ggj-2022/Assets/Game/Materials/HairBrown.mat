@@ -76,12 +76,12 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _SwayScale: 0.3
+    - _SwayScale: 0.4
     - _UVSec: 0
     - _WeightScale: 3
-    - _WindFrequency: 2.41
+    - _WindFrequency: 4
     - _WindScale: 0.06
-    - _WobbleFrequency: 9
+    - _WobbleFrequency: 4
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0.3207547, g: 0.25604698, b: 0.19517621, a: 1}
