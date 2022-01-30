@@ -45,6 +45,8 @@ public class SidebarUIHandler : UIPageBase
 
     TimeSpan timeSpan = TimeSpan.FromSeconds(secondsRemaining);
     TimerLabel.text= string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
+
+    SuddenDeathlabel.gameObject.SetActive(secondsRemaining <= 0.0f);
   }
 
   void UpdatePlayerLocation(ePlayer player, Image icon)
