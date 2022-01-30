@@ -17,7 +17,7 @@ MonoBehaviour:
   SequencedClips: []
   IsSpatial: 1
   MaxDistance: 20
-  MinDistance: 10
+  MinDistance: 2
   VolumeScale: 1
   DopplerLevel: 0
   PitchOffset: 0

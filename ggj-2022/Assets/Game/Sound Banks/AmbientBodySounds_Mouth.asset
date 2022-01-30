@@ -16,13 +16,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d6c92c443300a4d9298e9e1c7ae43013, type: 3}
   SequencedClips: []
   IsSpatial: 1
-  MaxDistance: 10
-  MinDistance: 5
+  MaxDistance: 12
+  MinDistance: 2
   VolumeScale: 1
   DopplerLevel: 0
   PitchOffset: 0
   PitchOffsetRange:
     MinValue: 0
     MaxValue: 0
-  IsLooping: 0
+  IsLooping: 1
   AudioMixerGroup: {fileID: 24300002, guid: 4fae107e41a7845979036096f80cdde6, type: 2}
