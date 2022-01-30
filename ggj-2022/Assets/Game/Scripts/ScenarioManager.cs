@@ -204,6 +204,7 @@ public class ScenarioManager : Singleton<ScenarioManager>
   public PlayerStats DevilStats => _devilStats;
 
   private ScenarioScene _scenarioInstance = null;
+  public ScenarioScene CurrentScene => _scenarioInstance;
 
   private List<ePlayer> _scenarioWinners = new List<ePlayer>();
   public List<ePlayer> ScenarioWinners => _scenarioWinners;
@@ -312,9 +313,6 @@ public class ScenarioManager : Singleton<ScenarioManager>
       _scenarioInstance = Instantiate(scenario.scenarioPrefab, ScenarioRoot);
       _scenarioInstance.transform.SetIdentityTransformLocal();
       _scenarioInstance.CurrentState = ScenarioScene.ScenarioState.InGame;
-
-      CameraManager.Instance.ScenarioCameraStack.SwitchController(_scenarioInstance.CurrentCamera);
-      CameraManager.Instance.ScenarioCameraStack.SnapTransformToTarget();
 
       // Get the offset of the dummy camera in the scenario
       Camera dummyCamera = _scenarioInstance.GetComponentInChildren<Camera>();
