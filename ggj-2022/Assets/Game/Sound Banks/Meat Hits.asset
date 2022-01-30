@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40c4b7a0d48e46e4a85a42e57bf85556, type: 3}
+  m_Name: Meat Hits
+  m_EditorClassIdentifier: 
+  AudioClips:
+  - {fileID: 8300000, guid: 2c972e3d99f3b44a2aacd7a2bdf7f9c5, type: 3}
+  - {fileID: 8300000, guid: 0ce39fa5dd3dd4f6f9fac7128ff84ec8, type: 3}
+  - {fileID: 8300000, guid: 7258521e34fcb4a4e86489372a353fd9, type: 3}
+  SequencedClips: []
+  IsSpatial: 0
+  MaxDistance: 100
+  MinDistance: 10
+  VolumeScale: 1
+  DopplerLevel: 0
+  PitchOffset: 0
+  PitchOffsetRange:
+    MinValue: 0
+    MaxValue: 0
+  IsLooping: 0
+  AudioMixerGroup: {fileID: 0}
