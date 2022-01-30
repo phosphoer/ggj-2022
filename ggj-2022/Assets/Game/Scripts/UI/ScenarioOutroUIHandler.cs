@@ -8,6 +8,9 @@ public class ScenarioOutroUIHandler : UIPageBase
     [SerializeField]
     private Text _titleTextField = null;
 
+    [SerializeField]
+    private Text _resultTextField = null;
+
     private float _mainResultTimer;
     private float _bonusTimer;
     private string _bonusText;
@@ -42,7 +45,8 @@ public class ScenarioOutroUIHandler : UIPageBase
             if (scenarioMgr.AngleStats.hasCompletedRequirements() &&
                 !scenarioMgr.DevilStats.hasCompletedRequirements())
             {
-                _titleTextField.text = scenario.angelGoals.outroText;
+                _titleTextField.text = "Angel Wins Scenario!";
+                _resultTextField.text = scenario.angelGoals.outroText;
 
                 if (scenarioMgr.AngleStats.hasCompletedBonus())
                 {
@@ -53,7 +57,8 @@ public class ScenarioOutroUIHandler : UIPageBase
             else if (!scenarioMgr.AngleStats.hasCompletedRequirements() &&
                      scenarioMgr.DevilStats.hasCompletedRequirements())
             {
-                _titleTextField.text = scenario.devilGoals.outroText;
+                _titleTextField.text = "Angel Wins Scenario!";
+                _resultTextField.text = scenario.devilGoals.outroText;
 
                 if (scenarioMgr.DevilStats.hasCompletedBonus())
                 {
@@ -77,7 +82,7 @@ public class ScenarioOutroUIHandler : UIPageBase
             // If _mainResultTimer timer elapses and we have bonus text, show that now
             if (_mainResultTimer <= 0 && _bonusTimer > 0)
             {
-                _titleTextField.text = _bonusText;
+                _resultTextField.text = _bonusText;
             }
         }
         else if (_bonusTimer > 0)

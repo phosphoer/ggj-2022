@@ -148,6 +148,7 @@ public class GameStateManager : Singleton<GameStateManager>
             case GameStage.ScenarioOutro:
                 {
                     DespawnPlayers();
+                    ScenarioManager.Instance.TeardownScenario();
                     CameraManager.Instance.ScenarioCameraStack.PopCurrentController();
                     GameUI.Instance.ScenarioOutroUI.Hide();
                 }
@@ -170,7 +171,7 @@ public class GameStateManager : Singleton<GameStateManager>
         {
             case GameStage.MainMenu:
                 {
-                    CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.SingleCamera);
+                    CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MenuCamera);
 
                     GameUI.Instance.MainMenuUI.Show();
 
@@ -184,7 +185,7 @@ public class GameStateManager : Singleton<GameStateManager>
                 break;
             case GameStage.Settings:
                 {
-                    CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.SingleCamera);
+                    CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MenuCamera);
 
                     GameUI.Instance.SettingsUI.Show();
                     //CameraControllerStack.Instance.PushController(MenuCamera);
@@ -192,8 +193,11 @@ public class GameStateManager : Singleton<GameStateManager>
                 break;
             case GameStage.ScenarioIntro:
                 {
+                    ScenarioManager.Instance.SetupScenario();
+
                     SpawnPlayers();
-                    CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.SingleCamera);
+
+                    CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.ScenarioCamera);
                     GameUI.Instance.ScenarioIntroUI.Show();
                 }
                 break;
@@ -212,13 +216,13 @@ public class GameStateManager : Singleton<GameStateManager>
                 break;
             case GameStage.ScenarioOutro:
                 {
-                    CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.SingleCamera);
+                    CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.ScenarioCamera);
                     GameUI.Instance.ScenarioOutroUI.Show();
                 }
                 break;
             case GameStage.EndGame:
                 {
-                    CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.SingleCamera);
+                    CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MenuCamera);
                     GameUI.Instance.EndGameUI.Show();
                     //CameraControllerStack.Instance.PushController(MenuCamera);
 
