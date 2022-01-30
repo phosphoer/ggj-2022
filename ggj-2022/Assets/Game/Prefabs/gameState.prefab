@@ -113,6 +113,8 @@ MonoBehaviour:
   EditorDefaultStage: 3
   MusicMenuLoop: {fileID: 0}
   MenuCamera: {fileID: 0}
+  DevilProps: {fileID: 7780100049429991121, guid: 670e0c0e6dee8484093fdc478d093a86, type: 3}
+  AngelProps: {fileID: 820741929879935190, guid: a1196c9fd59afbd4099af8790f10c0d5, type: 3}
 --- !u!114 &4387863904277864524
 MonoBehaviour:
   m_ObjectHideFlags: 0
