@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class GameCharacterController : MonoBehaviour, ISlappable
 {
+  public ePlayer Team { get; set; }
+
   public bool IsStunned => _stunTimer > 0;
   public float CurrentSpeed => DesiredSpeed * _maxSpeed;
 
@@ -70,7 +72,7 @@ public class GameCharacterController : MonoBehaviour, ISlappable
   private Vector3 _raycastStartPos => transform.position + transform.up * _raycastUpStartOffset;
   private bool _isSlapping;
 
-  void ISlappable.ReceiveSlap(Vector3 slapOrigin, Vector3 slapDirection, float slapStrength)
+  void ISlappable.ReceiveSlap(ePlayer fromTeam, Vector3 slapOrigin, Vector3 slapDirection, float slapStrength)
   {
     Debug.Log($"{name} got slapped with strength {slapStrength}!");
     _stunTimer = slapStrength;
@@ -191,7 +193,7 @@ public class GameCharacterController : MonoBehaviour, ISlappable
 
   private void OnAnimEventSlap()
   {
-    _slapper.Slap(_nextSlapStrength);
+    _slapper.Slap(Team, _nextSlapStrength);
   }
 
   private void OnAnimEventSlapComplete()

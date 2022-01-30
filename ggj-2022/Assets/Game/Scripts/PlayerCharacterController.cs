@@ -4,6 +4,7 @@ using Rewired;
 public class PlayerCharacterController : MonoBehaviour
 {
   public int RewiredPlayerId = 0;
+  public ePlayer Team = default(ePlayer);
   public GameCharacterController Character = null;
   public CameraControllerStack CameraStack = null;
   public CameraControllerPlayer PlayerCameraPrefab = null;
@@ -12,6 +13,8 @@ public class PlayerCharacterController : MonoBehaviour
 
   private void Update()
   {
+    Character.Team = Team;
+
     if (CameraStack.Camera != null && _playerCamera == null)
     {
       _playerCamera = Instantiate(PlayerCameraPrefab);
