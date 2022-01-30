@@ -84,6 +84,7 @@ public class PlayerManager : Singleton<PlayerManager>
   [ContextMenu("Add Debug Player")]
   private void DebugAddPlayer()
   {
-    AddPlayer(null);
+    var player = AddPlayer(null);
+    player.RewiredPlayerId = _players.Count - 1;
   }
 }

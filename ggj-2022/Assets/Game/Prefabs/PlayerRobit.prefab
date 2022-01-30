@@ -49,6 +49,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 1524232643415592600}
   _animatorCallbacks: {fileID: 195002970731581792}
+  _idleClinkSound1: {fileID: 11400000, guid: 33311511d6f414194b0b83ebfc464161, type: 2}
+  _idleClinkSound2: {fileID: 11400000, guid: eb7d808d53a4e4cffaba7b38e5642498, type: 2}
+  _idleClinkSound3: {fileID: 11400000, guid: a27055b5998984fa8be977298de1d396, type: 2}
 --- !u!1 &6699234464012560699
 GameObject:
   m_ObjectHideFlags: 0
