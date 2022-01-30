@@ -352,6 +352,26 @@ public class ScenarioManager : Singleton<ScenarioManager>
         _scenarioWinner = ePlayer.DevilPlayer;
       }
     }
+
+    // See if a player just won this scenario
+    if (oldScenarioWinner == ePlayer.Invalid && _scenarioWinner != ePlayer.Invalid)
+    {
+       switch(_scenarioWinner)
+      {
+        case ePlayer.AngelPlayer:
+          if (AngelWinAudio != null)
+          {
+            AudioManager.Instance.PlaySound(AngelWinAudio);
+          }
+          break;
+        case ePlayer.DevilPlayer:
+          if (DevilWinAudio != null)
+          {
+            AudioManager.Instance.PlaySound(DevilWinAudio);
+          }
+          break;
+      }
+    }
   }
 
   public void AdvanceScenario()

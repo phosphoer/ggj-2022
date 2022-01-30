@@ -465,6 +465,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameUI
       objectReference: {fileID: 0}
+    - target: {fileID: 3995465225766961769, guid: d2a860ecb8219d84fb8d551ad02565b1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -20.57
+      objectReference: {fileID: 0}
     - target: {fileID: 8947226397516086275, guid: d2a860ecb8219d84fb8d551ad02565b1, type: 3}
       propertyPath: ShowOnStart
       value: 1
