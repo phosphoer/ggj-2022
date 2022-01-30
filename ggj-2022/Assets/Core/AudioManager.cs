@@ -21,6 +21,9 @@ public class AudioManager : Singleton<AudioManager>
 
     public AudioClip GetNextRandomClip()
     {
+      if (SoundBank.AudioClips.Length == 0)
+        return null;
+
       int index = Random.Range(0, SoundBank.AudioClips.Length);
       if (index == _lastRandomClip)
       {
