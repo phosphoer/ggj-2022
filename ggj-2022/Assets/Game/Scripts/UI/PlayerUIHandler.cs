@@ -26,10 +26,18 @@ public class PlayerUIHandler : UIPageBase
   public Sprite LoinsIcon;
   public Sprite LegsIcon;
 
+  [SerializeField]
+  private AnimationCurve _uiThrobCurve = null;
+  public float UIThrobStrength = 0.2f;
+
+  public Color UnfullBarColor = new Color(0.2122642f, 0.5551525f, 0.8490566f, 1.0f);
+  public Color FullBarColor = new Color(1.0f, 0.9644864f, 0.0f, 1.0f);
+
   protected override void Awake()
   {
     base.Awake();
     Shown += OnShown;
+    Hidden += OnHidden;
   }
 
   public void AssignPlayer(ePlayer player)
@@ -70,6 +78,21 @@ public class PlayerUIHandler : UIPageBase
     }
 
     SetupPlayerGoalUI(BonusGoalUI, goals.Bonus);
+
+    ScenarioManager.ProgressAdjusted += GoalProgressAdjusted;
+  }
+
+  private void OnHidden()
+  {
+    ScenarioManager.ProgressAdjusted -= GoalProgressAdjusted;
+  }
+
+  private void GoalProgressAdjusted(ePlayer player, eBodyPart bodyPart, float oldValue, float newValue)
+  {
+    if (player == _assignedPlayer)
+    {
+      UpdateGoalProgressMeter(bodyPart, oldValue, newValue);
+    }
   }
 
   void SetupPlayerGoalUI(PlayerGoalUI goalUI, eBodyPart bodyPart)
@@ -90,10 +113,9 @@ public class PlayerUIHandler : UIPageBase
 
   void Update()
   {
-    RefreshGoalProgressMeters();
   }
 
-  public void RefreshGoalProgressMeters()
+  public void UpdateGoalProgressMeter(eBodyPart bodyPart, float oldValue, float newValue)
   {
     if (_assignedPlayer == ePlayer.Invalid)
       return;
@@ -103,31 +125,45 @@ public class PlayerUIHandler : UIPageBase
     PlayerGoals goals = scenario.GetGoalsForPlayer(_assignedPlayer);
     PlayerStats playerStats = scenarioMgr.GetPlayerStats(_assignedPlayer);
 
-    for (int uiSlotIndex = 0; uiSlotIndex < RequiredGoalsUI.Count; ++uiSlotIndex)
+    RectTransform rectTransform = null;
+
+    // Update the bonus progress
+    if (goals.Bonus == bodyPart && BonusGoalUI.progressRectTransform != null)
     {
-      PlayerGoalUI goalUI = RequiredGoalsUI[uiSlotIndex];
-
-      if (uiSlotIndex < goals.Requirements.Length)
+      rectTransform= BonusGoalUI.progressRectTransform;
+    }
+    else
+    {
+      for (int uiSlotIndex = 0; uiSlotIndex < RequiredGoalsUI.Count; ++uiSlotIndex)
       {
-        eBodyPart bodyPart = goals.Requirements[uiSlotIndex];
-        float requirementProgress = playerStats.GetProgress(bodyPart);
+        PlayerGoalUI goalUI = RequiredGoalsUI[uiSlotIndex];
 
-        if (goalUI.progressRectTransform != null)
+        if (uiSlotIndex < goals.Requirements.Length)
         {
-          goalUI.progressRectTransform.transform.localScale = new Vector3(requirementProgress, 1, 1);
+          if (goals.Requirements[uiSlotIndex] == bodyPart)
+          {
+            rectTransform = goalUI.progressRectTransform;
+            break;
+          }
         }
       }
     }
 
-    // Update the bonus progress
-    if (goals.Bonus != eBodyPart.NONE)
+    if (rectTransform != null)
     {
-      float bonusProgress = playerStats.GetProgress(goals.Bonus);
+      rectTransform.transform.localScale = new Vector3(newValue, 1, 1);
 
-      if (BonusGoalUI.progressRectTransform != null)
+      Image image = rectTransform.gameObject.GetComponent<Image>();
+      if (image != null)
       {
-        BonusGoalUI.progressRectTransform.transform.localScale = new Vector3(bonusProgress, 1, 1);
+        image.color = newValue >= 1.0 ? FullBarColor : UnfullBarColor;
       }
+
+      //if ((oldValue < 1.0f && newValue >= 1.0f) ||
+      //    (oldValue >= 1.0f && newValue < 1.0f))
+      //{
+      //  ThrobUIElement(rectTransform);
+      //}
     }
   }
 
@@ -154,5 +190,21 @@ public class PlayerUIHandler : UIPageBase
     }
 
     return null;
+  }
+
+  private void ThrobUIElement(RectTransform rectTransform)
+  {
+    StartCoroutine(ThrobUIAnimAsync(rectTransform.transform, UIThrobStrength));
+  }
+
+  private IEnumerator ThrobUIAnimAsync(Transform uiXform, float throbStrength)
+  {
+    yield return Tween.CustomTween(1.0f, t =>
+    {
+        float extraScale = throbStrength * _uiThrobCurve.Evaluate(t);
+        uiXform.localScale = new Vector3(uiXform.localScale.x, 1.0f+ extraScale, 1.0f);
+    });
+
+    uiXform.localScale = new Vector3(uiXform.localScale.x, 1.0f, 1.0f);
   }
 }

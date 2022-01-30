@@ -173,12 +173,15 @@ public class ScenarioManager : Singleton<ScenarioManager>
   public List<Scenario> Scenarios;
 
   public static event System.Action<eBodyPart, float> PartSlapped;
+  public static event System.Action<ePlayer, eBodyPart, float, float> ProgressAdjusted;
 
   public SoundBank AngelClaimedAudio;
   public SoundBank DevilClaimedAudio;
 
   public SoundBank AngelWinAudio;
   public SoundBank DevilWinAudio;
+
+  public SoundBank BodyPartStolenAudio;
 
   public float TotalBodyPartHealth = 20;
   public float TotalScenarioTime = 300; // seconds
@@ -250,12 +253,27 @@ public class ScenarioManager : Singleton<ScenarioManager>
     float progressDelta = slapStrength / TotalBodyPartHealth;
 
     PlayerStats playerStats = GetPlayerStats(attackingPlayer);
-    PlayerStats otherPlayerStats = GetPlayerStats(GetOtherPlayer(attackingPlayer));
+
+    ePlayer otherPlayer= GetOtherPlayer(attackingPlayer);
+    PlayerStats otherPlayerStats = GetPlayerStats(otherPlayer);
 
     bool isContested = false;
     if (otherPlayerStats.IsAssignedBodyPart(bodyPart))
     {
-      isContested = otherPlayerStats.AdjustProgress(bodyPart, -progressDelta) > 0;
+      float oldProgress = otherPlayerStats.GetProgress(bodyPart);
+      float newProgress = otherPlayerStats.AdjustProgress(bodyPart, -progressDelta);
+
+      ProgressAdjusted?.Invoke(otherPlayer, bodyPart, oldProgress, newProgress);
+
+      if (oldProgress >= 1.0 && newProgress <= 1.0)
+      {
+        if (BodyPartStolenAudio != null)
+        {
+          AudioManager.Instance.PlaySound(BodyPartStolenAudio);
+        }
+      }
+
+      isContested = newProgress > 0;
     }
 
     if (!isContested && playerStats.IsAssignedBodyPart(bodyPart))
@@ -263,11 +281,13 @@ public class ScenarioManager : Singleton<ScenarioManager>
       float oldProgress = playerStats.GetProgress(bodyPart);
       float newProgress = playerStats.AdjustProgress(bodyPart, progressDelta);
 
+      ProgressAdjusted?.Invoke(attackingPlayer, bodyPart, oldProgress, newProgress);
+
       if (oldProgress < 1.0 && newProgress >= 1.0)
       {
-        if (GetOtherPlayer(attackingPlayer) == ePlayer.AngelPlayer)
+        if (otherPlayer == ePlayer.AngelPlayer)
           AudioManager.Instance.PlaySound(DevilClaimedAudio);
-        else if (GetOtherPlayer(attackingPlayer) == ePlayer.DevilPlayer)
+        else if (otherPlayer == ePlayer.DevilPlayer)
           AudioManager.Instance.PlaySound(AngelClaimedAudio);
       }
     }
