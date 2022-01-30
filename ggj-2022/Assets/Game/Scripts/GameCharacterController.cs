@@ -77,12 +77,12 @@ public class GameCharacterController : MonoBehaviour, ISlappable
     Debug.Log($"{name} got slapped with strength {slapStrength}!");
     _stunTimer = slapStrength;
 
-    AudioManager.Instance.PlaySound(_slapReceived);
+    AudioManager.Instance?.PlaySound(_slapReceived);
   }
 
   public void FastSlap()
   {
-    AudioManager.Instance.PlaySound(_fastSlapSound);
+    AudioManager.Instance?.PlaySound(_fastSlapSound);
 
     _nextSlapStrength = 1.0f;
     if (_robotAnim != null)
@@ -91,7 +91,7 @@ public class GameCharacterController : MonoBehaviour, ISlappable
 
   public void DoubleSlap()
   {
-    AudioManager.Instance.PlaySound(_doubleSlapSound);
+    AudioManager.Instance?.PlaySound(_doubleSlapSound);
 
     _nextSlapStrength = 3.0f;
     if (_robotAnim != null)
@@ -124,7 +124,7 @@ public class GameCharacterController : MonoBehaviour, ISlappable
 
     if (_trundleAudio == null)
     {
-      _trundleAudio = AudioManager.Instance.PlaySound(gameObject, _trundleSound, 0);
+      _trundleAudio = AudioManager.Instance?.PlaySound(gameObject, _trundleSound, 0);
     }
     else
     {
@@ -133,7 +133,7 @@ public class GameCharacterController : MonoBehaviour, ISlappable
 
     if (_idleAudio == null)
     {
-      _idleAudio = AudioManager.Instance.PlaySound(gameObject, _idleSound, 0);
+      _idleAudio = AudioManager.Instance?.PlaySound(gameObject, _idleSound, 0);
     }
     else
     {
