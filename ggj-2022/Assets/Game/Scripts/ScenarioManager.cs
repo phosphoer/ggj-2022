@@ -165,6 +165,8 @@ public class ScenarioManager : Singleton<ScenarioManager>
 {
   public List<Scenario> Scenarios;
 
+  public static event System.Action<eBodyPart> PartSlapped;
+
   public SoundBank IntroAudio;
   public SoundBank LoopAudio;
   public SoundBank AngelWinAudio;
@@ -231,6 +233,8 @@ public class ScenarioManager : Singleton<ScenarioManager>
     {
       playerStats.AdjustProgress(bodyPart, progressDelta);
     }
+
+    PartSlapped?.Invoke(bodyPart);
   }
 
   public void SetupScenario()
