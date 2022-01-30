@@ -116,7 +116,8 @@ public class GameStateManager : Singleton<GameStateManager>
 
   public void NewGame()
   {
-    SetGameStage(GameStage.ScenarioGameplay);
+    ResetGameStats();
+    SetGameStage(GameStage.ScenarioIntro);
   }
 
   public void Settings()
