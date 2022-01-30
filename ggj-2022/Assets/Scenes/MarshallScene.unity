@@ -374,6 +374,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AngelProps
       objectReference: {fileID: 0}
+    - target: {fileID: 820741929879935190, guid: a1196c9fd59afbd4099af8790f10c0d5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3503379979560887286, guid: a1196c9fd59afbd4099af8790f10c0d5, type: 3}
       propertyPath: m_RootOrder
       value: 4
