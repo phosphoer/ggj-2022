@@ -21,9 +21,6 @@ public class AudioManager : Singleton<AudioManager>
 
     public AudioClip GetNextRandomClip()
     {
-      if (SoundBank.AudioClips.Length == 0)
-        return null;
-
       int index = Random.Range(0, SoundBank.AudioClips.Length);
       if (index == _lastRandomClip)
       {
@@ -297,6 +294,17 @@ public class AudioManager : Singleton<AudioManager>
       audioInstance.AudioSource.outputAudioMixerGroup = soundBank.AudioMixerGroup;
       audioInstance.AudioSource.dopplerLevel = soundBank.DopplerLevel;
       audioInstance.SoundBank = soundBank;
+
+      if (soundBank.IsSpatial)
+      {
+        audioInstance.AudioSource.spatialBlend = 0;
+        audioInstance.AudioSource.spatialize = false;
+
+        var splitscreenAudio = forSource.AddComponent<Splitscreen3DAudio>();
+        splitscreenAudio.SetAudioSource(audioInstance.AudioSource);
+        splitscreenAudio.Range = audioInstance.AudioSource.maxDistance;
+      }
+
       audioGroup.AddAudioInstance(audioInstance);
     }
 
