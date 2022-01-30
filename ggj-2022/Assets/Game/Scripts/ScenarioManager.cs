@@ -86,6 +86,8 @@ public class PlayerStats
 [System.Serializable]
 public class Scenario
 {
+    public GameObject scenarioPrefab;
+
     public PlayerGoals angelGoals= new PlayerGoals();
     public PlayerGoals devilGoals= new PlayerGoals();
 
@@ -151,6 +153,8 @@ public class ScenarioManager : Singleton<ScenarioManager>
     private PlayerStats _devilStats = new PlayerStats();
     public PlayerStats DevilStats => _devilStats;
 
+    private GameObject _scenarioInstance = null;
+
     public Scenario GetCurrentScenario()
     {
         return (_currentScenarioIndex < Scenarios.Count) ? Scenarios[_currentScenarioIndex] : null;
@@ -164,6 +168,8 @@ public class ScenarioManager : Singleton<ScenarioManager>
         {
             _angleStats = new PlayerStats(scenario.angelGoals);
             _devilStats = new PlayerStats(scenario.devilGoals);
+
+            SpawnScenarioPrefab(scenario);
         }
         else
         {
@@ -171,6 +177,35 @@ public class ScenarioManager : Singleton<ScenarioManager>
             _devilStats = new PlayerStats();
         }
     }
+    public void TeardownScenario()
+    {
+        if (_scenarioInstance != null)
+        {
+            Destroy(_scenarioInstance);
+            _scenarioInstance = null;
+        }
+    }
+
+    private void SpawnScenarioPrefab(Scenario scenario)
+    {
+        if (scenario.scenarioPrefab != null)
+        {
+            // Get the location of the scenario camera up in the sky
+            Vector3 scenarioCamPos = CameraManager.Instance.ScenarioCamera.transform.position;
+
+            // Create the scenario prefab
+            _scenarioInstance = Instantiate(scenario.scenarioPrefab);
+
+            // Get the offset of the dummy camera in the scenario
+            Camera dummyCamera= _scenarioInstance.GetComponentInChildren<Camera>();
+            Vector3 offsetPos= dummyCamera.transform.localPosition;
+
+            Destroy(dummyCamera.gameObject);
+
+            _scenarioInstance.transform.position = scenarioCamPos - offsetPos;
+        }
+    }
+
 
     public void AdvanceScenario()
     {
