@@ -10,11 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 40c4b7a0d48e46e4a85a42e57bf85556, type: 3}
-  m_Name: Robit Idle Clinks
+  m_Name: Robit Idle Clink 3
   m_EditorClassIdentifier: 
   AudioClips:
-  - {fileID: 8300000, guid: 21fd0244fc0f543078ed7ee4947c67bc, type: 3}
-  - {fileID: 8300000, guid: 778e463153a9149de8ee10f36b8c8e78, type: 3}
   - {fileID: 8300000, guid: 33bad65dfc62b4f4588ed32633b285dc, type: 3}
   SequencedClips: []
   IsSpatial: 0

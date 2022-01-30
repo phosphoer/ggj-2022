@@ -37,7 +37,13 @@ public class RobotAnimation : MonoBehaviour
   private AnimatorCallbacks _animatorCallbacks = null;
 
   [SerializeField]
-  private SoundBank _idleClinkSound = null;
+  private SoundBank _idleClinkSound1 = null;
+
+  [SerializeField]
+  private SoundBank _idleClinkSound2 = null;
+
+  [SerializeField]
+  private SoundBank _idleClinkSound3 = null;
 
   private float _trundleAmount;
   private bool _isStunned;
@@ -64,9 +70,17 @@ public class RobotAnimation : MonoBehaviour
       SlapAnimEvent?.Invoke();
     });
 
-    _animatorCallbacks.AddCallback("Clink", () =>
+    _animatorCallbacks.AddCallback("Clink1", () =>
     {
-      AudioManager.Instance?.PlaySound(_idleClinkSound);
+      AudioManager.Instance?.PlaySound(_idleClinkSound1);
+    });
+    _animatorCallbacks.AddCallback("Clink2", () =>
+    {
+      AudioManager.Instance?.PlaySound(_idleClinkSound2);
+    });
+    _animatorCallbacks.AddCallback("Clink3", () =>
+    {
+      AudioManager.Instance?.PlaySound(_idleClinkSound3);
     });
   }
 }
