@@ -229,7 +229,7 @@ MonoBehaviour:
   AngelWinAudio: {fileID: 0}
   DevilWinAudio: {fileID: 0}
   TotalBodyPartHealth: 20
-  TotalScenarioTime: 3
+  TotalScenarioTime: 300
   ScenarioRoot: {fileID: 1876597425947615758}
 --- !u!114 &3618081609427984507
 MonoBehaviour:
