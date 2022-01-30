@@ -3,6 +3,7 @@ using UnityEngine;
 public class RobotAnimation : MonoBehaviour
 {
   public event System.Action SlapAnimEvent;
+  public event System.Action SlapAnimCompleteEvent;
 
   public float TrundleAmount
   {
@@ -68,6 +69,11 @@ public class RobotAnimation : MonoBehaviour
     _animatorCallbacks.AddCallback("Interact", () =>
     {
       SlapAnimEvent?.Invoke();
+    });
+
+    _animatorCallbacks.AddCallback("InteractComplete", () =>
+    {
+      SlapAnimCompleteEvent?.Invoke();
     });
 
     _animatorCallbacks.AddCallback("Clink1", () =>

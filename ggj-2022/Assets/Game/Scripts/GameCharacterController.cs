@@ -68,6 +68,7 @@ public class GameCharacterController : MonoBehaviour, ISlappable
   private AudioManager.AudioInstance _idleAudio;
 
   private Vector3 _raycastStartPos => transform.position + transform.up * _raycastUpStartOffset;
+  private bool _isSlapping;
 
   void ISlappable.ReceiveSlap(Vector3 slapOrigin, Vector3 slapDirection, float slapStrength)
   {
@@ -79,20 +80,28 @@ public class GameCharacterController : MonoBehaviour, ISlappable
 
   public void FastSlap()
   {
-    AudioManager.Instance?.PlaySound(_fastSlapSound);
+    if (!_isSlapping)
+    {
+      _isSlapping = true;
+      AudioManager.Instance?.PlaySound(_fastSlapSound);
 
-    _nextSlapStrength = 1.0f;
-    if (_robotAnim != null)
-      _robotAnim.FastSlap();
+      _nextSlapStrength = 1.0f;
+      if (_robotAnim != null)
+        _robotAnim.FastSlap();
+    }
   }
 
   public void DoubleSlap()
   {
-    AudioManager.Instance?.PlaySound(_doubleSlapSound);
+    if (!_isSlapping)
+    {
+      _isSlapping = true;
+      AudioManager.Instance?.PlaySound(_doubleSlapSound);
 
-    _nextSlapStrength = 3.0f;
-    if (_robotAnim != null)
-      _robotAnim.DoubleSlap();
+      _nextSlapStrength = 3.0f;
+      if (_robotAnim != null)
+        _robotAnim.DoubleSlap();
+    }
   }
 
   private void Start()
@@ -100,7 +109,11 @@ public class GameCharacterController : MonoBehaviour, ISlappable
     _lastGroundPos = transform.position + Vector3.down * 100;
 
     if (_robotAnim != null)
+    {
       _robotAnim.SlapAnimEvent += OnAnimEventSlap;
+      _robotAnim.SlapAnimCompleteEvent += OnAnimEventSlapComplete;
+
+    }
   }
 
   private void Update()
@@ -179,6 +192,11 @@ public class GameCharacterController : MonoBehaviour, ISlappable
   private void OnAnimEventSlap()
   {
     _slapper.Slap(_nextSlapStrength);
+  }
+
+  private void OnAnimEventSlapComplete()
+  {
+    _isSlapping = false;
   }
 
   private void OnDrawGizmosSelected()
