@@ -92,18 +92,25 @@ public class PlayerStats
     return resultProgress;
   }
 
-  public bool hasCompletedRequirements()
+  public int GetCompletedRequirementCount()
   {
+    int completedCount = 0;
+
     foreach (float progress in requirementProgress.Values)
     {
-      if (progress < 1.0)
-        return false;
+      if (progress >= 1.0)
+        completedCount++;
     }
 
-    return true;
+    return completedCount;
   }
 
-  public bool hasCompletedBonus()
+  public bool HasCompletedAllRequirements()
+  {
+    return GetCompletedRequirementCount() >= requirementProgress.Keys.Count;
+  }
+
+  public bool HasCompletedBonus()
   {
     return (bonusProgress >= 1.0);
   }
@@ -171,6 +178,16 @@ public class ScenarioManager : Singleton<ScenarioManager>
   public SoundBank DevilWinAudio;
 
   public float TotalBodyPartHealth = 20;
+  public float TotalScenarioTime = 300; // seconds
+
+
+  private float _scenarioTimeRemaining = 0;
+  public float ScenarioTimeRemaining => _scenarioTimeRemaining;
+  public bool IsInSuddenDeath => _scenarioTimeRemaining <= 0.0f;
+
+  private ePlayer _scenarioWinner = ePlayer.Invalid;
+  public ePlayer ScenarioWinner => _scenarioWinner;
+  public bool IsScenarioCompleted => _scenarioWinner != ePlayer.Invalid;
 
   private int _currentScenarioIndex = 0;
   public bool HasCompletedAllScenarios => _currentScenarioIndex >= Scenarios.Count;
@@ -249,7 +266,11 @@ public class ScenarioManager : Singleton<ScenarioManager>
       _angleStats = new PlayerStats();
       _devilStats = new PlayerStats();
     }
+
+    _scenarioTimeRemaining = TotalScenarioTime;
+    _scenarioWinner = ePlayer.Invalid;
   }
+
   public void TeardownScenario()
   {
     if (_scenarioInstance != null)
@@ -279,6 +300,45 @@ public class ScenarioManager : Singleton<ScenarioManager>
     }
   }
 
+  public void UpdateScenario()
+  {
+    _scenarioTimeRemaining = Mathf.Max(_scenarioTimeRemaining - Time.deltaTime, 0.0f);
+
+    if (IsInSuddenDeath)
+    {
+      int angelScore= _angleStats.GetCompletedRequirementCount();
+      if (_angleStats.HasCompletedBonus())
+      {
+        angelScore += 1;
+      }
+
+      int devilScore = _devilStats.GetCompletedRequirementCount();
+      if (_devilStats.HasCompletedBonus())
+      {
+        devilScore += 1;
+      }
+
+      if (angelScore > devilScore)
+      {
+        _scenarioWinner = ePlayer.AngelPlayer;
+      }
+      else if (devilScore > angelScore)
+      {
+        _scenarioWinner = ePlayer.DevilPlayer;
+      }
+    }
+    else
+    {
+      if (_angleStats.HasCompletedAllRequirements())
+      {
+        _scenarioWinner = ePlayer.AngelPlayer;
+      }
+      else if (_devilStats.HasCompletedAllRequirements())
+      {
+        _scenarioWinner = ePlayer.DevilPlayer;
+      }
+    }
+  }
 
   public void AdvanceScenario()
   {

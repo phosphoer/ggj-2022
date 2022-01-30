@@ -562,6 +562,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.6346476
       objectReference: {fileID: 0}
+    - target: {fileID: 4387863904277864524, guid: ddc663f3bbe89d44b91a8ee66fb1c996, type: 3}
+      propertyPath: TotalScenarioTime
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7314368647105193424, guid: ddc663f3bbe89d44b91a8ee66fb1c996, type: 3}
       propertyPath: m_Name
       value: gameState
