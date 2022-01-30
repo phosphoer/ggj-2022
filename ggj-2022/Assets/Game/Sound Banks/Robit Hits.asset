@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioClips:
   - {fileID: 8300000, guid: 8744d7c6b89af4a21a20c1846fcfe291, type: 3}
+  - {fileID: 8300000, guid: f64ed64dfd3a74c91ad76889f937f671, type: 3}
+  - {fileID: 8300000, guid: 46efa1b5a5ae14fd4930883bd4687ef7, type: 3}
   SequencedClips: []
   IsSpatial: 0
   MaxDistance: 100
