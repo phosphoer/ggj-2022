@@ -47,6 +47,12 @@ public class GameCharacterController : MonoBehaviour, ISlappable
   [SerializeField]
   private float _gravity = 5;
 
+  [SerializeField]
+  private SoundBank _fastSlapSound = null;
+
+  [SerializeField]
+  private SoundBank _doubleSlapSound = null;
+
   private RaycastHit _groundRaycast;
   private RaycastHit _obstacleRaycast;
   private Vector3 _lastGroundPos;
@@ -63,6 +69,8 @@ public class GameCharacterController : MonoBehaviour, ISlappable
 
   public void FastSlap()
   {
+    AudioManager.Instance.PlaySound(_fastSlapSound);
+
     _nextSlapStrength = 1.0f;
     if (_robotAnim != null)
       _robotAnim.FastSlap();
@@ -70,6 +78,8 @@ public class GameCharacterController : MonoBehaviour, ISlappable
 
   public void DoubleSlap()
   {
+    AudioManager.Instance.PlaySound(_doubleSlapSound);
+
     _nextSlapStrength = 3.0f;
     if (_robotAnim != null)
       _robotAnim.DoubleSlap();
