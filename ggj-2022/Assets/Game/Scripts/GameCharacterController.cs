@@ -100,7 +100,8 @@ public class GameCharacterController : MonoBehaviour, ISlappable
     Vector3 newPosition = transform.position + transform.forward * DesiredSpeed * _maxSpeed * Time.deltaTime;
 
     // Snap and align to ground
-    if (Physics.SphereCast(_raycastStartPos, _groundRaycastRadius, -transform.up, out _groundRaycast, 3.0f, _groundLayer))
+    Vector3 raycastDir = -transform.up + transform.forward * DesiredSpeed * 0.5f;
+    if (Physics.SphereCast(_raycastStartPos, _groundRaycastRadius, raycastDir, out _groundRaycast, 3.0f, _groundLayer))
     {
       _lastGroundPos = _groundRaycast.point;
 
