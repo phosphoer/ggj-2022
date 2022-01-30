@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BodyTerrainMeat
+  m_Name: Brain
   m_Shader: {fileID: 4800000, guid: 9cf2bce33ea8d6147b82009faaf5babe, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -41,11 +41,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _LightRamp:
         m_Texture: {fileID: 2800000, guid: 3cc5619f487373a4ca9d8910bb276b8f, type: 3}
-        m_Scale: {x: 3, y: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 6c7b3ecdc6f3e5d40a3227c1cc002992, type: 3}
-        m_Scale: {x: 3, y: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -78,6 +78,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.5377358, g: 0.13986929, b: 0.14774787, a: 1}
+    - _Color: {r: 0.84313726, g: 1, b: 0.80784315, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
