@@ -54,6 +54,7 @@ public class EndGameUIHandler : UIPageBase
           ++_devilWins;
           break;
         case ePlayer.Invalid:
+          label.text = "Invalid";
           break;
       }
 
