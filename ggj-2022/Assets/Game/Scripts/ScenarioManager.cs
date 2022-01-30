@@ -299,7 +299,8 @@ public class ScenarioManager : Singleton<ScenarioManager>
     if (scenario.scenarioPrefab != null)
     {
       // Get the location of the scenario camera up in the sky
-      Vector3 scenarioCamPos = CameraManager.Instance.ScenarioCamera.transform.position;
+      Camera scenarioCamera= CameraManager.Instance.ScenarioCamera;
+      Vector3 scenarioCamPos = scenarioCamera.transform.position;
 
       // Create the scenario prefab
       _scenarioInstance = Instantiate(scenario.scenarioPrefab);
@@ -307,16 +308,20 @@ public class ScenarioManager : Singleton<ScenarioManager>
       // Get the offset of the dummy camera in the scenario
       Camera dummyCamera = _scenarioInstance.GetComponentInChildren<Camera>();
       Vector3 offsetPos = dummyCamera.transform.localPosition;
+      Quaternion dummyCameraRot = dummyCamera.transform.rotation;
 
       Destroy(dummyCamera.gameObject);
 
       _scenarioInstance.transform.position = scenarioCamPos - offsetPos;
+      scenarioCamera.transform.rotation = dummyCameraRot;
     }
   }
 
   public void UpdateScenario()
   {
     _scenarioTimeRemaining = Mathf.Max(_scenarioTimeRemaining - Time.deltaTime, 0.0f);
+
+    ePlayer oldScenarioWinner = _scenarioWinner;
 
     if (IsInSuddenDeath)
     {
@@ -350,6 +355,26 @@ public class ScenarioManager : Singleton<ScenarioManager>
       else if (_devilStats.HasCompletedAllRequirements())
       {
         _scenarioWinner = ePlayer.DevilPlayer;
+      }
+    }
+
+    // See if a player just won this scenario
+    if (oldScenarioWinner == ePlayer.Invalid && _scenarioWinner != ePlayer.Invalid)
+    {
+       switch(_scenarioWinner)
+      {
+        case ePlayer.AngelPlayer:
+          if (AngelWinAudio != null)
+          {
+            AudioManager.Instance.PlaySound(AngelWinAudio);
+          }
+          break;
+        case ePlayer.DevilPlayer:
+          if (DevilWinAudio != null)
+          {
+            AudioManager.Instance.PlaySound(DevilWinAudio);
+          }
+          break;
       }
     }
   }
