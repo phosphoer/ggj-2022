@@ -190,8 +190,8 @@ MonoBehaviour:
     IntroText: Aloicious is tired after a long day and tries to get some shuteye
     IntroDuration: 3
     OutroDuration: 3
-  BodyPartClaimedAudio: {fileID: 0}
-  SuddenDeathEnter: {fileID: 0}
+  AngelClaimedAudio: {fileID: 11400000, guid: 80971b4c0099c45959d04cd5518d37ad, type: 2}
+  DevilClaimedAudio: {fileID: 11400000, guid: ae4a0127902ba4fd38114c21d5976ca9, type: 2}
   AngelWinAudio: {fileID: 0}
   DevilWinAudio: {fileID: 0}
   TotalBodyPartHealth: 20
