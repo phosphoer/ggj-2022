@@ -13,6 +13,8 @@ public class PlayerCharacterController : MonoBehaviour
 
   private void Update()
   {
+    Character.Team = Team;
+
     if (CameraStack.Camera != null && _playerCamera == null)
     {
       _playerCamera = Instantiate(PlayerCameraPrefab);

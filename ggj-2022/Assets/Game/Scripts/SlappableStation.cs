@@ -12,11 +12,13 @@ public class SlappableStation : MonoBehaviour, ISlappable
   [SerializeField]
   private SoundBank _meatSlapSounds = null;
 
-  void ISlappable.ReceiveSlap(Vector3 slapOrigin, Vector3 slapDirection, float slapStrength)
+  void ISlappable.ReceiveSlap(ePlayer fromTeam, Vector3 slapOrigin, Vector3 slapDirection, float slapStrength)
   {
     StartCoroutine(SlapAnimAsync(slapDirection, slapStrength));
 
     AudioManager.Instance?.PlaySound(_meatSlapSounds, slapStrength / 3.0f);
+
+    ScenarioManager.Instance?.ApplySlapDamage(fromTeam, _bodyPart, slapStrength);
   }
 
   private IEnumerator SlapAnimAsync(Vector3 slapDirection, float slapStrength)
