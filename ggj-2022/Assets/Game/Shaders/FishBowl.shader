@@ -80,7 +80,6 @@ Shader "Custom/FishBowl"
         float fresnel = saturate(1.0 - abs(dot(viewDir, normalize(i.worldNormal))));
         result *= lerp(fresnel, 1, 0.5);
 
-
         //VFACE returns positive for front facing, negative for backfacing
         float4 diffuse = result;
         return diffuse;
