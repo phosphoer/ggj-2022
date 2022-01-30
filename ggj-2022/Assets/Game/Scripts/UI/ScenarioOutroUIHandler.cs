@@ -25,6 +25,11 @@ public class ScenarioOutroUIHandler : UIPageBase
 
     private void OnShown()
     {
+        Canvas parentCanvas = this.transform.parent.GetComponent<Canvas>();
+        parentCanvas.renderMode = RenderMode.ScreenSpaceCamera;
+        parentCanvas.worldCamera = CameraManager.Instance.ScenarioCamera;
+        parentCanvas.planeDistance = 1.0f;
+
         if (_titleTextField != null)
         {
             ScenarioManager scenarioMgr= ScenarioManager.Instance;

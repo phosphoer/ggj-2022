@@ -17,7 +17,7 @@ public class SlapController : MonoBehaviour
 
   public void Slap(float slapStrength = 1f)
   {
-    int numColliders = Physics.OverlapSphereNonAlloc(_slapOrigin.position, _slapRadius, _slapColliders, _slapMask);
+    int numColliders = Physics.OverlapSphereNonAlloc(_slapOrigin.position, _slapRadius, _slapColliders, _slapMask, QueryTriggerInteraction.Collide);
     Debug.Log($"Slap hit {numColliders} colliders");
 
     _slappedThisFrame.Clear();

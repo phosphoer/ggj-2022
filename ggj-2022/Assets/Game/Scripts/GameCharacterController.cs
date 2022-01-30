@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class GameCharacterController : MonoBehaviour, ISlappable
 {
+  public bool IsStunned => _stunTimer > 0;
+  public float CurrentSpeed => DesiredSpeed * _maxSpeed;
+
   [Range(0, 1)]
   public float DesiredSpeed = 0.0f;
 
@@ -44,6 +47,12 @@ public class GameCharacterController : MonoBehaviour, ISlappable
   [SerializeField]
   private float _gravity = 5;
 
+  [SerializeField]
+  private SoundBank _fastSlapSound = null;
+
+  [SerializeField]
+  private SoundBank _doubleSlapSound = null;
+
   private RaycastHit _groundRaycast;
   private RaycastHit _obstacleRaycast;
   private Vector3 _lastGroundPos;
@@ -60,6 +69,8 @@ public class GameCharacterController : MonoBehaviour, ISlappable
 
   public void FastSlap()
   {
+    AudioManager.Instance.PlaySound(_fastSlapSound);
+
     _nextSlapStrength = 1.0f;
     if (_robotAnim != null)
       _robotAnim.FastSlap();
@@ -67,6 +78,8 @@ public class GameCharacterController : MonoBehaviour, ISlappable
 
   public void DoubleSlap()
   {
+    AudioManager.Instance.PlaySound(_doubleSlapSound);
+
     _nextSlapStrength = 3.0f;
     if (_robotAnim != null)
       _robotAnim.DoubleSlap();
@@ -100,7 +113,8 @@ public class GameCharacterController : MonoBehaviour, ISlappable
     Vector3 newPosition = transform.position + transform.forward * DesiredSpeed * _maxSpeed * Time.deltaTime;
 
     // Snap and align to ground
-    if (Physics.SphereCast(_raycastStartPos, _groundRaycastRadius, -transform.up, out _groundRaycast, 3.0f, _groundLayer))
+    Vector3 raycastDir = -transform.up + transform.forward * DesiredSpeed * 0.5f;
+    if (Physics.SphereCast(_raycastStartPos, _groundRaycastRadius, raycastDir, out _groundRaycast, 3.0f, _groundLayer))
     {
       _lastGroundPos = _groundRaycast.point;
 

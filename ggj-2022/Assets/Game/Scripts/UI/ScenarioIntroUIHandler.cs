@@ -8,6 +8,9 @@ public class ScenarioIntroUIHandler : UIPageBase
     [SerializeField]
     private Text _titleTextField = null;
 
+    [SerializeField]
+    private Text _introTextField = null;
+
     public float _timer;
 
     public bool IsComplete()
@@ -23,11 +26,17 @@ public class ScenarioIntroUIHandler : UIPageBase
 
     private void OnShown()
     {
+        Canvas parentCanvas = this.transform.parent.GetComponent<Canvas>();
+        parentCanvas.renderMode = RenderMode.ScreenSpaceCamera;
+        parentCanvas.worldCamera = CameraManager.Instance.ScenarioCamera;
+        parentCanvas.planeDistance = 1.0f;
+
         if (_titleTextField != null)
         {
             Scenario scenario= ScenarioManager.Instance.GetCurrentScenario();
 
-            _titleTextField.text = scenario.IntroText;
+            _titleTextField.text = scenario.Title;
+            _introTextField.text = scenario.IntroText;
             _timer = scenario.IntroDuration;
         }
     }

@@ -20,6 +20,7 @@ unity_incremental_compiler_server.log
 *.pidb
 *.booproj
 *.rsp 
+.DS_Store
 
 # Unity3D generated meta files
 *.pidb.meta

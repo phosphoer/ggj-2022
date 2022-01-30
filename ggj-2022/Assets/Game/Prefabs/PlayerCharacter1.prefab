@@ -430,6 +430,8 @@ MonoBehaviour:
   _maxSpeed: 3
   _turnSpeed: 90
   _gravity: 5
+  _fastSlapSound: {fileID: 11400000, guid: b64d76a1e6c25461b82e0e5959edf547, type: 2}
+  _doubleSlapSound: {fileID: 11400000, guid: dda2196888a974fcbb405131d486f329, type: 2}
 --- !u!114 &4811816419713175890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -720,6 +722,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7793412907985999014, guid: 40f6f537210382b4bae81e43b15d0336, type: 3}
+      propertyPath: TredsPanSpeedMod
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7793412907985999014, guid: 40f6f537210382b4bae81e43b15d0336, type: 3}
+      propertyPath: CharacterController
+      value: 
+      objectReference: {fileID: 4357498304621669932}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40f6f537210382b4bae81e43b15d0336, type: 3}
 --- !u!114 &5291104954743317065 stripped
