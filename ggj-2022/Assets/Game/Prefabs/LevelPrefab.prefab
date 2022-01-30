@@ -1093,6 +1093,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2679033162566199477, guid: 11211be7d585a7b40b6b96ed81becf86, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].value
+      value: 0.24324036
+      objectReference: {fileID: 0}
     - target: {fileID: 3485654555777329580, guid: 11211be7d585a7b40b6b96ed81becf86, type: 3}
       propertyPath: m_Layer
       value: 7
