@@ -720,6 +720,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7793412907985999014, guid: 40f6f537210382b4bae81e43b15d0336, type: 3}
+      propertyPath: TredsPanSpeedMod
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7793412907985999014, guid: 40f6f537210382b4bae81e43b15d0336, type: 3}
+      propertyPath: CharacterController
+      value: 
+      objectReference: {fileID: 4357498304621669932}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40f6f537210382b4bae81e43b15d0336, type: 3}
 --- !u!114 &5291104954743317065 stripped
