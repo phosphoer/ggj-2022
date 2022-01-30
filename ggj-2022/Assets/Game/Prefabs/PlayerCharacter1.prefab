@@ -464,6 +464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RewiredPlayerId: 0
+  Team: 0
   Character: {fileID: 4357498304621669932}
   CameraStack: {fileID: 239699316868720447}
   PlayerCameraPrefab: {fileID: 13219621567905398, guid: 5844e8f780a7c2a4e9c1edec96a398fe, type: 3}
@@ -723,10 +724,6 @@ PrefabInstance:
     - target: {fileID: 6589557066568811864, guid: 40f6f537210382b4bae81e43b15d0336, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7793412907985999014, guid: 40f6f537210382b4bae81e43b15d0336, type: 3}
-      propertyPath: TredsPanSpeedMod
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7793412907985999014, guid: 40f6f537210382b4bae81e43b15d0336, type: 3}
       propertyPath: CharacterController
