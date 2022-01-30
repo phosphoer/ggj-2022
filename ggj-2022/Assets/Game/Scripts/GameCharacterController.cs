@@ -54,6 +54,9 @@ public class GameCharacterController : MonoBehaviour, ISlappable
   private SoundBank _doubleSlapSound = null;
 
   [SerializeField]
+  private SoundBank _slapReceived = null;
+
+  [SerializeField]
   private SoundBank _trundleSound = null;
 
   [SerializeField]
@@ -73,6 +76,8 @@ public class GameCharacterController : MonoBehaviour, ISlappable
   {
     Debug.Log($"{name} got slapped with strength {slapStrength}!");
     _stunTimer = slapStrength;
+
+    AudioManager.Instance.PlaySound(_slapReceived);
   }
 
   public void FastSlap()

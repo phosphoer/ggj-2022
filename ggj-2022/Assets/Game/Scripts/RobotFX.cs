@@ -13,7 +13,6 @@ public class RobotFX : MonoBehaviour
   public ParticleSystem[] MovingFX = null;
   public ParticleSystem[] StunnedFX = null;
 
-  private RobotFXStates currentState = RobotFXStates.None;
   private Material treadsMat;
 
   private static readonly int kTreadsTexture = Shader.PropertyToID("_MainTex");
