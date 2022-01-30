@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40c4b7a0d48e46e4a85a42e57bf85556, type: 3}
   m_Name: Robit Hits
   m_EditorClassIdentifier: 
-  AudioClips: []
+  AudioClips:
+  - {fileID: 8300000, guid: 8744d7c6b89af4a21a20c1846fcfe291, type: 3}
   SequencedClips: []
   IsSpatial: 0
   MaxDistance: 100
@@ -24,4 +25,4 @@ MonoBehaviour:
     MinValue: 0
     MaxValue: 0
   IsLooping: 0
-  AudioMixerGroup: {fileID: 0}
+  AudioMixerGroup: {fileID: 24300002, guid: 996db6b8ab3cf49e996fb8efeb237283, type: 2}
