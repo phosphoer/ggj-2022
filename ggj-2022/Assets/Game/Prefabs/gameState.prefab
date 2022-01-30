@@ -176,7 +176,7 @@ MonoBehaviour:
       of wholegrain toast and coffee
     IntroDuration: 5
     OutroDuration: 10
-  - scenarioPrefab: {fileID: 8956187813020250872, guid: a2bedd7c450c028499f5fd9be908ccdf, type: 3}
+  - scenarioPrefab: {fileID: 7904897964600253219, guid: 295e1392285103d41b274d458e7bac6a, type: 3}
     angelGoals:
       Requirements: 010000000200000005000000
       Bonus: 7

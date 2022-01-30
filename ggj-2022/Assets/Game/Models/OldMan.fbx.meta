@@ -15,6 +15,9 @@ ModelImporter:
   - first:
       74: -6519760567115542380
     second: TPose
+  - first:
+      74: 2552064681321181384
+    second: Market_Idle
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -87,6 +90,35 @@ ModelImporter:
       hasAdditiveReferencePose: 1
       loopTime: 1
       loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Market_Idle
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 205
+      lastFrame: 405
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 1
+      loopTime: 1
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
