@@ -67,13 +67,18 @@ public class GameStateManager : Singleton<GameStateManager>
             case GameStage.Settings:
                 break;
             case GameStage.ScenarioIntro:
-
-                nextGameStage = GameStage.ScenarioGameplay;
+                if (GameUI.Instance.ScenarioIntroUI.IsComplete())
+                {
+                    nextGameStage = GameStage.ScenarioGameplay;
+                }
                 break;
             case GameStage.ScenarioGameplay:
                 break;
             case GameStage.ScenarioOutro:
-                nextGameStage = GameStage.ScenarioIntro;
+                if (GameUI.Instance.ScenarioOutroUI.IsComplete())
+                {
+                    nextGameStage = GameStage.ScenarioIntro;
+                }
                 break;
             case GameStage.EndGame:
                 break;
@@ -196,7 +201,7 @@ public class GameStateManager : Singleton<GameStateManager>
                 {
                     CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MultiCamera);
                     
-                    GameUI.Instance.ScenarioIntroUI.Show();
+                    GameUI.Instance.ScenarioUI.Show();
 
                     GameUI.Instance.AngelUI.AssignPlayer(ePlayer.RightPlayer);
                     GameUI.Instance.AngelUI.Show();
