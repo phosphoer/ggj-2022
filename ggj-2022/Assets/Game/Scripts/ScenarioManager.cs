@@ -318,6 +318,8 @@ public class ScenarioManager : Singleton<ScenarioManager>
   {
     _scenarioTimeRemaining = Mathf.Max(_scenarioTimeRemaining - Time.deltaTime, 0.0f);
 
+    ePlayer oldScenarioWinner = _scenarioWinner;
+
     if (IsInSuddenDeath)
     {
       int angelScore = _angleStats.GetCompletedRequirementCount();
