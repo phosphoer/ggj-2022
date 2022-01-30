@@ -299,7 +299,8 @@ public class ScenarioManager : Singleton<ScenarioManager>
     if (scenario.scenarioPrefab != null)
     {
       // Get the location of the scenario camera up in the sky
-      Vector3 scenarioCamPos = CameraManager.Instance.ScenarioCamera.transform.position;
+      Camera scenarioCamera= CameraManager.Instance.ScenarioCamera;
+      Vector3 scenarioCamPos = scenarioCamera.transform.position;
 
       // Create the scenario prefab
       _scenarioInstance = Instantiate(scenario.scenarioPrefab);
@@ -307,10 +308,12 @@ public class ScenarioManager : Singleton<ScenarioManager>
       // Get the offset of the dummy camera in the scenario
       Camera dummyCamera = _scenarioInstance.GetComponentInChildren<Camera>();
       Vector3 offsetPos = dummyCamera.transform.localPosition;
+      Quaternion dummyCameraRot = dummyCamera.transform.rotation;
 
       Destroy(dummyCamera.gameObject);
 
       _scenarioInstance.transform.position = scenarioCamPos - offsetPos;
+      scenarioCamera.transform.rotation = dummyCameraRot;
     }
   }
 
