@@ -174,8 +174,7 @@ public class ScenarioManager : Singleton<ScenarioManager>
 
   public static event System.Action<eBodyPart> PartSlapped;
 
-  public SoundBank IntroAudio;
-  public SoundBank LoopAudio;
+  public SoundBank BodyPartClaimedAudio;
   public SoundBank AngelWinAudio;
   public SoundBank DevilWinAudio;
 
@@ -248,7 +247,13 @@ public class ScenarioManager : Singleton<ScenarioManager>
 
     if (!isContested && playerStats.IsAssignedBodyPart(bodyPart))
     {
-      playerStats.AdjustProgress(bodyPart, progressDelta);
+      float oldProgress= playerStats.GetProgress(bodyPart);
+      float newProgress= playerStats.AdjustProgress(bodyPart, progressDelta);
+
+      if (oldProgress < 1.0 && newProgress >= 1.0)
+      {
+        AudioManager.Instance.PlaySound(BodyPartClaimedAudio); 
+      }
     }
 
     PartSlapped?.Invoke(bodyPart);
