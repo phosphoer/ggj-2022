@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a9fd6a9ecac50040a09f54fc61ff141, type: 3}
+  m_Name: build-windows
+  m_EditorClassIdentifier: 
+  LocationPathName: ../build/burt-windows/burt.exe
+  ProductNameOverride: 
+  CompanyNameOverride: 
+  BuildTarget: 5
+  BuildTargetGroup: 1
+  Defines:
+  - UNITY_POST_PROCESSING_STACK_V2
+  Scenes:
+  - sceneAsset: {fileID: 102900000, guid: 86023bc3d13a0d24b88c011d9cb6d7a8, type: 3}
+    sceneName: MainScene
+  WriteBuildInfo: 0
+  BuildInfoFile: BuildInfo.cs
+  BuildName: Main

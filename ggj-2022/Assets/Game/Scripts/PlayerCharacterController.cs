@@ -21,6 +21,7 @@ public class PlayerCharacterController : MonoBehaviour
       _playerCamera.TargetPlayer = this;
 
       CameraStack.PushController(_playerCamera);
+      CameraStack.SnapTransformToTarget();
     }
 
     var rewiredPlayer = ReInput.players.GetPlayer(RewiredPlayerId);

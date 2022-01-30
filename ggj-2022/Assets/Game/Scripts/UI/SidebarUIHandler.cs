@@ -55,6 +55,7 @@ public class SidebarUIHandler : UIPageBase
     if (playerController != null)
     {
       Vector3 playerPosition = playerController.gameObject.transform.position;
+      Vector3 playerForward = playerController.gameObject.transform.forward;
       float unitXLocation = (playerPosition.x - BodyExtents.center.x) / BodyExtents.extents.x;
       float unitYLocation = (playerPosition.y - BodyExtents.center.y) / BodyExtents.extents.y;
 
@@ -64,6 +65,9 @@ public class SidebarUIHandler : UIPageBase
 
       RectTransform rectTransform = icon.GetComponent<RectTransform>();
       rectTransform.anchoredPosition = new Vector2(pixelX, pixelY);
+
+      Vector3 projectedForward = new Vector3(playerForward.x, playerForward.y, 0).normalized;
+      rectTransform.rotation = Quaternion.FromToRotation(new Vector3(1, 0, 0), projectedForward);
 
       icon.enabled = true;
     }
