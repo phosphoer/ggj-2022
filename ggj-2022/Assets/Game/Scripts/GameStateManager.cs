@@ -197,73 +197,10 @@ public class GameStateManager : Singleton<GameStateManager>
 
           SpawnPlayers();
 
-          switch (newGameStage)
-          {
-            case GameStage.MainMenu:
-              {
-                CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MenuCamera);
-
-                GameUI.Instance.MainMenuUI.Show();
-
-                if (MusicMenuLoop != null)
-                {
-                  AudioManager.Instance.FadeInSound(gameObject, MusicMenuLoop, 3.0f);
-                }
-
-                ResetGameStats();
-              }
-              break;
-            case GameStage.Settings:
-              {
-                CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MenuCamera);
-
-                GameUI.Instance.SettingsUI.Show();
-                //CameraControllerStack.Instance.PushController(MenuCamera);
-              }
-              break;
-            case GameStage.ScenarioIntro:
-              {
-                ScenarioManager.Instance.SetupScenario();
-
-                SpawnPlayers();
-
-                CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.ScenarioCamera);
-                GameUI.Instance.ScenarioIntroUI.Show();
-              }
-              break;
-            case GameStage.ScenarioGameplay:
-              {
-                CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MultiCamera);
-
-                GameUI.Instance.ScenarioUI.Show();
-
-                GameUI.Instance.AngelUI.AssignPlayer(ePlayer.AngelPlayer);
-                GameUI.Instance.AngelUI.Show();
-
-                GameUI.Instance.DevilUI.AssignPlayer(ePlayer.DevilPlayer);
-                GameUI.Instance.DevilUI.Show();
-              }
-              break;
-            case GameStage.ScenarioOutro:
-              {
-                CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.ScenarioCamera);
-                GameUI.Instance.ScenarioOutroUI.Show();
-              }
-              break;
-            case GameStage.EndGame:
-              {
-                CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MenuCamera);
-                GameUI.Instance.EndGameUI.Show();
-                //CameraControllerStack.Instance.PushController(MenuCamera);
-
-                //if (WinAlert != null)
-                //{
-                //    AudioManager.Instance.PlaySound(WinAlert);
-                //}
-              }
-              break;
-          }
-          break;
+          CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.ScenarioCamera);
+          GameUI.Instance.ScenarioIntroUI.Show();
+        }
+        break;
       case GameStage.ScenarioGameplay:
         {
           CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MultiCamera);
