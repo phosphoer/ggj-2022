@@ -312,7 +312,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowOnStart: 0
   IsModal: 0
-  _hydrateOnShow: []
+  _hydrateOnShow:
+  - {fileID: 8714912086244321835}
   _titleTextField: {fileID: 8223197214995827803}
   _resultTextField: {fileID: 8521787250276195684}
 --- !u!1 &4745067735667708172
@@ -419,7 +420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eda87c994c34f04ea67f64008010b02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HydrateOnEnable: 1
+  HydrateOnEnable: 0
   StartDehydrated: 0
   _targetTransform: {fileID: 3834487371934102038}
   _useNormalizedScale: 1
