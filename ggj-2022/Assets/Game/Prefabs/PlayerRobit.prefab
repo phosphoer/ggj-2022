@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 1524232643415592600}
   _animatorCallbacks: {fileID: 195002970731581792}
+  _idleClinkSound: {fileID: 11400000, guid: 33311511d6f414194b0b83ebfc464161, type: 2}
 --- !u!1 &6699234464012560699
 GameObject:
   m_ObjectHideFlags: 0
@@ -14803,11 +14804,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63d6346bc63058b4d8d65c8ffa968384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CharacterController: {fileID: 0}
+  Treads: {fileID: 5803112988509313825}
+  TredsPanSpeedMod: 0.75
   MovingFX:
   - {fileID: 6699234464012560696}
-  MinMoveForFX: 0.05
-  treds: {fileID: 5803112988509313825}
-  TredsPanSpeedMod: 0.75
   StunnedFX:
   - {fileID: 6699234464670891359}
   - {fileID: 6699234464198382934}

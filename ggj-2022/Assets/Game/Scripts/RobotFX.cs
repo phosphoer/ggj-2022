@@ -4,82 +4,81 @@ using UnityEngine;
 
 public class RobotFX : MonoBehaviour
 {
-    public enum RobotFXStates{None,Moving,Stunned}
+  public enum RobotFXStates { None, Moving, Stunned }
 
-    public ParticleSystem[] MovingFX = new ParticleSystem[0];
-    public float MinMoveForFX = .5f;
-    public MeshRenderer treds; 
-    public float TredsPanSpeedMod = .5f;
+  public GameCharacterController CharacterController = null;
+  public MeshRenderer Treads;
+  public float TredsPanSpeedMod = .5f;
 
-    public ParticleSystem[] StunnedFX = new ParticleSystem[0];
-    
+  public ParticleSystem[] MovingFX = null;
+  public ParticleSystem[] StunnedFX = null;
 
-    RobotFXStates currentState = RobotFXStates.None;
-    Material tredsMat;
-    Vector3 lastPos = Vector3.zero;
+  private Material treadsMat;
 
-    // Start is called before the first frame update
-    void Start()
+  private static readonly int kTreadsTexture = Shader.PropertyToID("_MainTex");
+
+  private void Start()
+  {
+    treadsMat = Instantiate(Treads.sharedMaterial);
+    Treads.sharedMaterial = treadsMat;
+    ClearAll();
+  }
+
+  private void OnDestroy()
+  {
+    Destroy(treadsMat);
+  }
+
+  private void Update()
+  {
+    if (CharacterController != null)
     {
-        tredsMat = treds.material;
-        lastPos = transform.position;
-        ClearAll();
-        
-        
+      SetFX(RobotFXStates.Moving, Mathf.Abs(CharacterController.DesiredSpeed) > 0);
+      SetFX(RobotFXStates.Stunned, CharacterController.IsStunned);
+
+      treadsMat.SetTextureOffset(kTreadsTexture, new Vector2(0f, treadsMat.GetTextureOffset(kTreadsTexture).y + (CharacterController.CurrentSpeed * TredsPanSpeedMod * Time.deltaTime)));
     }
+  }
 
-    // Update is called once per frame
-    void Update()
+  private void ClearAll()
+  {
+    SetFX(RobotFXStates.Moving, false);
+    SetFX(RobotFXStates.Stunned, false);
+  }
+
+  private void SetFX(RobotFXStates state, bool isEnabled)
+  {
+    if (state == RobotFXStates.Moving)
     {
-
-        if(currentState==RobotFXStates.Moving)
+      foreach (ParticleSystem fx in MovingFX)
+      {
+        if (isEnabled)
         {
-            float moveDist = Vector3.Distance(lastPos,transform.position);
-            if(moveDist <= MinMoveForFX) SetFX(currentState, false);
-            else SetFX(currentState, true);
-            tredsMat.SetTextureOffset("_MainTex", new Vector2(0f,tredsMat.GetTextureOffset("_MainTex").y + (moveDist*TredsPanSpeedMod)));
+          if (!fx.isPlaying)
+            fx.Play();
         }
-        lastPos = transform.position;
-    }
-
-    public void AnimEvent(string eventString)
-    {
-        if(eventString=="Moving") SetState(RobotFXStates.Moving);
-        else if(eventString=="Stunned") SetState(RobotFXStates.Stunned);
-        else SetState(RobotFXStates.None);
-    }
-
-    public void SetState(RobotFXStates newState)
-    {
-        SetFX(currentState,false);
-        currentState = newState;
-        SetFX(currentState,true);
-    }
-
-    public void ClearAll()
-    {
-        SetFX(RobotFXStates.Moving, false);
-        SetFX(RobotFXStates.Stunned, false);
-        SetState(RobotFXStates.None);
-    }
-
-    void SetFX(RobotFXStates state, bool isEnabled)
-    {
-        if(state == RobotFXStates.Moving)
+        else
         {
-            foreach (ParticleSystem fx in MovingFX)
-            {
-                if(isEnabled) fx.Play();
-                else fx.Stop();
-            }
+          if (fx.isPlaying)
+            fx.Stop();
         }
-        else if(state == RobotFXStates.Stunned)
-        {
-            foreach (ParticleSystem fx in StunnedFX)
-            {
-                if(isEnabled) fx.Play();
-                else fx.Stop();
-            }
-        }
+      }
     }
+    else if (state == RobotFXStates.Stunned)
+    {
+      foreach (ParticleSystem fx in StunnedFX)
+      {
+        if (isEnabled)
+        {
+          if (!fx.isPlaying)
+            fx.Play();
+        }
+        else
+        {
+          if (fx.isPlaying)
+            fx.Stop();
+        }
+      }
+    }
+  }
 }

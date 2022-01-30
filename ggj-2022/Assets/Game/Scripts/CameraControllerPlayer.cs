@@ -17,7 +17,8 @@ public class CameraControllerPlayer : CameraControllerBase
 
   public override void CameraStart()
   {
-
+    MountPoint.position = TargetPlayer.transform.TransformPoint(CameraLocalOffset);
+    MountPoint.rotation = Quaternion.LookRotation(TargetPlayer.transform.position - MountPoint.position, TargetPlayer.transform.up);
   }
 
   public override void CameraStop()
