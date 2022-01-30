@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameCharacterController : MonoBehaviour, ISlappable
 {
   public bool IsStunned => _stunTimer > 0;
+  public float CurrentSpeed => DesiredSpeed * _maxSpeed;
 
   [Range(0, 1)]
   public float DesiredSpeed = 0.0f;
