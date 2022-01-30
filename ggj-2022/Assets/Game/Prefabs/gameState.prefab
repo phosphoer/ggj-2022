@@ -228,6 +228,7 @@ MonoBehaviour:
   DevilClaimedAudio: {fileID: 11400000, guid: ae4a0127902ba4fd38114c21d5976ca9, type: 2}
   AngelWinAudio: {fileID: 0}
   DevilWinAudio: {fileID: 0}
+  BodyPartStolenAudio: {fileID: 0}
   TotalBodyPartHealth: 20
   TotalScenarioTime: 300
   ScenarioRoot: {fileID: 1876597425947615758}
