@@ -55,6 +55,18 @@ public class ScenarioScene : MonoBehaviour
 
   private ScenarioState _state = default(ScenarioState);
 
+  public void SetWinner(ePlayer winningPlayer)
+  {
+    if (winningPlayer == ePlayer.DevilPlayer)
+    {
+      CurrentState = ScenarioState.BadEnd;
+    }
+    else if (winningPlayer == ePlayer.AngelPlayer)
+    {
+      CurrentState = ScenarioState.GoodEnd;
+    }
+  }
+
   private void EnsureState()
   {
     if (_inGameSceneRoot != null)

@@ -159,14 +159,11 @@ public class GameStateManager : Singleton<GameStateManager>
         break;
       case GameStage.ScenarioIntro:
         {
-          CameraManager.Instance.ScenarioCameraStack.PopCurrentController();
-
           GameUI.Instance.ScenarioIntroUI.Hide();
         }
         break;
       case GameStage.ScenarioGameplay:
         {
-          CameraManager.Instance.ScenarioCameraStack.PopCurrentController();
           GameUI.Instance.ScenarioUI.Hide();
           GameUI.Instance.AngelUI.Hide();
           GameUI.Instance.DevilUI.Hide();
@@ -183,8 +180,6 @@ public class GameStateManager : Singleton<GameStateManager>
         break;
       case GameStage.EndGame:
         {
-          CameraManager.Instance.ScenarioCameraStack.PopCurrentController();
-
           GameUI.Instance.EndGameUI.Hide();
         }
         break;
@@ -222,6 +217,8 @@ public class GameStateManager : Singleton<GameStateManager>
       case GameStage.ScenarioIntro:
         {
           ScenarioManager.Instance.SetupScenario();
+          CameraManager.Instance.ScenarioCameraStack.SwitchController(ScenarioManager.Instance.CurrentScene.CurrentCamera);
+          CameraManager.Instance.ScenarioCameraStack.SnapTransformToTarget();
 
           SpawnPlayers();
 
@@ -232,6 +229,7 @@ public class GameStateManager : Singleton<GameStateManager>
       case GameStage.ScenarioGameplay:
         {
           CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MultiCamera);
+          CameraManager.Instance.ScenarioCameraStack.SwitchController(ScenarioManager.Instance.CurrentScene.CurrentCamera);
 
           GameUI.Instance.ScenarioUI.Show();
 
@@ -246,7 +244,11 @@ public class GameStateManager : Singleton<GameStateManager>
         break;
       case GameStage.ScenarioOutro:
         {
+          ScenarioManager.Instance.CurrentScene.SetWinner(ScenarioManager.Instance.LastScenarioWinner);
+
+          CameraManager.Instance.ScenarioCameraStack.SwitchController(ScenarioManager.Instance.CurrentScene.CurrentCamera);
           CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.ScenarioCamera);
+
           GameUI.Instance.ScenarioOutroUI.Show();
         }
         break;
@@ -314,7 +316,7 @@ public class GameStateManager : Singleton<GameStateManager>
 
   public PlayerCharacterController GetPlayer(ePlayer player)
   {
-    switch(player)
+    switch (player)
     {
       case ePlayer.DevilPlayer:
         return _devilPlayer;
