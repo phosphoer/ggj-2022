@@ -35,6 +35,11 @@ public class PlayerUIHandler : UIPageBase
     public void AssignPlayer(ePlayer player)
     {
         _assignedPlayer = player;
+
+        Canvas parentCanvas = this.transform.parent.GetComponent<Canvas>();
+        parentCanvas.renderMode = RenderMode.ScreenSpaceCamera;
+        parentCanvas.worldCamera = CameraManager.Instance.getPlayerCamera(_assignedPlayer);
+        parentCanvas.planeDistance = 1.0f;
     }
 
     private void OnShown()
