@@ -16,7 +16,7 @@ public class SlappableStation : MonoBehaviour, ISlappable
   {
     StartCoroutine(SlapAnimAsync(slapDirection, slapStrength));
 
-    AudioManager.Instance?.PlaySound(_meatSlapSounds);
+    AudioManager.Instance?.PlaySound(_meatSlapSounds, slapStrength / 3.0f);
   }
 
   private IEnumerator SlapAnimAsync(Vector3 slapDirection, float slapStrength)
