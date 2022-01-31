@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2447138110159534001}
+  - component: {fileID: 1342129910180796859}
   m_Layer: 0
   m_Name: Scenario4
   m_TagString: Untagged
@@ -34,6 +35,9 @@ Transform:
   - {fileID: 4154044223167638343}
   - {fileID: 5415201277363019988}
   - {fileID: 4438551550295355206}
+  - {fileID: 88299872048410122}
+  - {fileID: 7497847563496436061}
+  - {fileID: 2638326643456054332}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
