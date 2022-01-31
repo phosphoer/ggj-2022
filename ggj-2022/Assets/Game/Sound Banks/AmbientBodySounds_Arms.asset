@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AmbientBodySounds_Arms
   m_EditorClassIdentifier: 
   AudioClips:
-  - {fileID: 8300000, guid: e05db50eaea7340d88746b5d5e30c7b4, type: 3}
+  - {fileID: 8300000, guid: 27d75dc41036b417a9265455e1689df9, type: 3}
   SequencedClips: []
   IsSpatial: 1
   MaxDistance: 20
