@@ -214,7 +214,7 @@ MonoBehaviour:
     IntroDuration: 5
     GameplayDuration: 3
     OutroDuration: 10
-  - scenarioPrefab: {fileID: 1342129910180796859, guid: 9451e8d53bd3f5a4889bf653ebc082c4, type: 3}
+  - scenarioPrefab: {fileID: 9146286317210118572, guid: 9451e8d53bd3f5a4889bf653ebc082c4, type: 3}
     angelGoals:
       Requirements: 010000000200000006000000
       Bonus: 3

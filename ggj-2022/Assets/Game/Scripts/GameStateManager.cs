@@ -312,10 +312,7 @@ public class GameStateManager : Singleton<GameStateManager>
   private void DespawnPlayers()
   {
     PlayerManager.Instance.enabled = false;
-    PlayerManager.Instance.DespawnPlayers();
-
-    _devilPlayer = null;
-    _angelPlayer = null;
+    PlayerManager.Instance.RespawnAllPlayers();
   }
 
   public PlayerCharacterController GetPlayer(ePlayer player)

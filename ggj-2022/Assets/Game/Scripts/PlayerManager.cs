@@ -35,6 +35,14 @@ public class PlayerManager : Singleton<PlayerManager>
     _nextSpawnIndex = 0;
   }
 
+  public void RespawnAllPlayers()
+  {
+    foreach (var player in _players)
+    {
+      RespawnPlayer(player);
+    }
+  }
+
   public void RespawnPlayer(PlayerCharacterController player)
   {
     var spawnIndex = _players.IndexOf(player);
@@ -42,6 +50,8 @@ public class PlayerManager : Singleton<PlayerManager>
     {
       player.transform.position = _spawnPoints[spawnIndex].position;
       player.transform.rotation = _spawnPoints[spawnIndex].rotation;
+      player.PlayerCamera.CameraStart();
+      player.CameraStack.SnapTransformToTarget();
     }
   }
 

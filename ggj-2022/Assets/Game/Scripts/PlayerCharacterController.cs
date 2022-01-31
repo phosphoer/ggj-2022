@@ -3,6 +3,8 @@ using Rewired;
 
 public class PlayerCharacterController : MonoBehaviour
 {
+  public CameraControllerPlayer PlayerCamera => _playerCamera;
+
   public int RewiredPlayerId = 0;
   public ePlayer Team = default(ePlayer);
   public GameCharacterController Character = null;
