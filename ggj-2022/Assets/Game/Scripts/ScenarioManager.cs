@@ -256,7 +256,7 @@ public class ScenarioManager : Singleton<ScenarioManager>
 
     PlayerStats playerStats = GetPlayerStats(attackingPlayer);
 
-    ePlayer otherPlayer= GetOtherPlayer(attackingPlayer);
+    ePlayer otherPlayer = GetOtherPlayer(attackingPlayer);
     PlayerStats otherPlayerStats = GetPlayerStats(otherPlayer);
 
     bool isContested = false;
@@ -340,6 +340,20 @@ public class ScenarioManager : Singleton<ScenarioManager>
       Camera dummyCamera = _scenarioInstance.GetComponentInChildren<Camera>();
       dummyCamera.enabled = false;
     }
+  }
+
+  [ContextMenu("Devil Win")]
+  private void DebugDevilWin()
+  {
+    _scenarioWinner = ePlayer.DevilPlayer;
+    _scenarioTimeRemaining = 0;
+  }
+
+  [ContextMenu("Angel Win")]
+  private void DebugAngelWin()
+  {
+    _scenarioWinner = ePlayer.AngelPlayer;
+    _scenarioTimeRemaining = 0;
   }
 
   public void UpdateScenario()
