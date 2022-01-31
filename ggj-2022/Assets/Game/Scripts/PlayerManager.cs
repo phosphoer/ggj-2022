@@ -35,6 +35,16 @@ public class PlayerManager : Singleton<PlayerManager>
     _nextSpawnIndex = 0;
   }
 
+  public void RespawnPlayer(PlayerCharacterController player)
+  {
+    var spawnIndex = _players.IndexOf(player);
+    if (_spawnPoints.IsIndexValid(spawnIndex))
+    {
+      player.transform.position = _spawnPoints[spawnIndex].position;
+      player.transform.rotation = _spawnPoints[spawnIndex].rotation;
+    }
+  }
+
   private void Awake()
   {
     Instance = this;

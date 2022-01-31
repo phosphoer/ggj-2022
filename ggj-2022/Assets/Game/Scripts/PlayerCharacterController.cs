@@ -30,6 +30,12 @@ public class PlayerCharacterController : MonoBehaviour
       Character.DesiredSpeed = rewiredPlayer.GetAxis(RewiredConsts.Action.Move);
       Character.DesiredTurn = rewiredPlayer.GetAxis(RewiredConsts.Action.Turn);
 
+      if (rewiredPlayer.GetButtonDown(RewiredConsts.Action.SelfDestruct))
+      {
+        PlayerManager.Instance.RespawnPlayer(this);
+        _playerCamera.CameraStart();
+        CameraStack.SnapTransformToTarget();
+      }
       if (rewiredPlayer.GetButtonDoublePressDown(RewiredConsts.Action.Slap))
       {
         Character.DoubleSlap();

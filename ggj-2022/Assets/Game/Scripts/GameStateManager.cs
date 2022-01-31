@@ -232,7 +232,10 @@ public class GameStateManager : Singleton<GameStateManager>
           CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MultiCamera);
           CameraManager.Instance.ScenarioCameraStack.SwitchController(ScenarioManager.Instance.CurrentScene.CurrentCamera);
 
-          GameUI.Instance.ScenarioUI.Show();
+          if (ScenarioManager.Instance.GetCurrentScenario().GameplayText != "")
+          {
+            GameUI.Instance.ScenarioUI.Show();
+          }
 
           GameUI.Instance.AngelUI.AssignPlayer(ePlayer.AngelPlayer);
           GameUI.Instance.AngelUI.Show();

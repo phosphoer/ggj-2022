@@ -19,12 +19,12 @@ public class GrandpaController : MonoBehaviour
     public Transform[] Bones = null;
   }
 
-  private void Start()
+  private void OnEnable()
   {
     ScenarioManager.PartSlapped += OnPartSlapped;
   }
 
-  private void OnDestroy()
+  private void OnDisable()
   {
     ScenarioManager.PartSlapped -= OnPartSlapped;
   }

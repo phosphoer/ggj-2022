@@ -324,6 +324,60 @@ MonoBehaviour:
   ArmsIcon: {fileID: 21300000, guid: 8ef2a24367a5f93408ffeb499a59b333, type: 3}
   LoinsIcon: {fileID: 21300000, guid: 187a095304e364640806731eaa9c8f58, type: 3}
   LegsIcon: {fileID: 21300000, guid: 51d7d7fff6e43e04f86948f94d30647d, type: 3}
+  _uiThrobCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.16872233
+      value: 0.9933641
+      inSlope: 0.083444774
+      outSlope: 0.083444774
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.09061978
+    - serializedVersion: 3
+      time: 0.41192722
+      value: -0.34645045
+      inSlope: -0.036643207
+      outSlope: -0.036643207
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.48196134
+    - serializedVersion: 3
+      time: 0.66113997
+      value: 0.22166084
+      inSlope: -0.14366761
+      outSlope: -0.14366761
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.34816512
+    - serializedVersion: 3
+      time: 1.0014038
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  UIThrobStrength: 0.2
+  UnfullBarColor: {r: 0.2122642, g: 0.5551525, b: 0.8490566, a: 1}
+  FullBarColor: {r: 0.8490566, g: 0.59248525, b: 0.21226415, a: 1}
 --- !u!1 &2619595259652900825
 GameObject:
   m_ObjectHideFlags: 0
