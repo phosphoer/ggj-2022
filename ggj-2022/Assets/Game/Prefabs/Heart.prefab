@@ -178,6 +178,8 @@ GameObject:
   - component: {fileID: 5420640236899980498}
   - component: {fileID: 7844440259437535256}
   - component: {fileID: 377650977013437094}
+  - component: {fileID: 8757179209170996819}
+  - component: {fileID: 3133727017949629989}
   m_Layer: 0
   m_Name: Heart
   m_TagString: Untagged
@@ -265,6 +267,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SoundBank: {fileID: 11400000, guid: 481d4ee8b1b5c4eedaab8ed8ea3b3ad9, type: 2}
+  FadeInTime: 0
+  GroupPlayIntervalName: 
+  MinPlayInterval: 1
+--- !u!114 &8757179209170996819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8637324275501728205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f6996921dffc8044a52e0d7268cf59e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundBank: {fileID: 11400000, guid: 867f105b40e38479c8e91277424d375a, type: 2}
+  FadeInTime: 0
+  GroupPlayIntervalName: 
+  MinPlayInterval: 1
+--- !u!114 &3133727017949629989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8637324275501728205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f6996921dffc8044a52e0d7268cf59e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundBank: {fileID: 11400000, guid: e320a0f7a90ef4391b9693b8a586499d, type: 2}
   FadeInTime: 0
   GroupPlayIntervalName: 
   MinPlayInterval: 1
