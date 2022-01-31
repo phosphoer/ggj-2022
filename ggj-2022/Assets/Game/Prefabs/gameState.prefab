@@ -174,7 +174,9 @@ MonoBehaviour:
     Title: Complete Breakfast
     IntroText: Burt sits down in his breakfast nook to have a sensible meal of wholegrain
       toast and coffee
+    GameplayText: Capture your assigned body part control points to influence Burt.
     IntroDuration: 5
+    GameplayDuration: 5
     OutroDuration: 10
   - scenarioPrefab: {fileID: 7904897964600253219, guid: 295e1392285103d41b274d458e7bac6a, type: 3}
     angelGoals:
@@ -190,7 +192,9 @@ MonoBehaviour:
         cart
     Title: Supermarket Sweep
     IntroText: Burt needs to pick up a few things at the supermarket.
+    GameplayText: 
     IntroDuration: 5
+    GameplayDuration: 3
     OutroDuration: 10
   - scenarioPrefab: {fileID: 8956187813020250872, guid: a2bedd7c450c028499f5fd9be908ccdf, type: 3}
     angelGoals:
@@ -206,7 +210,9 @@ MonoBehaviour:
     Title: Hot Date
     IntroText: Burt meets an attractive old lady for a candlelit dinner at a fancy
       restaurant.
+    GameplayText: 
     IntroDuration: 5
+    GameplayDuration: 3
     OutroDuration: 10
   - scenarioPrefab: {fileID: 8956187813020250872, guid: a2bedd7c450c028499f5fd9be908ccdf, type: 3}
     angelGoals:
@@ -222,7 +228,9 @@ MonoBehaviour:
       bonusOutroText: Screaming in his sleep
     Title: Sleeping Beauty
     IntroText: Burt is tired after a long day and tries to get some shuteye
+    GameplayText: 
     IntroDuration: 5
+    GameplayDuration: 3
     OutroDuration: 10
   AngelClaimedAudio: {fileID: 11400000, guid: 80971b4c0099c45959d04cd5518d37ad, type: 2}
   DevilClaimedAudio: {fileID: 11400000, guid: ae4a0127902ba4fd38114c21d5976ca9, type: 2}

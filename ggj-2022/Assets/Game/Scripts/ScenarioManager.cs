@@ -126,7 +126,9 @@ public class Scenario
 
   public string Title = "";
   public string IntroText = "";
+  public string GameplayText = "";
   public float IntroDuration = 3.0f;
+  public float GameplayDuration = 3.0f;
   public float OutroDuration = 3.0f;
 
   public PlayerGoals GetGoalsForPlayer(ePlayer player)
