@@ -36,10 +36,10 @@ public class EndGameUIHandler : UIPageBase
 
     _devilWins = 0;
     _angelWins = 0;
-    for (int LabelIndex= 0; LabelIndex < ScenarioWinnerLabels.Count; ++LabelIndex)
+    for (int LabelIndex = 0; LabelIndex < ScenarioWinnerLabels.Count; ++LabelIndex)
     {
       ePlayer player = LabelIndex < scenarioWinners.Count ? scenarioWinners[LabelIndex] : ePlayer.Invalid;
-      Text label= ScenarioWinnerLabels[LabelIndex];
+      Text label = ScenarioWinnerLabels[LabelIndex];
 
       switch (player)
       {
@@ -75,6 +75,7 @@ public class EndGameUIHandler : UIPageBase
     }
 
     _revealTimer = 1.0f;
+    Buttons[0].Select();
   }
 
   void Update()
@@ -99,7 +100,7 @@ public class EndGameUIHandler : UIPageBase
         else
         {
           // Pop in remaining UI elements
-          foreach(Button button in Buttons)
+          foreach (Button button in Buttons)
           {
             button.gameObject.GetComponent<UIHydrate>().Hydrate();
           }
